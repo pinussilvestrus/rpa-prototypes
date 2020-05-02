@@ -1,0 +1,25 @@
+@import './_colors.scss';
+
+.diagram-container {
+  padding: 2rem;
+}
+
+.btn {
+  padding: 0.5rem;
+  border: solid 0.05rem $color-grey;
+  border-radius: 0.125rem;
+  font-size: 0.75rem;
+  color: $color-black;
+  font-weight: bold;
+  cursor: pointer;
+  background: $color-grey-light;
+
+  &.btn-sticky {
+    border-radius: none;
+    border-right: none;
+  }
+
+  &:hover {
+    background: white
+  }
+}
