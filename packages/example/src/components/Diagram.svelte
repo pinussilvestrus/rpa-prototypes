@@ -43,13 +43,7 @@
   });
 
   afterUpdate(async () => {
-  
-    // remove selected from all decisions first
-    forEach(ELEMENTS, id => {
-      const dataElement = getElement(id);
-      dataElement.removeClass('selected');
-    });
-
+    resetSelection();
   });
 
 
@@ -66,6 +60,8 @@
     });
 
     element.on('click', event => {
+      resetSelection();
+
       element.removeClass('hover');
       element.addClass('selected');
     });
@@ -78,6 +74,13 @@
       element.addClass('selected');
 
       MicroModal.show(modalId);
+    });
+  }
+
+  function resetSelection() {
+    forEach(ELEMENTS, id => {
+      const dataElement = getElement(id);
+      dataElement.removeClass('selected');
     });
   }
 
