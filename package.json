@@ -1,0 +1,32 @@
+{
+  "name": "rpa-prototypes",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "lerna run build -- --silent",
+    "postinstall": "lerna bootstrap",
+    "serve": "serve packages",
+    "dev": "run-s build serve",
+    "bump": "lerna run --parallel bump-deps",
+    "sync:live": "git checkout live && git merge master && git push && git checkout master"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pinussilvestrus/rpa-prototypes.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/pinussilvestrus/rpa-prototypes/issues"
+  },
+  "homepage": "https://github.com/pinussilvestrus/rpa-prototypes#readme",
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-plugin-bpmn-io": "^0.10.0",
+    "lerna": "^3.20.2",
+    "npm-run-all": "^4.1.5",
+    "serve": "^11.3.0"
+  }
+}
