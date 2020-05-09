@@ -26,7 +26,7 @@ Visit http://localhost:5000 and visit one demo inside the `packages` directory.
 
 Every demo goes into the `packages` sub-directory. It has to include a `npm run build` task resulting in an `index.html` to serve the Demo in the end. 
 
-Check out the [example demo](./packages/example) for guidance.
+Check out the [example demo](./packages/catalog-example) for guidance.
 
 ## License
 

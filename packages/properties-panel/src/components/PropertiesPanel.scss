@@ -1,0 +1,70 @@
+@import "../colors";
+
+.properties-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow-y: auto;
+
+  &.hidden {
+    display: none;
+  }
+
+  .container {
+    border: solid 2px $color-silver-darken-80;
+    background-color: $color-silver-base-97;
+    min-height: 100%;
+    width: 400px;
+  }
+
+  .header {
+    border-bottom: solid 1px $color-silver-darken-80;
+    padding: 15px;
+
+    .title {
+      padding-bottom: 5px;
+      font-size: 120%;
+      font-weight: bolder;
+    }
+  }
+
+  .section {
+    padding: 15px;
+
+    h1 {
+      font-size: 110%;
+      font-weight: bolder;
+      color: $color-grey-darken-33;
+      font-style: italic;
+      margin-bottom: 10px;
+      margin-top: 5px;
+    }
+
+    label {
+      font-weight: bold;
+      display: inline-block;
+      vertical-align: middle;
+      color: $color-grey-darken-33;
+      margin-bottom: 3px;
+    }
+
+    input {
+      width: 100%;
+    }
+
+    select {
+      width: 100%;
+    }
+  }
+}
+
+.open-properties-panel {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  border: 1px solid $color-silver-darken-80;
+  background-color: white;
+  padding: 1px 0px;
+  font: 13.3333px Arial;
+  width: 14%;
+}
