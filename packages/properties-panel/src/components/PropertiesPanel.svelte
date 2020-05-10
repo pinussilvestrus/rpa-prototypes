@@ -1,9 +1,14 @@
 <script>
+    import { afterUpdate } from 'svelte';
+
     import { find } from 'min-dash';
+
+    import dom from 'domtastic';
+
+    import getElement from '../util/getElement';
 
     import './PropertiesPanel.scss';
 
-    import dom from 'domtastic';
 
     const TEMPLATES = [
       {
@@ -40,6 +45,12 @@
         }
       }
     }
+
+    // lifecycle //////////
+
+    afterUpdate(async () => {
+      element && getElement(element.id).addClass('selected');
+    });
 
 
     // methods //////////
