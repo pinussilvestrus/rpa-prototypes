@@ -30,7 +30,12 @@
   }
 
   .section {
+    border-bottom: solid 1px $color-silver-darken-80;
     padding: 15px;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
 
     h1 {
       font-size: 110%;
@@ -55,6 +60,11 @@
 
     select {
       width: 100%;
+    }
+
+    textarea {
+      width: 100%;
+      resize: none;
     }
   }
 }

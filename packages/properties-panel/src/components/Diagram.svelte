@@ -9,17 +9,6 @@
 
   import './Diagram.scss';
 
-  const ELEMENTS = [
-    {
-      id: 'ServiceTask_1',
-      name: 'Task 1'
-    },
-    {
-      id: 'ServiceTask_2',
-      name: 'Task 2'
-    }
-  ];
-
   const noop = () => {};
 
   // lifecycle //////////
@@ -27,14 +16,14 @@
   onMount(async () => {
 
     // (1) bind hover and selection handlers
-    forEach(ELEMENTS, ({ id }) => {
+    forEach(elements, ({ id }) => {
       const element = getElement(id);
       element.addClass('element');
       bindElementInteractions(element);
     });
 
     // (2) initialize properties binding
-    forEach(ELEMENTS, element => {
+    forEach(elements, element => {
       bindOpenPanel(element);
     });
 
@@ -70,12 +59,12 @@
     const gfx = getElement(element.id);
 
     gfx.on('click', () => {
-      onOpenProperties(element);
+      onOpenProperties(element.id);
     });
   }
 
   function resetSelection() {
-    forEach(ELEMENTS, ({ id }) => {
+    forEach(elements, ({ id }) => {
       const dataElement = getElement(id);
       dataElement.removeClass('selected');
     });
@@ -84,6 +73,7 @@
 
   // exports  //////////
   export let onOpenProperties = noop;
+  export let elements = [];
 
 </script>
 
