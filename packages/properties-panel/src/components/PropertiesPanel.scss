@@ -29,21 +29,34 @@
     }
   }
 
+  .properties {
+    padding: 15px;
+  }
+
+  .section-title {
+    font-size: 110%;
+    font-weight: bolder;
+    color: $color-grey-darken-33;
+    font-style: italic;
+    margin-top: 5px;
+    padding-bottom: 15px;
+    border-bottom: solid 1px $color-silver-darken-87;
+
+    cursor: pointer;
+  }
+
   .section {
     border-bottom: solid 1px $color-silver-darken-80;
-    padding: 15px;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
 
     &:last-of-type {
       border-bottom: none;
     }
 
-    h1 {
-      font-size: 110%;
-      font-weight: bolder;
-      color: $color-grey-darken-33;
-      font-style: italic;
-      margin-bottom: 10px;
-      margin-top: 5px;
+    &.hidden {
+      display: none;
     }
 
     label {

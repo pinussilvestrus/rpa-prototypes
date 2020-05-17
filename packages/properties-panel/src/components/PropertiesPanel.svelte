@@ -71,6 +71,18 @@
       });
     };
 
+    const handleSectionTitleClick = (event) => {
+      const titleNode = dom(event.target),
+            id = titleNode.attr('id'),
+            section = dom(`.section[data-title-ref="#${id}"]`);
+
+      if (section.hasClass('hidden')) {
+        section.removeClass('hidden');
+      } else {
+        section.addClass('hidden');
+      }
+    };
+
 
     // exports //////////
 
@@ -93,48 +105,56 @@
         <div class="title">{element.name}</div>
       </div>
 
-      <div class="section">
-        <h1>General</h1>
-
-        <label>Id</label>
-        <input name="id" disabled value="{element.id}" />
-
-        <label>Name</label>
-        <input name="name" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.name}" />
-
-        <label>Element Template</label>
-        <select id="element-template" on:change="{handleTemplateChanged}">
-          <option></option>
-          {#each TEMPLATES as {id, name}}
-            <option 
-              selected={element.template && element.template.id === id} 
-              value="{id}" >
-                {name}
-            </option>
-          {/each}
-        </select>
-      </div>
-
-      {#if element.template}
-        <div class="section">
-            <h1>Worker details</h1>
-
-            <label>Type</label>
-            <input disabled value="{element.template.type}"/>
-
-            <label>Name</label>
-            <input disabled value="{element.template.name}"/>
-
-            <label>Topic</label>
-            <input disabled value="{element.template.topic}"/>
-
-            <label>Input Parameters</label>
-            <textarea rows="5"></textarea>
-
-            <label>Output Parameters</label>
-            <textarea rows="5"></textarea>
+      <div class="properties">
+        <div 
+          class="section-title" 
+          id="general" 
+          on:click={handleSectionTitleClick} >General</div>
+        <div class="section" data-title-ref="#general">
+  
+          <label>Id</label>
+          <input name="id" disabled value="{element.id}" />
+  
+          <label>Name</label>
+          <input name="name" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.name}" />
+  
+          <label>Element Template</label>
+          <select id="element-template" on:change="{handleTemplateChanged}">
+            <option></option>
+            {#each TEMPLATES as {id, name}}
+              <option 
+                selected={element.template && element.template.id === id} 
+                value="{id}" >
+                  {name}
+              </option>
+            {/each}
+          </select>
         </div>
-      {/if}
+  
+        {#if element.template}
+          <div 
+            class="section-title" 
+            id="worker"
+            on:click={handleSectionTitleClick} >Worker details</div>
+          <div class="section" data-title-ref="#worker">
+  
+              <label>Type</label>
+              <input disabled value="{element.template.type}"/>
+  
+              <label>Name</label>
+              <input disabled value="{element.template.name}"/>
+  
+              <label>Topic</label>
+              <input disabled value="{element.template.topic}"/>
+  
+              <label>Input Parameters</label>
+              <textarea rows="5"></textarea>
+  
+              <label>Output Parameters</label>
+              <textarea rows="5"></textarea>
+          </div>
+        {/if}
+      </div>
     {/if}
   </div>
 </div>
