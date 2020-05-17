@@ -77,8 +77,10 @@
             section = dom(`.section[data-title-ref="#${id}"]`);
 
       if (section.hasClass('hidden')) {
+        titleNode.removeClass('inactive');
         section.removeClass('hidden');
       } else {
+        titleNode.addClass('inactive');
         section.addClass('hidden');
       }
     };
@@ -96,6 +98,8 @@
       return element && find(TEMPLATES, t => t.id === element.templateId);
     };
 
+    // todo(pinussilvestrus): move sections to own class
+
 </script>
 
 <div class="properties-panel" class:hidden="{isHidden}">
@@ -109,7 +113,7 @@
         <div 
           class="section-title" 
           id="general" 
-          on:click={handleSectionTitleClick} >General</div>
+          on:click={handleSectionTitleClick} >General <i>Icon</i></div>
         <div class="section" data-title-ref="#general">
   
           <label>Id</label>
@@ -135,7 +139,7 @@
           <div 
             class="section-title" 
             id="worker"
-            on:click={handleSectionTitleClick} >Worker details</div>
+            on:click={handleSectionTitleClick} >Worker details <i>Icon</i></div>
           <div class="section" data-title-ref="#worker">
   
               <label>Type</label>
