@@ -1,7 +1,7 @@
 <script>
     import { afterUpdate } from 'svelte';
 
-    import { find } from 'min-dash';
+    import { debounce, find } from 'min-dash';
 
     import dom from 'domtastic';
 
@@ -55,6 +55,14 @@
 
     // methods //////////
 
+    const handlePropertyChanged = (event) => {
+      const inputNode = dom(event.target);
+
+      onPropertiesChanged(element.id, {
+        [inputNode.attr('name')]: inputNode.val()
+      });
+    };
+
     const handleTemplateChanged = (event) => {
       const selectNode = dom(event.target);
 
@@ -89,10 +97,10 @@
         <h1>General</h1>
 
         <label>Id</label>
-        <input value="{element.id}"/>
+        <input name="id" disabled value="{element.id}" />
 
         <label>Name</label>
-        <input value="{element.name}"/>
+        <input name="name" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.name}" />
 
         <label>Element Template</label>
         <select id="element-template" on:change="{handleTemplateChanged}">
