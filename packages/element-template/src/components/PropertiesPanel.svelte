@@ -119,6 +119,23 @@
       }
     }
 
+    // reset visual selections
+    $: {
+      const _resetSelection = (type) => {
+        const otherSelect = dom(`#${type}-select`);
+        otherSelect.val(null);
+      };
+
+      if (!(element && element.currentParameter)) {
+        _resetSelection('input');
+        _resetSelection('output');
+      } else {
+        element.currentParameter.type === 'input'
+          ? _resetSelection('output')
+          : _resetSelection('input');
+      }
+    }
+
     // lifecycle //////////
 
     afterUpdate(async () => {
@@ -170,13 +187,7 @@
 
       const value = parameterNode.val();
 
-      // (1) reset selection from other select
-      const id = parameterNode.attr('id');
-
-      const otherSelect = dom(`#${id === 'input-select' ? 'output' : 'input'}-select`);
-      otherSelect.val(null);
-
-      // (2) find and set populated parameter
+      // find and set populated parameter
       element.currentParameter = find(
         [
           ...element.template.inputs,
