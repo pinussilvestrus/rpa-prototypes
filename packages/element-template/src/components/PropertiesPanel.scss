@@ -61,6 +61,17 @@
 
           p {
             border-top: 2px solid $color-select;
+            position: relative;
+
+            &:before {
+              content: '';
+              z-index: 5;
+              bottom: -2px;
+              left: 0;
+              right: 0;
+              border-bottom: 3px solid $color-silver-base-97;
+              position: absolute;
+            }
           }
         }
       }

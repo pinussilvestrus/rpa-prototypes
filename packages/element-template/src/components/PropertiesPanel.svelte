@@ -51,6 +51,8 @@
 
     const noop = () => {};
 
+    let currentParameter = null;
+
     let isHidden = true;
     $: isHidden = !element;
 
@@ -103,6 +105,23 @@
       }
     };
 
+    const handleParameterSelect = (event) => {
+      const parameterNode = dom(event.target);
+
+      if (!element.template) {
+        return;
+      }
+
+      const value = parameterNode.val();
+
+      // todo(pinussilvestrus): distinguish between inputs and outputs
+      currentParameter = find(
+        [
+          ...element.template.inputs,
+          ...element.template.outputs
+        ], (parameter) => parameter === value);
+    };
+
 
     // exports //////////
 
@@ -150,7 +169,7 @@
           <label>Name</label>
           <input name="name" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.name}" />
   
-          <label>Implementation Template</label>
+          <label>Element Template</label>
           <select id="element-template" on:change="{handleTemplateChanged}">
             <option></option>
             {#each TEMPLATES as {id, name, type}}
@@ -180,7 +199,7 @@
               <input disabled value="{element.template.topic}"/>
   
               <label>Input Parameters</label>
-              <select disabled size="{element.template.inputs.length}">
+              <select size="{element.template.inputs.length}" on:change={handleParameterSelect}>
                 {#each element.template.inputs as input}
                   <option>{input}</option>
                 {/each}
@@ -226,6 +245,24 @@
           <label>Element Documentation</label>
           <input value=""/>
         </div>
+        {/if}
+
+        {#if currentParameter}
+          <div 
+            class="section-title" 
+            id="parameterDetails" 
+            on:click={handleSectionTitleClick} >Parameter Details <i></i></div>
+          <div class="section" data-title-ref="#parameterDetails">
+
+            <label>Name</label>
+            <input name="name" disabled value="{currentParameter}" />
+
+            <label>Description</label>
+            <input />
+
+            <label>Assignment</label>
+            <input />
+          </div>
         {/if}
       </div>
     {/if}
