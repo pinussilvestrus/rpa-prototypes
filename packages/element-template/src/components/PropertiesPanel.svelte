@@ -17,10 +17,28 @@
         name: 'Get Price Tag',
         topic: 'get-price-tag',
         inputs: [
-          'status', 'input2'
+          {
+            name: 'status',
+            type: 'input',
+            description: 'Lorem ipsum'
+          },
+          {
+            name: 'input2',
+            type: 'input',
+            description: 'Lorem ipsum'
+          }
         ],
         outputs: [
-          'price-tag', 'output2'
+          {
+            name: 'price-tag',
+            type: 'output',
+            description: 'Lorem ipsum'
+          },
+          {
+            name: 'output2',
+            type: 'output',
+            description: 'Lorem ipsum'
+          }
         ]
       },
       {
@@ -29,10 +47,28 @@
         name: 'Calculate Price',
         topic: 'calculate-price',
         inputs: [
-          'input1', 'input2'
+          {
+            name: 'status',
+            type: 'input',
+            description: 'Lorem ipsum'
+          },
+          {
+            name: 'input2',
+            type: 'input',
+            description: 'Lorem ipsum'
+          }
         ],
         outputs: [
-          'output1', 'output2'
+          {
+            name: 'price-tag',
+            type: 'output',
+            description: 'Lorem ipsum'
+          },
+          {
+            name: 'output2',
+            type: 'output',
+            description: 'Lorem ipsum'
+          }
         ]
       },
       {
@@ -41,10 +77,28 @@
         name: 'Print Invoice',
         topic: 'print-invoice',
         inputs: [
-          'input1', 'input2'
+          {
+            name: 'status',
+            type: 'input',
+            description: 'Lorem ipsum'
+          },
+          {
+            name: 'input2',
+            type: 'input',
+            description: 'Lorem ipsum'
+          }
         ],
         outputs: [
-          'output1', 'output2'
+          {
+            name: 'price-tag',
+            type: 'output',
+            description: 'Lorem ipsum'
+          },
+          {
+            name: 'output2',
+            type: 'output',
+            description: 'Lorem ipsum'
+          }
         ]
       }
     ];
@@ -114,12 +168,18 @@
 
       const value = parameterNode.val();
 
-      // todo(pinussilvestrus): distinguish between inputs and outputs
+      // (1) reset selection from other select
+      const id = parameterNode.attr('id');
+
+      const otherSelect = dom(`#${id === 'input-select' ? 'output' : 'input'}-select`);
+      otherSelect.val(null);
+
+      // (2) find and set populated parameter
       currentParameter = find(
         [
           ...element.template.inputs,
           ...element.template.outputs
-        ], (parameter) => parameter === value);
+        ], (parameter) => parameter.name === value);
     };
 
 
@@ -199,17 +259,23 @@
               <input disabled value="{element.template.topic}"/>
   
               <label>Input Parameters</label>
-              <select size="{element.template.inputs.length}" on:change={handleParameterSelect}>
-                {#each element.template.inputs as input}
-                  <option>{input}</option>
-                {/each}
+              <select 
+                id="input-select" 
+                size="{element.template.inputs.length}" 
+                on:change={handleParameterSelect} >
+                  {#each element.template.inputs as {name}}
+                    <option>{name}</option>
+                  {/each}
               </select>
   
               <label>Output Parameters</label>
-              <select disabled size="{element.template.outputs.length}">
-                {#each element.template.outputs as output}
-                  <option>{output}</option>
-                {/each}
+              <select 
+                id="output-select"
+                size="{element.template.outputs.length}" 
+                on:change={handleParameterSelect} >
+                  {#each element.template.outputs as {name}}
+                    <option>{name}</option>
+                  {/each}
               </select>
           </div>
         {:else}
@@ -251,14 +317,14 @@
           <div 
             class="section-title" 
             id="parameterDetails" 
-            on:click={handleSectionTitleClick} >Parameter Details <i></i></div>
+            on:click={handleSectionTitleClick} >{currentParameter.type === 'input' ? 'Input' : 'Output' } Parameter <i></i></div>
           <div class="section" data-title-ref="#parameterDetails">
 
             <label>Name</label>
-            <input name="name" disabled value="{currentParameter}" />
+            <input name="name" disabled value="{currentParameter.name}" />
 
             <label>Description</label>
-            <input />
+            <input name="description" disabled value="{currentParameter.description}" />
 
             <label>Assignment</label>
             <input />
