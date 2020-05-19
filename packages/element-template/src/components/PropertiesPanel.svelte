@@ -10,6 +10,7 @@
     import './PropertiesPanel.scss';
 
 
+    // todo(pinussilvestrus): move data to source
     const TEMPLATES = [
       {
         id: 'get-price-tag',
@@ -143,6 +144,9 @@
       onPropertiesChanged(element.id, {
         templateId: selectNode.val()
       });
+
+      // reset parameter details section when template has changed
+      currentParameter = null;
     };
 
     const handleSectionTitleClick = (event) => {
@@ -278,6 +282,24 @@
                   {/each}
               </select>
           </div>
+
+          {#if currentParameter}
+            <div 
+              class="section-title" 
+              id="parameterDetails" 
+              on:click={handleSectionTitleClick} >{currentParameter.type === 'input' ? 'Input' : 'Output' } Parameter <i></i></div>
+              <div class="section" data-title-ref="#parameterDetails">
+
+                <label>Name</label>
+                <input name="name" disabled value="{currentParameter.name}" />
+
+                <label>Description</label>
+                <input name="description" disabled value="{currentParameter.description}" />
+
+                <label>Assignment</label>
+                <input />
+            </div>
+          {/if}
         {:else}
         <div 
         class="section-title" 
@@ -311,24 +333,6 @@
           <label>Element Documentation</label>
           <input value=""/>
         </div>
-        {/if}
-
-        {#if currentParameter}
-          <div 
-            class="section-title" 
-            id="parameterDetails" 
-            on:click={handleSectionTitleClick} >{currentParameter.type === 'input' ? 'Input' : 'Output' } Parameter <i></i></div>
-          <div class="section" data-title-ref="#parameterDetails">
-
-            <label>Name</label>
-            <input name="name" disabled value="{currentParameter.name}" />
-
-            <label>Description</label>
-            <input name="description" disabled value="{currentParameter.description}" />
-
-            <label>Assignment</label>
-            <input />
-          </div>
         {/if}
       </div>
     {/if}
