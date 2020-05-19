@@ -106,8 +106,6 @@
 
     const noop = () => {};
 
-    let currentParameter = null;
-
     let isHidden = true;
     $: isHidden = !element;
 
@@ -146,7 +144,7 @@
       });
 
       // reset parameter details section when template has changed
-      currentParameter = null;
+      element.currentParameter = null;
     };
 
     const handleSectionTitleClick = (event) => {
@@ -179,7 +177,7 @@
       otherSelect.val(null);
 
       // (2) find and set populated parameter
-      currentParameter = find(
+      element.currentParameter = find(
         [
           ...element.template.inputs,
           ...element.template.outputs
@@ -283,18 +281,18 @@
               </select>
           </div>
 
-          {#if currentParameter}
+          {#if element.currentParameter}
             <div 
               class="section-title" 
               id="parameterDetails" 
-              on:click={handleSectionTitleClick} >{currentParameter.type === 'input' ? 'Input' : 'Output' } Parameter <i></i></div>
+              on:click={handleSectionTitleClick} >{element.currentParameter.type === 'input' ? 'Input' : 'Output' } Parameter <i></i></div>
               <div class="section" data-title-ref="#parameterDetails">
 
                 <label>Name</label>
-                <input name="name" disabled value="{currentParameter.name}" />
+                <input name="name" disabled value="{element.currentParameter.name}" />
 
                 <label>Description</label>
-                <input name="description" disabled value="{currentParameter.description}" />
+                <input name="description" disabled value="{element.currentParameter.description}" />
 
                 <label>Assignment</label>
                 <input />
