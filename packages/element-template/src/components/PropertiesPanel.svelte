@@ -15,19 +15,37 @@
         id: 'get-price-tag',
         type: 'UI Path Bot',
         name: 'Get Price Tag',
-        topic: 'get-price-tag'
+        topic: 'get-price-tag',
+        inputs: [
+          'status', 'input2'
+        ],
+        outputs: [
+          'price-tag', 'output2'
+        ]
       },
       {
         id: 'calculate-price',
         type: 'UI Path Bot',
         name: 'Calculate Price',
-        topic: 'calculate-price'
+        topic: 'calculate-price',
+        inputs: [
+          'input1', 'input2'
+        ],
+        outputs: [
+          'output1', 'output2'
+        ]
       },
       {
         id: 'print-invoice',
         type: 'UI Path Bot',
         name: 'Print Invoice',
-        topic: 'print-invoice'
+        topic: 'print-invoice',
+        inputs: [
+          'input1', 'input2'
+        ],
+        outputs: [
+          'output1', 'output2'
+        ]
       }
     ];
 
@@ -106,14 +124,24 @@
   <div class="container">
     {#if element}
       <div class="header">
-        <div class="title">{element.name}</div>
+        <div class="title">{element.id}</div>
+
+        <ul class="tabs">
+          <li class="tab tab-active"><p>General</p></li>
+          {#if !element.template}
+            <li class="tab"><p>Listeners</p></li>
+            <li class="tab"><p>Input/Output</p></li>
+            <li class="tab"><p>Field Injections</p></li>
+            <li class="tab"><p>Extensions</p></li>
+          {/if}
+        </ul>
       </div>
 
       <div class="properties">
         <div 
           class="section-title" 
           id="general" 
-          on:click={handleSectionTitleClick} >General <i>Icon</i></div>
+          on:click={handleSectionTitleClick} >General <i></i></div>
         <div class="section" data-title-ref="#general">
   
           <label>Id</label>
@@ -138,25 +166,66 @@
         {#if element.template}
           <div 
             class="section-title" 
-            id="worker"
-            on:click={handleSectionTitleClick} >Worker details <i>Icon</i></div>
-          <div class="section" data-title-ref="#worker">
+            id="template"
+            on:click={handleSectionTitleClick} >Implementation Details <i></i></div>
+          <div class="section" data-title-ref="#template">
   
-              <label>Type</label>
+              <!-- <label>Type</label>
               <input disabled value="{element.template.type}"/>
   
               <label>Name</label>
-              <input disabled value="{element.template.name}"/>
+              <input disabled value="{element.template.name}"/> -->
   
               <label>Topic</label>
               <input disabled value="{element.template.topic}"/>
   
               <label>Input Parameters</label>
-              <textarea rows="5"></textarea>
+              <select disabled size="{element.template.inputs.length}">
+                {#each element.template.inputs as input}
+                  <option>{input}</option>
+                {/each}
+              </select>
   
               <label>Output Parameters</label>
-              <textarea rows="5"></textarea>
+              <select disabled size="{element.template.outputs.length}">
+                {#each element.template.outputs as output}
+                  <option>{output}</option>
+                {/each}
+              </select>
           </div>
+        {:else}
+        <div 
+        class="section-title" 
+        id="details"
+        on:click={handleSectionTitleClick} >Details <i></i></div>
+        <div class="section" data-title-ref="#details">
+
+          <label>Implementation</label>
+          <select>
+            <option></option>
+          </select>
+        </div>
+        <div 
+          class="section-title" 
+          id="async"
+          on:click={handleSectionTitleClick} >Asynchronous Continuations <i></i></div>
+        <div class="section" data-title-ref="#async">
+
+            <input type="checkbox"/>
+            <label>Asynchronous Before</label>
+            <br/>
+            <input type="checkbox"/>
+            <label>Asynchronous After</label>
+        </div>
+        <div 
+          class="section-title" 
+          id="documentation"
+          on:click={handleSectionTitleClick} >Documentation <i></i></div>
+        <div class="section" data-title-ref="#documentation">
+
+          <label>Element Documentation</label>
+          <input value=""/>
+        </div>
         {/if}
       </div>
     {/if}

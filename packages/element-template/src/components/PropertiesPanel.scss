@@ -15,17 +15,55 @@
     border: solid 2px $color-silver-darken-80;
     background-color: $color-silver-base-97;
     min-height: 100%;
-    width: 400px;
+    width: 420px;
   }
 
   .header {
-    border-bottom: solid 1px $color-silver-darken-80;
-    padding: 15px;
-
     .title {
-      padding-bottom: 5px;
+      padding: 15px 15px 5px 15px;
+      margin-bottom: 10px;
       font-size: 120%;
       font-weight: bolder;
+    }
+
+    .tabs {
+      border-bottom: solid 1px $color-silver-darken-80;
+      margin: 5px 0 -1px 0;
+      padding: 0;
+      padding-left: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+    
+      .tab {
+        display: inline-block;
+        margin: 0;
+
+        p {
+          margin-bottom: 0;
+          font-size: 12px;
+          padding: 4px 7px;
+  
+          border: 1px solid $color-silver-darken-80;
+          border-radius: 3px 3px 0 0;
+          border-bottom: transparent;
+  
+          color: $color-grey-darken-33;
+  
+          text-decoration: none;
+  
+          &:hover {
+            color: black;
+          }
+        }
+
+        &.tab-active {
+          font-weight: bold;
+
+          p {
+            border-top: 2px solid $color-select;
+          }
+        }
+      }
     }
   }
 
@@ -35,19 +73,19 @@
     color: $color-grey-darken-33;
     font-style: italic;
     padding: 15px;
-    border-bottom: solid 1px $color-silver-darken-87;
+    // border-bottom: solid 1px $color-silver-darken-87;
 
     cursor: pointer;
 
     i {
       float: right;
       height: 12px;
-      content: url('data:image/svg+xml,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" class="svg-inline--fa fa-chevron-down fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path></svg>');
+      // content: url('data:image/svg+xml,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" class="svg-inline--fa fa-chevron-down fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path></svg>');
     }
 
     &.inactive {
       i {
-        content: url('data:image/svg+xml,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>')
+        // content: url('data:image/svg+xml,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>')
       }
     }
   }
@@ -74,6 +112,10 @@
 
     input {
       width: 100%;
+
+      &[type="checkbox"] {
+        width: auto;
+      }
     }
 
     select {
