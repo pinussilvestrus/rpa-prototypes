@@ -33,7 +33,7 @@
       padding-left: 5px;
       white-space: nowrap;
       overflow: hidden;
-    
+
       .tab {
         display: inline-block;
         margin: 0;
@@ -42,15 +42,15 @@
           margin-bottom: 0;
           font-size: 12px;
           padding: 4px 7px;
-  
+
           border: 1px solid $color-silver-darken-80;
           border-radius: 3px 3px 0 0;
           border-bottom: transparent;
-  
+
           color: $color-grey-darken-33;
-  
+
           text-decoration: none;
-  
+
           &:hover {
             color: black;
           }
@@ -130,11 +130,19 @@
 }
 
 .open-properties-panel {
-  margin-bottom: 0px;
-  margin-top: 0px;
-  border: 1px solid $color-silver-darken-80;
-  background-color: white;
-  padding: 1px 0px;
-  font: 13.3333px Arial;
-  width: 14%;
+  position: absolute;
+  left: -30px;
+  top: 50%;
+  background: #f8f8f8;
+  padding: 7px 10px;
+  transform: rotate(-90deg);
+  white-space: nowrap;
+  font-size: 13px;
+  border: solid 1px #ccc;
+  border-bottom: none;
+  border-radius: 2px 2px 0 0;
+  transform-origin: top left;
+  z-index: 10;
+  cursor: default;
+  user-select: none;
 }

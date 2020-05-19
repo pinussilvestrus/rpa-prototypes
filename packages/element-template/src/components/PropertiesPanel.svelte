@@ -150,14 +150,14 @@
           <label>Name</label>
           <input name="name" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.name}" />
   
-          <label>Element Template</label>
+          <label>Implementation Template</label>
           <select id="element-template" on:change="{handleTemplateChanged}">
             <option></option>
-            {#each TEMPLATES as {id, name}}
+            {#each TEMPLATES as {id, name, type}}
               <option 
                 selected={element.template && element.template.id === id} 
                 value="{id}" >
-                  {name}
+                  {name} ({type})
               </option>
             {/each}
           </select>
