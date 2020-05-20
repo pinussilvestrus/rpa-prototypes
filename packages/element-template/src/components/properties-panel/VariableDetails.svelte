@@ -18,6 +18,10 @@
 
     };
 
+    const toggleComplexMode = () => {
+      variable.complexModeEnabled = true;
+    };
+
 
     // exports //////////
 
@@ -39,18 +43,41 @@
   <label>Description</label>
   <input name="description" disabled value="{ variable.description }" />
 
-  <label>(Default) Value</label>
-  <input 
-    name="value"
-    on:input={debounce(handleInput, 500)}
-    placeholder="{`${isInputVariable(variable) ? 'auto-filled by' : 'auto-written to'} <${variable.name}> process variable`}"
-    value="{ variable.value }" />
+  {#if !variable.complexModeEnabled}
+    <label>(Default) Value</label>
+    <input 
+        name="value"
+        on:input={debounce(handleInput, 500)}
+        placeholder="{`${isInputVariable(variable) ? 'auto-filled by' : 'auto-written to'} <${variable.name}> process variable`}"
+        value="{ variable.value }" />
+    
+    <label>Mapping</label>
+    <span class="enable-complex-mapping" on:click={toggleComplexMode}>Enable Complex</span>
+    <input 
+        name="mapping"
+        on:input={debounce(handleInput, 500)}
+        placeholder="{`${isInputVariable(variable) ? 'auto-filled by' : 'auto-written to'} <${variable.name}> process variable`}"
+        value="{ variable.mapping }" />
 
-  <label>Mapping</label>
-  <span class="enable-complex-mapping">Enable Complex</span>
-  <input 
-    name="mapping"
-    on:input={debounce(handleInput, 500)}
-    placeholder="{`${isInputVariable(variable) ? 'auto-filled by' : 'auto-written to'} <${variable.name}> process variable`}"
-    value="{ variable.mapping }" />
+  {:else}
+    <label>Mapping Type</label>
+    <select>
+        <option>Text</option>
+        <option selected>Script</option>
+        <option>List</option>
+        <option>Map</option>
+    </select>
+
+    <label>Script Format</label>
+    <input />
+
+    <label>Script Type</label>
+    <select>
+        <option selected>Inline Script</option>
+        <option>External Resource</option>
+    </select>
+
+    <label>Script</label>
+    <textarea cols="5"></textarea>
+  {/if}
 </Section>

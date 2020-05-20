@@ -126,6 +126,9 @@
           ...element.template.inputs,
           ...element.template.outputs
         ], (variable) => variable.name === value);
+
+      // reset variable complex mode, monkey patching :(
+      element.currentVariable.complexModeEnabled = false;
     };
 
     const handleShowOtherTabs = () => {
