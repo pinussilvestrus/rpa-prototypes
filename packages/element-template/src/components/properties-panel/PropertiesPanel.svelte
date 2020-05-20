@@ -5,7 +5,9 @@
 
     import dom from 'domtastic';
 
-    import getElement from '../util/getElement';
+    import getElement from '../../util/getElement';
+
+    import Section from './Section';
 
     import './PropertiesPanel.scss';
 
@@ -72,20 +74,6 @@
       showOtherTabs = false;
     };
 
-    const handleSectionTitleClick = (event) => {
-      const titleNode = dom(event.target),
-            id = titleNode.attr('id'),
-            section = dom(`.section[data-title-ref="#${id}"]`);
-
-      if (section.hasClass('hidden')) {
-        titleNode.removeClass('inactive');
-        section.removeClass('hidden');
-      } else {
-        titleNode.addClass('inactive');
-        section.addClass('hidden');
-      }
-    };
-
     const handleParameterSelect = (event) => {
       const parameterNode = dom(event.target);
 
@@ -148,12 +136,8 @@
       </div>
 
       <div class="properties">
-        <div 
-          class="section-title" 
-          id="general" 
-          on:click={handleSectionTitleClick} >General <i></i></div>
-        <div class="section" data-title-ref="#general">
-  
+
+        <Section id="general" title="General">
           <label>Id</label>
           <input name="id" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.id}" />
   
@@ -171,97 +155,81 @@
               </option>
             {/each}
           </select>
-        </div>
-  
+        </Section>
+
         {#if element.template}
-          <div 
-            class="section-title" 
-            id="template"
-            on:click={handleSectionTitleClick} >Implementation Details <i></i></div>
-          <div class="section" data-title-ref="#template">
-  
-              <!-- <label>Type</label>
-              <input disabled value="{element.template.type}"/>
-  
-              <label>Name</label>
-              <input disabled value="{element.template.name}"/> -->
-  
-              <label>Topic</label>
-              <input disabled value="{element.template.topic}"/>
-  
-              <label>Input Parameters</label>
-              <select 
-                id="input-select" 
-                size="{element.template.inputs.length}" 
-                on:change={handleParameterSelect} >
-                  {#each element.template.inputs as {name}}
-                    <option>{name}</option>
-                  {/each}
-              </select>
-  
-              <label>Output Parameters</label>
-              <select 
-                id="output-select"
-                size="{element.template.outputs.length}" 
-                on:change={handleParameterSelect} >
-                  {#each element.template.outputs as {name}}
-                    <option>{name}</option>
-                  {/each}
-              </select>
-          </div>
+
+          <Section id="template" title="Implementation">
+            <!-- <label>Type</label>
+            <input disabled value="{element.template.type}"/>
+
+            <label>Name</label>
+            <input disabled value="{element.template.name}"/> -->
+
+            <label>Topic</label>
+            <input disabled value="{element.template.topic}"/>
+
+            <label>Input Parameters</label>
+            <select 
+              id="input-select" 
+              size="{element.template.inputs.length}" 
+              on:change={handleParameterSelect} >
+                {#each element.template.inputs as {name}}
+                  <option>{name}</option>
+                {/each}
+            </select>
+
+            <label>Output Parameters</label>
+            <select 
+              id="output-select"
+              size="{element.template.outputs.length}" 
+              on:change={handleParameterSelect} >
+                {#each element.template.outputs as {name}}
+                  <option>{name}</option>
+                {/each}
+            </select>
+          </Section>
 
           {#if element.currentParameter}
-            <div 
-              class="section-title" 
-              id="parameterDetails" 
-              on:click={handleSectionTitleClick} >{element.currentParameter.type === 'input' ? 'Input' : 'Output' } Parameter <i></i></div>
-              <div class="section" data-title-ref="#parameterDetails">
 
-                <label>Name</label>
-                <input name="name" disabled value="{element.currentParameter.name}" />
+            <Section id="parameter-details" title="{element.currentParameter.type === 'input' ? 'Input' : 'Output' } Parameter" >
+              <label>Name</label>
+              <input name="name" disabled value="{element.currentParameter.name}" />
 
-                <label>Description</label>
-                <input name="description" disabled value="{element.currentParameter.description}" />
+              <label>Description</label>
+              <input name="description" disabled value="{element.currentParameter.description}" />
 
-                <label>Assignment</label>
-                <input />
-            </div>
+              <label>Assignment</label>
+              <input />
+            </Section>
+
           {/if}
+
         {:else}
-        <div 
-        class="section-title" 
-        id="details"
-        on:click={handleSectionTitleClick} >Details <i></i></div>
-        <div class="section" data-title-ref="#details">
 
-          <label>Implementation</label>
-          <select>
-            <option></option>
-          </select>
-        </div>
-        <div 
-          class="section-title" 
-          id="async"
-          on:click={handleSectionTitleClick} >Asynchronous Continuations <i></i></div>
-        <div class="section" data-title-ref="#async">
+          <Section id="details" title="Details">
+            <label>Implementation</label>
+            <select>
+              <option></option>
+            </select>
+          </Section>
 
+          <Section id="async" title="Asynchronous Continuations">
             <input type="checkbox"/>
             <label>Asynchronous Before</label>
             <br/>
             <input type="checkbox"/>
             <label>Asynchronous After</label>
-        </div>
-        <div 
-          class="section-title" 
-          id="documentation"
-          on:click={handleSectionTitleClick} >Documentation <i></i></div>
-        <div class="section" data-title-ref="#documentation">
+          </Section>
+ 
+          <Section id="documentation" title="Documentation">
+            <label>Element Documentation</label>
+            <input value=""/>
+          </Section>
 
-          <label>Element Documentation</label>
-          <input value=""/>
-        </div>
         {/if}
       </div>
+
     {/if}
   </div>
 </div>

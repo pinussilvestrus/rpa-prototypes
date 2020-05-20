@@ -6,7 +6,7 @@
   import TextUtil from 'diagram-js/lib/util/Text';
 
   import Diagram from './Diagram.svelte';
-  import PropertiesPanel from './PropertiesPanel.svelte';
+  import PropertiesPanel from './properties-panel/PropertiesPanel.svelte';
 
   import getElement from '../util/getElement';
 
