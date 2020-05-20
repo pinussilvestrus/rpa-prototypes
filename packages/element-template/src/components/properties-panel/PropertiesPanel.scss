@@ -157,6 +157,12 @@
     select,
     textarea {
       margin-bottom: 12px;
+
+      &:disabled {
+        background: $color-silver-base-97;
+        color: $color-grey-darken-50;
+        cursor: not-allowed;
+      }
     }
 
     input {
@@ -164,12 +170,6 @@
 
       &[type="checkbox"] {
         width: auto;
-      }
-
-      &:disabled {
-        background: $color-silver-base-97;
-        color: $color-grey-darken-50;
-        cursor: not-allowed;
       }
     }
 

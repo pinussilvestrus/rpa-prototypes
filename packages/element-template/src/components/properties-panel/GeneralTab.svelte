@@ -44,13 +44,16 @@
       <label>Name</label>
       <input disabled value="{element.template.name}"/> -->
 
+      <label>Description</label>
+      <textarea disabled value="{element.template.description}"></textarea>
+
       <label>Topic</label>
       <input disabled value="{element.template.topic}"/>
 
       <label>Input Variables</label>
       <select 
         id="input-select" 
-        size="{element.template.inputs.length}" 
+        size="3" 
         on:change={handleVariableSelect} >
           {#each element.template.inputs as {name}}
             <option>{name}</option>
@@ -60,7 +63,7 @@
       <label>Output Variables</label>
       <select 
         id="output-select"
-        size="{element.template.outputs.length}" 
+        size="3" 
         on:change={handleVariableSelect} >
           {#each element.template.outputs as {name}}
             <option>{name}</option>

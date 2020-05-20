@@ -1,36 +1,42 @@
 export const ELEMENTS = [
   {
     id: 'ServiceTask_1',
-    name: 'Task 1',
+    name: 'Get Price',
     templateId: null
   },
   {
     id: 'ServiceTask_2',
-    name: 'Task 2',
+    name: 'Generate Quote',
+    templateId: null
+  },
+  {
+    id: 'ServiceTask_3',
+    name: 'Send Quote',
     templateId: null
   }
 ];
 
 export const TEMPLATES = [
   {
-    id: 'get-price-tag',
+    id: 'rpa-price',
     type: 'UI Path Bot',
-    name: 'Get Price Tag',
-    topic: 'get-price-tag',
+    name: 'Price Calculator',
+    description: 'Calculates a price for a given quantity of products based on legacy Excel logic',
+    topic: 'rpa-price',
     inputs: [
       {
         id: 'input-1',
-        name: 'status',
+        name: 'product',
         type: 'input',
-        description: 'Lorem ipsum',
+        description: 'the product name as string',
         value: '',
         mapping: ''
       },
       {
         id: 'input-2',
-        name: 'input2',
+        name: 'quantity',
         type: 'input',
-        description: 'Lorem ipsum',
+        description: 'the quantity as integer',
         value: '',
         mapping: ''
       }
@@ -38,41 +44,34 @@ export const TEMPLATES = [
     outputs: [
       {
         id: 'output-1',
-        name: 'price-tag',
+        name: 'price',
         type: 'output',
-        description: 'Lorem ipsum',
-        value: '',
-        mapping: ''
-      },
-      {
-        id: 'output-2',
-        name: 'output2',
-        type: 'output',
-        description: 'Lorem ipsum',
+        description: 'Generates a price of type double',
         value: '',
         mapping: ''
       }
     ]
   },
   {
-    id: 'calculate-price',
+    id: 'rpa-quote',
     type: 'UI Path Bot',
-    name: 'Calculate Price',
-    topic: 'calculate-price',
+    name: 'Quote Generator',
+    description: 'Generates a quote as PDF and stores on Google Drive',
+    topic: 'rpa-quote',
     inputs: [
       {
         id: 'input-3',
-        name: 'status',
+        name: 'product',
         type: 'input',
-        description: 'Lorem ipsum',
+        description: 'the product name as string',
         value: '',
         mapping: ''
       },
       {
         id: 'input-4',
-        name: 'input2',
+        name: 'quantity',
         type: 'input',
-        description: 'Lorem ipsum',
+        description: 'the quantity as integer number',
         value: '',
         mapping: ''
       }
@@ -80,62 +79,39 @@ export const TEMPLATES = [
     outputs: [
       {
         id: 'output-3',
-        name: 'price-tag',
+        name: 'url',
         type: 'output',
-        description: 'Lorem ipsum',
-        value: '',
-        mapping: ''
-      },
-      {
-        id: 'output-4',
-        name: 'output2',
-        type: 'output',
-        description: 'Lorem ipsum',
+        description: 'the uploaded url as string',
         value: '',
         mapping: ''
       }
     ]
   },
   {
-    id: 'print-invoice',
+    id: 'rpa-qsend',
     type: 'UI Path Bot',
-    name: 'Print Invoice',
-    topic: 'print-invoice',
+    name: 'Quote Sender',
+    topic: 'rpa-qsebd',
+    description: 'Sends a quote via email with link to quote PDF',
     inputs: [
       {
         id: 'input-5',
-        name: 'status',
+        name: 'email',
         type: 'input',
-        description: 'Lorem ipsum',
+        description: 'email adress as string',
         value: '',
         mapping: ''
       },
       {
         id: 'input-6',
-        name: 'input2',
+        name: 'url',
         type: 'input',
-        description: 'Lorem ipsum',
+        description: 'url of uploaded quote pdf as string',
         value: '',
         mapping: ''
       }
     ],
     outputs: [
-      {
-        id: 'output-5',
-        name: 'price-tag',
-        type: 'output',
-        description: 'Lorem ipsum',
-        value: '',
-        mapping: ''
-      },
-      {
-        id: 'output-6',
-        name: 'output2',
-        type: 'output',
-        description: 'Lorem ipsum',
-        value: '',
-        mapping: ''
-      }
     ]
   }
 ];
