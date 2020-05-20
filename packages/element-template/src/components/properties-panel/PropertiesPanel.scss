@@ -13,6 +13,8 @@
 
   .container {
     border: solid 2px $color-silver-darken-80;
+    border-top: none;
+    border-bottom: none;
     background-color: $color-silver-base-97;
     min-height: 100%;
     width: 420px;
