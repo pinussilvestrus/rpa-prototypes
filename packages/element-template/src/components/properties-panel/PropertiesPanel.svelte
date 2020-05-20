@@ -35,11 +35,11 @@
         otherSelect.val(null);
       };
 
-      if (!(element && element.currentParameter)) {
+      if (!(element && element.currentVariable)) {
         _resetSelection('input');
         _resetSelection('output');
       } else {
-        isInputParameter(element.currentParameter)
+        isInputVariable(element.currentVariable)
           ? _resetSelection('output')
           : _resetSelection('input');
       }
@@ -70,25 +70,25 @@
       });
 
       // reset to default state
-      element.currentParameter = null;
+      element.currentVariable = null;
       showOtherTabs = false;
     };
 
-    const handleParameterSelect = (event) => {
-      const parameterNode = dom(event.target);
+    const handleVariableSelect = (event) => {
+      const variableNode = dom(event.target);
 
       if (!element.template) {
         return;
       }
 
-      const value = parameterNode.val();
+      const value = variableNode.val();
 
-      // find and set populated parameter
-      element.currentParameter = find(
+      // find and set populated variable
+      element.currentVariable = find(
         [
           ...element.template.inputs,
           ...element.template.outputs
-        ], (parameter) => parameter.name === value);
+        ], (variable) => variable.name === value);
     };
 
     const handleShowOtherTabs = () => {
@@ -110,8 +110,8 @@
       return element && find(templates, t => t.id === element.templateId);
     };
 
-    const isInputParameter = (parameter) => {
-      return parameter.type === 'input';
+    const isInputVariable = (variable) => {
+      return variable.type === 'input';
     };
 
 </script>
@@ -171,38 +171,40 @@
             <label>Topic</label>
             <input disabled value="{element.template.topic}"/>
 
-            <label>Input Parameters</label>
+            <label>Input Variables</label>
             <select 
               id="input-select" 
               size="{element.template.inputs.length}" 
-              on:change={handleParameterSelect} >
+              on:change={handleVariableSelect} >
                 {#each element.template.inputs as {name}}
                   <option>{name}</option>
                 {/each}
             </select>
 
-            <label>Output Parameters</label>
+            <label>Output Variables</label>
             <select 
               id="output-select"
               size="{element.template.outputs.length}" 
-              on:change={handleParameterSelect} >
+              on:change={handleVariableSelect} >
                 {#each element.template.outputs as {name}}
                   <option>{name}</option>
                 {/each}
             </select>
           </Section>
 
-          {#if element.currentParameter}
+          {#if element.currentVariable}
 
-            <Section id="parameter-details" title="{isInputParameter(element.currentParameter) ? 'Input' : 'Output' } Parameter" >
+            <Section id="variable-details" title="{isInputVariable(element.currentVariable) ? 'Input' : 'Output' } Variable" >
               <label>Name</label>
-              <input name="name" disabled value="{element.currentParameter.name}" />
+              <input name="name" disabled value="{element.currentVariable.name}" />
 
               <label>Description</label>
-              <input name="description" disabled value="{element.currentParameter.description}" />
+              <input name="description" disabled value="{element.currentVariable.description}" />
 
-              <label>Assignment</label>
-              <input placeholder="" />
+              <label>Assignment / Mapping</label>
+              <textarea 
+                placeholder="{`${isInputVariable(element.currentVariable) ? 'auto-filled by' : 'auto-written to'} <${element.currentVariable.name}> process variable`}"
+                value="{ element.currentVariable.assignment }" />
             </Section>
 
           {/if}

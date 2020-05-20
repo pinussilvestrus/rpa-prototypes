@@ -21,24 +21,28 @@ export const TEMPLATES = [
       {
         name: 'status',
         type: 'input',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       },
       {
         name: 'input2',
         type: 'input',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       }
     ],
     outputs: [
       {
         name: 'price-tag',
         type: 'output',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       },
       {
         name: 'output2',
         type: 'output',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       }
     ]
   },
@@ -51,24 +55,28 @@ export const TEMPLATES = [
       {
         name: 'status',
         type: 'input',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       },
       {
         name: 'input2',
         type: 'input',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       }
     ],
     outputs: [
       {
         name: 'price-tag',
         type: 'output',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       },
       {
         name: 'output2',
         type: 'output',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       }
     ]
   },
@@ -81,24 +89,28 @@ export const TEMPLATES = [
       {
         name: 'status',
         type: 'input',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       },
       {
         name: 'input2',
         type: 'input',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       }
     ],
     outputs: [
       {
         name: 'price-tag',
         type: 'output',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       },
       {
         name: 'output2',
         type: 'output',
-        description: 'Lorem ipsum'
+        description: 'Lorem ipsum',
+        assignment: ''
       }
     ]
   }
