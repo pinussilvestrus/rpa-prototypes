@@ -105,7 +105,7 @@
 
 </script>
 
-<div class="diagram-container">
+<div class="editor-container">
   <Diagram 
     onOpenProperties={handleOpenProperties} 
     bind:elements={elements} />

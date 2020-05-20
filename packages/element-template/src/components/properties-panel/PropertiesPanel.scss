@@ -7,10 +7,6 @@
   right: 0;
   overflow-y: auto;
 
-  &.hidden {
-    display: none;
-  }
-
   .container {
     border: solid 2px $color-silver-darken-80;
     border-top: none;
@@ -18,6 +14,40 @@
     background-color: $color-silver-base-97;
     min-height: 100%;
     width: 420px;
+  }
+
+  .open-properties-panel {
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    background: #f8f8f8;
+    padding: 7px 10px;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    font-size: 13px;
+    border: solid 1px #ccc;
+    border-bottom: none;
+    border-radius: 2px 2px 0 0;
+    transform-origin: top left;
+    z-index: 10;
+    cursor: default;
+    user-select: none;
+  }
+
+  .enable-complex-mapping {
+    float: right;
+    margin-bottom: 3px;
+    margin-top: -2px;
+    font-size: 12px;
+    font-weight: bold;
+    color: $color-grey-darken-33;
+
+    padding: 4px 7px;
+    border: 1px solid $color-silver-darken-80;
+    background: $color-grey-light;
+    border-radius: 3px;
+
+    cursor: pointer;
   }
 
   .header {
@@ -98,7 +128,7 @@
 
     &.inactive {
       i {
-        content: url('data:image/svg+xml,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>')
+        content: url('data:image/svg+xml,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>');
       }
     }
   }
@@ -123,7 +153,9 @@
       margin-bottom: 5px;
     }
 
-    input, select, textarea {
+    input,
+    select,
+    textarea {
       margin-bottom: 12px;
     }
 
@@ -156,38 +188,4 @@
       min-height: 5em;
     }
   }
-}
-
-.open-properties-panel {
-  position: absolute;
-  left: -30px;
-  top: 50%;
-  background: #f8f8f8;
-  padding: 7px 10px;
-  transform: rotate(-90deg);
-  white-space: nowrap;
-  font-size: 13px;
-  border: solid 1px #ccc;
-  border-bottom: none;
-  border-radius: 2px 2px 0 0;
-  transform-origin: top left;
-  z-index: 10;
-  cursor: default;
-  user-select: none;
-}
-
-.enable-complex-mapping {
-  float: right;
-  margin-bottom: 3px;
-  margin-top: -2px;
-  font-size: 12px;
-  font-weight: bold;
-  color: $color-grey-darken-33;
-
-  padding: 4px 7px;
-  border: 1px solid $color-silver-darken-80;
-  background: $color-grey-light;
-  border-radius: 3px;
-  
-  cursor: pointer;
 }

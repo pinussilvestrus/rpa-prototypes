@@ -23,6 +23,7 @@
 
     // (2) bind hover and selection handlers
     // (3) initialize properties panel binding
+    // todo(pinussilvestrus): prevent add a new binding on every update
     forEach(elements, (element) => {
       bindElementInteractions(element);
       bindOpenPanel(element);

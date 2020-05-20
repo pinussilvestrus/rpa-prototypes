@@ -9,9 +9,6 @@
 
     const noop = () => {};
 
-    let isHidden = true;
-    $: isHidden = !element;
-
     let showOtherTabs = false;
 
     // populate
@@ -144,9 +141,9 @@
 
 </script>
 
-<div class="properties-panel" class:hidden="{isHidden}">
+<div class="properties-panel">
+  {#if element}
   <div class="container">
-    {#if element}
       <div class="header">
         <div class="title">{element.id}</div>
 
@@ -175,7 +172,7 @@
           {handleVariableSelect}
           {handleVariableChanged} />
       </div>
-
-    {/if}
   </div>
+  {/if}
+  <div class="open-properties-panel">Properties Panel</div>
 </div>
