@@ -4,7 +4,7 @@ Prototypes built via our RPA Prototyping phase, Q2 2020
 
 ## Demos
 
-*tba*
+* [`element-template`](./packages/element-template)
 
 ## Setup
 

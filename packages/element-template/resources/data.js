@@ -91,7 +91,7 @@ export const TEMPLATES = [
     id: 'rpa-qsend',
     type: 'UI Path Bot',
     name: 'Quote Sender',
-    topic: 'rpa-qsebd',
+    topic: 'rpa-qsend',
     description: 'Sends a quote via email with link to quote PDF',
     inputs: [
       {
