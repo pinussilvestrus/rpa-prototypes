@@ -1,9 +1,28 @@
 <script>
+    import dom from 'domtastic';
+
+    import { debounce } from 'min-dash';
+
     import Section from './Section';
+
+    const noop = () => {};
+
+    // methods //////////
+
+    const handleInput = (event) => {
+      const inputNode = dom(event.target);
+
+      onUpdateVariable(variable.id, {
+        [inputNode.attr('name')]: inputNode.val()
+      });
+
+    };
+
 
     // exports //////////
 
     export let variable;
+    export let onUpdateVariable = noop;
 
 
     // helpers //////////
@@ -22,12 +41,16 @@
 
   <label>(Default) Value</label>
   <input 
+    name="value"
+    on:input={debounce(handleInput, 500)}
     placeholder="{`${isInputVariable(variable) ? 'auto-filled by' : 'auto-written to'} <${variable.name}> process variable`}"
     value="{ variable.value }" />
 
   <label>Mapping</label>
   <span class="enable-complex-mapping">Enable Complex</span>
   <input 
+    name="mapping"
+    on:input={debounce(handleInput, 500)}
     placeholder="{`${isInputVariable(variable) ? 'auto-filled by' : 'auto-written to'} <${variable.name}> process variable`}"
     value="{ variable.mapping }" />
 </Section>

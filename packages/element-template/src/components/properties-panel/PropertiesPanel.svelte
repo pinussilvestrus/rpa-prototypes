@@ -1,7 +1,7 @@
 <script>
     import { afterUpdate } from 'svelte';
 
-    import { debounce, find } from 'min-dash';
+    import { debounce, find, findIndex } from 'min-dash';
 
     import dom from 'domtastic';
 
@@ -61,6 +61,42 @@
       onPropertiesChanged(element.id, {
         [inputNode.attr('name')]: inputNode.val()
       });
+    };
+
+    const handleVariableChanged = (variableId, attrs) => {
+      let currentVariable = element.currentVariable;
+
+      if (!currentVariable) {
+        return;
+      }
+
+      // (1) update current displayed variable
+      currentVariable = {
+        ...currentVariable,
+        ...attrs
+      };
+
+      // (2) update in templates
+      // NOTE: this is just for prototype purpose, normally we have to update the value
+      // on the element itself, not in the template
+      const template = find(templates, (t) => t.id === element.templateId);
+
+      if (isInputVariable(currentVariable)) {
+        const idx = findIndex(template.inputs, (i) => i.id === currentVariable.id);
+
+        template.inputs[idx] = {
+          ...template.inputs[idx],
+          ...attrs
+        };
+      } else {
+        const idx = findIndex(template.outputs, (o) => o.id === currentVariable.id);
+
+        template.outputs[idx] = {
+          ...template.outputs[idx],
+          ...attrs
+        };
+      }
+
     };
 
     const handleTemplateChanged = (event) => {
@@ -194,7 +230,9 @@
           </Section>
 
           {#if element.currentVariable}
-            <VariableDetails variable={element.currentVariable} />
+            <VariableDetails 
+              variable={element.currentVariable}
+              onUpdateVariable={handleVariableChanged} />
           {/if}
 
         {:else}

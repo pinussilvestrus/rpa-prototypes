@@ -19,6 +19,7 @@ export const TEMPLATES = [
     topic: 'get-price-tag',
     inputs: [
       {
+        id: 'input-1',
         name: 'status',
         type: 'input',
         description: 'Lorem ipsum',
@@ -26,6 +27,7 @@ export const TEMPLATES = [
         mapping: ''
       },
       {
+        id: 'input-2',
         name: 'input2',
         type: 'input',
         description: 'Lorem ipsum',
@@ -35,6 +37,7 @@ export const TEMPLATES = [
     ],
     outputs: [
       {
+        id: 'output-1',
         name: 'price-tag',
         type: 'output',
         description: 'Lorem ipsum',
@@ -42,6 +45,7 @@ export const TEMPLATES = [
         mapping: ''
       },
       {
+        id: 'output-2',
         name: 'output2',
         type: 'output',
         description: 'Lorem ipsum',
@@ -57,6 +61,7 @@ export const TEMPLATES = [
     topic: 'calculate-price',
     inputs: [
       {
+        id: 'input-3',
         name: 'status',
         type: 'input',
         description: 'Lorem ipsum',
@@ -64,6 +69,7 @@ export const TEMPLATES = [
         mapping: ''
       },
       {
+        id: 'input-4',
         name: 'input2',
         type: 'input',
         description: 'Lorem ipsum',
@@ -73,6 +79,7 @@ export const TEMPLATES = [
     ],
     outputs: [
       {
+        id: 'output-3',
         name: 'price-tag',
         type: 'output',
         description: 'Lorem ipsum',
@@ -80,6 +87,7 @@ export const TEMPLATES = [
         mapping: ''
       },
       {
+        id: 'output-4',
         name: 'output2',
         type: 'output',
         description: 'Lorem ipsum',
@@ -95,6 +103,7 @@ export const TEMPLATES = [
     topic: 'print-invoice',
     inputs: [
       {
+        id: 'input-5',
         name: 'status',
         type: 'input',
         description: 'Lorem ipsum',
@@ -102,6 +111,7 @@ export const TEMPLATES = [
         mapping: ''
       },
       {
+        id: 'input-6',
         name: 'input2',
         type: 'input',
         description: 'Lorem ipsum',
@@ -111,6 +121,7 @@ export const TEMPLATES = [
     ],
     outputs: [
       {
+        id: 'output-5',
         name: 'price-tag',
         type: 'output',
         description: 'Lorem ipsum',
@@ -118,6 +129,7 @@ export const TEMPLATES = [
         mapping: ''
       },
       {
+        id: 'output-6',
         name: 'output2',
         type: 'output',
         description: 'Lorem ipsum',

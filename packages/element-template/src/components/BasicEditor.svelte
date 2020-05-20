@@ -37,7 +37,7 @@
   
     currentElement = elementOrId;
 
-    currentElement.currentParameter = null;
+    currentElement.currentVariable = null;
   };
 
   const handleNameChanged = (element, name) => {
