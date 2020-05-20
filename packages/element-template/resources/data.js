@@ -22,13 +22,15 @@ export const TEMPLATES = [
         name: 'status',
         type: 'input',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       },
       {
         name: 'input2',
         type: 'input',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       }
     ],
     outputs: [
@@ -36,13 +38,15 @@ export const TEMPLATES = [
         name: 'price-tag',
         type: 'output',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       },
       {
         name: 'output2',
         type: 'output',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       }
     ]
   },
@@ -56,13 +60,15 @@ export const TEMPLATES = [
         name: 'status',
         type: 'input',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       },
       {
         name: 'input2',
         type: 'input',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       }
     ],
     outputs: [
@@ -70,13 +76,15 @@ export const TEMPLATES = [
         name: 'price-tag',
         type: 'output',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       },
       {
         name: 'output2',
         type: 'output',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       }
     ]
   },
@@ -90,13 +98,15 @@ export const TEMPLATES = [
         name: 'status',
         type: 'input',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       },
       {
         name: 'input2',
         type: 'input',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       }
     ],
     outputs: [
@@ -104,13 +114,15 @@ export const TEMPLATES = [
         name: 'price-tag',
         type: 'output',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       },
       {
         name: 'output2',
         type: 'output',
         description: 'Lorem ipsum',
-        assignment: ''
+        value: '',
+        mapping: ''
       }
     ]
   }

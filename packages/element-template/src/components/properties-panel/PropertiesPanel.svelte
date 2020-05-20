@@ -201,10 +201,16 @@
               <label>Description</label>
               <input name="description" disabled value="{element.currentVariable.description}" />
 
-              <label>Assignment / Mapping</label>
-              <textarea 
+              <label>(Default) Value</label>
+              <input 
                 placeholder="{`${isInputVariable(element.currentVariable) ? 'auto-filled by' : 'auto-written to'} <${element.currentVariable.name}> process variable`}"
-                value="{ element.currentVariable.assignment }" />
+                value="{ element.currentVariable.value }" />
+
+              <label>Mapping</label>
+              <input 
+                placeholder="{`${isInputVariable(element.currentVariable) ? 'auto-filled by' : 'auto-written to'} <${element.currentVariable.name}> process variable`}"
+                value="{ element.currentVariable.mapping }" />
+
             </Section>
 
           {/if}
