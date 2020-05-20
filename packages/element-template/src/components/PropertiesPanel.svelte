@@ -9,101 +9,6 @@
 
     import './PropertiesPanel.scss';
 
-
-    // todo(pinussilvestrus): move data to source
-    const TEMPLATES = [
-      {
-        id: 'get-price-tag',
-        type: 'UI Path Bot',
-        name: 'Get Price Tag',
-        topic: 'get-price-tag',
-        inputs: [
-          {
-            name: 'status',
-            type: 'input',
-            description: 'Lorem ipsum'
-          },
-          {
-            name: 'input2',
-            type: 'input',
-            description: 'Lorem ipsum'
-          }
-        ],
-        outputs: [
-          {
-            name: 'price-tag',
-            type: 'output',
-            description: 'Lorem ipsum'
-          },
-          {
-            name: 'output2',
-            type: 'output',
-            description: 'Lorem ipsum'
-          }
-        ]
-      },
-      {
-        id: 'calculate-price',
-        type: 'UI Path Bot',
-        name: 'Calculate Price',
-        topic: 'calculate-price',
-        inputs: [
-          {
-            name: 'status',
-            type: 'input',
-            description: 'Lorem ipsum'
-          },
-          {
-            name: 'input2',
-            type: 'input',
-            description: 'Lorem ipsum'
-          }
-        ],
-        outputs: [
-          {
-            name: 'price-tag',
-            type: 'output',
-            description: 'Lorem ipsum'
-          },
-          {
-            name: 'output2',
-            type: 'output',
-            description: 'Lorem ipsum'
-          }
-        ]
-      },
-      {
-        id: 'print-invoice',
-        type: 'UI Path Bot',
-        name: 'Print Invoice',
-        topic: 'print-invoice',
-        inputs: [
-          {
-            name: 'status',
-            type: 'input',
-            description: 'Lorem ipsum'
-          },
-          {
-            name: 'input2',
-            type: 'input',
-            description: 'Lorem ipsum'
-          }
-        ],
-        outputs: [
-          {
-            name: 'price-tag',
-            type: 'output',
-            description: 'Lorem ipsum'
-          },
-          {
-            name: 'output2',
-            type: 'output',
-            description: 'Lorem ipsum'
-          }
-        ]
-      }
-    ];
-
     const noop = () => {};
 
     let isHidden = true;
@@ -200,12 +105,13 @@
 
     export let element = null;
     export let onPropertiesChanged = noop;
+    export let templates = [];
 
     
     // helpers //////////
 
     const getTemplate = (element) => {
-      return element && find(TEMPLATES, t => t.id === element.templateId);
+      return element && find(templates, t => t.id === element.templateId);
     };
 
     // todo(pinussilvestrus): move sections to own class
@@ -245,7 +151,7 @@
           <label>Element Template</label>
           <select id="element-template" on:change="{handleTemplateChanged}">
             <option></option>
-            {#each TEMPLATES as {id, name, type}}
+            {#each templates as {id, name, type}}
               <option 
                 selected={element.template && element.template.id === id} 
                 value="{id}" >

@@ -10,6 +10,8 @@
 
   import getElement from './util/getElement';
 
+  import { ELEMENTS as elements, TEMPLATES as templates } from '../resources/data';
+
   import './App.scss';
 
   const LABEL_STYLE = {
@@ -21,19 +23,6 @@
     style: LABEL_STYLE,
     size: { width: 100 }
   });
-
-  let elements = [
-    {
-      id: 'ServiceTask_1',
-      name: 'Task 1',
-      templateId: null
-    },
-    {
-      id: 'ServiceTask_2',
-      name: 'Task 2',
-      templateId: null
-    }
-  ];
 
   let currentElement = null;
 
@@ -112,6 +101,11 @@
 </script>
 
 <div class="diagram-container">
-  <Diagram onOpenProperties={handleOpenProperties} {elements} />
-  <PropertiesPanel element={currentElement} onPropertiesChanged={handleUpdateProperties} />
+  <Diagram 
+    onOpenProperties={handleOpenProperties} 
+    {elements} />
+  <PropertiesPanel 
+    element={currentElement} 
+    {templates}
+    onPropertiesChanged={handleUpdateProperties} />
 </div>
