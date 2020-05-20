@@ -8,6 +8,7 @@
     import getElement from '../../util/getElement';
 
     import Section from './Section';
+    import VariableDetails from './VariableDetails';
 
     import './PropertiesPanel.scss';
 
@@ -193,26 +194,7 @@
           </Section>
 
           {#if element.currentVariable}
-
-            <Section id="variable-details" title="{isInputVariable(element.currentVariable) ? 'Input' : 'Output' } Variable" >
-              <label>Name</label>
-              <input name="name" disabled value="{element.currentVariable.name}" />
-
-              <label>Description</label>
-              <input name="description" disabled value="{element.currentVariable.description}" />
-
-              <label>(Default) Value</label>
-              <input 
-                placeholder="{`${isInputVariable(element.currentVariable) ? 'auto-filled by' : 'auto-written to'} <${element.currentVariable.name}> process variable`}"
-                value="{ element.currentVariable.value }" />
-
-              <label>Mapping</label>
-              <input 
-                placeholder="{`${isInputVariable(element.currentVariable) ? 'auto-filled by' : 'auto-written to'} <${element.currentVariable.name}> process variable`}"
-                value="{ element.currentVariable.mapping }" />
-
-            </Section>
-
+            <VariableDetails variable={element.currentVariable} />
           {/if}
 
         {:else}

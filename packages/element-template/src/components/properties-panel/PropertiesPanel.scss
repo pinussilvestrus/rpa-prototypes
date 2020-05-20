@@ -118,7 +118,7 @@
       display: inline-block;
       vertical-align: middle;
       color: $color-grey-darken-33;
-      margin-bottom: 3px;
+      margin-bottom: 5px;
     }
 
     input {
@@ -168,4 +168,20 @@
   z-index: 10;
   cursor: default;
   user-select: none;
+}
+
+.enable-complex-mapping {
+  float: right;
+  margin-bottom: 3px;
+  margin-top: -2px;
+  font-size: 12px;
+  font-weight: bold;
+  color: $color-grey-darken-33;
+
+  padding: 4px 7px;
+  border: 1px solid $color-silver-darken-80;
+  background: $color-grey-light;
+  border-radius: 3px;
+  
+  cursor: pointer;
 }
