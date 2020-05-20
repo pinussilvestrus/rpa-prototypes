@@ -41,6 +41,10 @@
     if (typeof elementOrId === 'string') {
       elementOrId = find(elements, e => e.id === elementOrId);
     }
+
+    if (!elementOrId) {
+      return;
+    }
   
     currentElement = elementOrId;
 
@@ -70,11 +74,26 @@
     gfx.find('.djs-visual').append(newText);
   };
 
+  const handleIdChanged = (element, id) => {
+    const gfx = getElement(element.id);
+
+    if (!gfx) {
+      return;
+    }
+
+    gfx.attr('data-element-id', id);
+  };
+
   const handleUpdateProperties = (elementId, attrs = {}) => {
     const idx = findIndex(elements, e => e.id === elementId);
 
     if (idx < 0) {
       return;
+    }
+
+    // update id on gfx if necessary
+    if (attrs.id) {
+      handleIdChanged(elements[idx], attrs.id);
     }
 
     elements[idx] = {

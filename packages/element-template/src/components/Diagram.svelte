@@ -1,5 +1,5 @@
 <script>
-  import { onMount, afterUpdate } from 'svelte';
+  import { afterUpdate } from 'svelte';
 
   import { forEach } from 'min-dash';
 
@@ -13,24 +13,24 @@
 
   // lifecycle //////////
 
-  onMount(async () => {
+  afterUpdate(async () => {
 
-    // (1) bind hover and selection handlers
+    // todo(pinussilvestrus): remove old bindings, especially after id update
+
+    // (1) reset selections from all elements
+    resetSelection();
+
+    // (2) bind hover and selection handlers
     forEach(elements, ({ id }) => {
       const element = getElement(id);
       element.addClass('element');
       bindElementInteractions(element);
     });
 
-    // (2) initialize properties binding
+    // (3) initialize properties binding
     forEach(elements, element => {
       bindOpenPanel(element);
     });
-
-  });
-
-  afterUpdate(async () => {
-    resetSelection();
   });
 
 
