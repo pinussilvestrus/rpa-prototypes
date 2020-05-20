@@ -127,10 +127,21 @@
       &[type="checkbox"] {
         width: auto;
       }
+
+      &:disabled {
+        background: $color-silver-base-97;
+        color: $color-grey-darken-50;
+        cursor: not-allowed;
+      }
     }
 
     select {
       width: 100%;
+      background: white;
+
+      option:checked {
+        color: $color-select;
+      }
     }
 
     textarea {
