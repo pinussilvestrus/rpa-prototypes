@@ -39,7 +39,7 @@
         _resetSelection('input');
         _resetSelection('output');
       } else {
-        element.currentParameter.type === 'input'
+        isInputParameter(element.currentParameter)
           ? _resetSelection('output')
           : _resetSelection('input');
       }
@@ -110,7 +110,9 @@
       return element && find(templates, t => t.id === element.templateId);
     };
 
-    // todo(pinussilvestrus): move sections to own class
+    const isInputParameter = (parameter) => {
+      return parameter.type === 'input';
+    };
 
 </script>
 
@@ -192,7 +194,7 @@
 
           {#if element.currentParameter}
 
-            <Section id="parameter-details" title="{element.currentParameter.type === 'input' ? 'Input' : 'Output' } Parameter" >
+            <Section id="parameter-details" title="{isInputParameter(element.currentParameter) ? 'Input' : 'Output' } Parameter" >
               <label>Name</label>
               <input name="name" disabled value="{element.currentParameter.name}" />
 
@@ -200,7 +202,7 @@
               <input name="description" disabled value="{element.currentParameter.description}" />
 
               <label>Assignment</label>
-              <input />
+              <input placeholder="" />
             </Section>
 
           {/if}
