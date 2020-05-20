@@ -1,11 +1,7 @@
 <script>
-    import { afterUpdate } from 'svelte';
-
     import { find, findIndex } from 'min-dash';
 
     import dom from 'domtastic';
-
-    import getElement from '../../util/getElement';
 
     import GeneralTab from './GeneralTab';
 
@@ -44,13 +40,6 @@
           : _resetSelection('input');
       }
     }
-
-    // lifecycle //////////
-
-    afterUpdate(async () => {
-      element && getElement(element.id).addClass('selected');
-    });
-
 
     // methods //////////
 

@@ -10,8 +10,6 @@
 
   import getElement from '../util/getElement';
 
-  import { ELEMENTS as elements, TEMPLATES as templates } from '../../resources/data';
-
   import './BasicEditor.scss';
 
   const LABEL_STYLE = {
@@ -102,13 +100,15 @@
   // exports //////////
 
   export let tabsReplaceComponent;
+  export let elements = [];
+  export let templates = [];
 
 </script>
 
 <div class="diagram-container">
   <Diagram 
     onOpenProperties={handleOpenProperties} 
-    {elements} />
+    bind:elements={elements} />
   <PropertiesPanel 
     element={currentElement} 
     {templates}

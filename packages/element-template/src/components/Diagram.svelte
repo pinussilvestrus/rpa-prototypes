@@ -11,24 +11,20 @@
 
   const noop = () => {};
 
+  let currentSelection;
+
+
   // lifecycle //////////
 
   afterUpdate(async () => {
-
-    // todo(pinussilvestrus): remove old bindings, especially after id update
 
     // (1) reset selections from all elements
     resetSelection();
 
     // (2) bind hover and selection handlers
-    forEach(elements, ({ id }) => {
-      const element = getElement(id);
-      element.addClass('element');
+    // (3) initialize properties panel binding
+    forEach(elements, (element) => {
       bindElementInteractions(element);
-    });
-
-    // (3) initialize properties binding
-    forEach(elements, element => {
       bindOpenPanel(element);
     });
   });
@@ -36,42 +32,50 @@
 
   // methods //////////
 
-  function bindElementInteractions(element) {
-
-    element.on('mouseover', () => {
-      element.addClass('hover');
-    });
-
-    element.on('mouseout', () => {
-      element.removeClass('hover');
-    });
-
-    element.on('click', event => {
-      resetSelection();
-
-      element.removeClass('hover');
-      element.addClass('selected');
-    });
-  }
-
-  function bindOpenPanel(element) {
-
+  const bindElementInteractions = (element, unbind = false) => {
     const gfx = getElement(element.id);
 
-    gfx.on('click', () => {
+    gfx.addClass('element');
+
+    gfx[unbind ? 'off' : 'on']('mouseover', () => {
+      gfx.addClass('hover');
+    });
+
+    gfx[unbind ? 'off' : 'on']('mouseout', () => {
+      gfx.removeClass('hover');
+    });
+
+    gfx[unbind ? 'off' : 'on']('click', event => {
+      currentSelection = element.id;
+      resetSelection();
+
+      gfx.removeClass('hover');
+      gfx.addClass('selected');
+    });
+  };
+
+  const bindOpenPanel = (element, unbind = false) => {
+    const gfx = getElement(element.id);
+
+    gfx[unbind ? 'off' : 'on']('click', () => {
       onOpenProperties(element.id);
     });
-  }
+  };
 
-  function resetSelection() {
+  const resetSelection = () => {
     forEach(elements, ({ id }) => {
+      if (id === currentSelection) {
+        return;
+      }
+
       const dataElement = getElement(id);
       dataElement.removeClass('selected');
     });
-  }
+  };
 
 
   // exports  //////////
+
   export let onOpenProperties = noop;
   export let elements = [];
 

@@ -3,6 +3,9 @@
 
   import { findIndex } from 'min-dash';
 
+  import { ELEMENTS as elements, TEMPLATES as templates } from '../resources/data';
+
+
   // variant A
   import Editor_A from './components/variant_A/Editor.svelte';
 
@@ -74,18 +77,18 @@
 
 <div class="variant-a">
   {#if active === 'A'}
-    <Editor_A />
+    <Editor_A {elements} {templates} />
   {/if}
 </div>
 
 <div class="variant-b">
   {#if active === 'B'}
-    <Editor_B />
+    <Editor_B {elements} {templates} />
   {/if}
 </div>
 
 <div class="variant-c">
   {#if active === 'C'}
-    <Editor_C />
+    <Editor_C {elements} {templates} />
   {/if}
 </div>

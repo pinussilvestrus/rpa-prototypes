@@ -17,7 +17,7 @@
 
 <Section id="general" title="General">
     <label>Id</label>
-    <input name="id" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.id}" />
+    <input name="id" on:change="{handlePropertyChanged}" value="{element.id}" />
 
     <label>Name</label>
     <input name="name" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.name}" />
