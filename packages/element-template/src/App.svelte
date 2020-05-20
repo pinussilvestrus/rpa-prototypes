@@ -1,111 +1,82 @@
 <script>
-  import { find, findIndex } from 'min-dash';
+  import { onMount } from 'svelte';
 
-  import dom from 'domtastic';
+  import { findIndex } from 'min-dash';
 
-  import TextUtil from 'diagram-js/lib/util/Text';
+  // variant A
+  import Editor_A from './components/variant_A/Editor.svelte';
 
-  import Diagram from './components/Diagram.svelte';
-  import PropertiesPanel from './components/PropertiesPanel.svelte';
-
-  import getElement from './util/getElement';
-
-  import { ELEMENTS as elements, TEMPLATES as templates } from '../resources/data';
+  // variant B
+  import Editor_B from './components/variant_B/Editor.svelte';
 
   import './App.scss';
 
-  const LABEL_STYLE = {
-    fontFamily: 'Arial, sans-serif',
-    fontSize: '12px'
-  };
+  const VARIANTS = ['A', 'B' ];
 
-  const textUtil = new TextUtil({
-    style: LABEL_STYLE,
-    size: { width: 100 }
-  });
+  const DEFAULT_VARIANT = 'A';
 
-  let currentElement = null;
+  const toggleVariant = (variant) => {
+    const found = findIndex(VARIANTS, v => v === variant);
 
-  const handleOpenProperties = (elementOrId) => {
-    if (typeof elementOrId === 'string') {
-      elementOrId = find(elements, e => e.id === elementOrId);
-    }
-
-    if (!elementOrId) {
-      return;
+    if (found < 0) {
+      return active = VARIANTS[0];
     }
   
-    currentElement = elementOrId;
-
-    currentElement.currentParameter = null;
+    active = variant;
+    updateURL(variant);
   };
 
-  const handleNameChanged = (element, name) => {
-    const gfx = getElement(element.id);
+  const onNextVariant = () => {
+    const found = findIndex(VARIANTS, v => v === active);
 
-    if (!gfx) {
-      return;
+    if (found === VARIANTS.length - 1) {
+      return toggleVariant(VARIANTS[0]);
     }
 
-    // (1) find and delete present text element
-    gfx.find('text').remove();
-
-    // (2) create new text
-    const newText = textUtil.createText(name, {
-      box: { width: 100, height: 80 },
-      align: 'center-middle',
-      padding: 5
-    });
-
-    dom(newText).addClass('.djs-label');
-
-    // (3) append
-    gfx.find('.djs-visual').append(newText);
+    return toggleVariant(VARIANTS[found + 1]);
   };
 
-  const handleIdChanged = (element, id) => {
-    const gfx = getElement(element.id);
 
-    if (!gfx) {
-      return;
-    }
+  // state //////////
+  let active = DEFAULT_VARIANT;
 
-    gfx.attr('data-element-id', id);
-  };
 
-  const handleUpdateProperties = (elementId, attrs = {}) => {
-    const idx = findIndex(elements, e => e.id === elementId);
+  // lifecycle //////////
+  onMount(async () => {
+    const variant = urlParam('variant');
+    toggleVariant(variant);
+  });
 
-    if (idx < 0) {
-      return;
-    }
 
-    // update id on gfx if necessary
-    if (attrs.id) {
-      handleIdChanged(elements[idx], attrs.id);
-    }
+  // helpers //////////
 
-    elements[idx] = {
-      ...elements[idx],
-      ...attrs
-    };
+  function updateURL(variant) {
+    const newurl = `${window.location.protocol}//${window.location.host}${window.location.pathname}?variant=${variant}`;
+    window.history.pushState({ path: newurl }, '', newurl);
+  }
 
-    // update name on gfx if necessary
-    if (attrs.name) {
-      handleNameChanged(elements[idx], attrs.name);
-    }
+  function urlParam(name) {
+    const results = new RegExp('[?&]' + name + '=([^&#]*)')
+      .exec(window.location.href);
 
-    handleOpenProperties(elements[idx]);
-  };
+    return results && results[1] || DEFAULT_VARIANT;
+  }
+
 
 </script>
 
-<div class="diagram-container">
-  <Diagram 
-    onOpenProperties={handleOpenProperties} 
-    {elements} />
-  <PropertiesPanel 
-    element={currentElement} 
-    {templates}
-    onPropertiesChanged={handleUpdateProperties} />
+<div class="variant-badge" on:click={onNextVariant}>
+  <span>{active}</span>
+</div>
+
+<div class="variant-a">
+  {#if active === 'A'}
+    <Editor_A />
+  {/if}
+</div>
+
+<div class="variant-b">
+  {#if active === 'B'}
+    <Editor_B />
+  {/if}
 </div>
