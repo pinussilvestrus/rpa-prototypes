@@ -12,7 +12,7 @@
 
   import { ELEMENTS as elements, TEMPLATES as templates } from '../../resources/data';
 
-  import './Editor.scss';
+  import './BasicEditor.scss';
 
   const LABEL_STYLE = {
     fontFamily: 'Arial, sans-serif',
@@ -98,6 +98,11 @@
     handleOpenProperties(elements[idx]);
   };
 
+
+  // exports //////////
+
+  export let tabsReplaceComponent;
+
 </script>
 
 <div class="diagram-container">
@@ -107,5 +112,6 @@
   <PropertiesPanel 
     element={currentElement} 
     {templates}
+    {tabsReplaceComponent}
     onPropertiesChanged={handleUpdateProperties} />
 </div>

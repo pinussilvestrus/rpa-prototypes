@@ -14,6 +14,8 @@
     let isHidden = true;
     $: isHidden = !element;
 
+    let showOtherTabs = false;
+
     // populate
     $: {
       if (element) {
@@ -65,8 +67,9 @@
         templateId: selectNode.val()
       });
 
-      // reset parameter details section when template has changed
+      // reset to default state
       element.currentParameter = null;
+      showOtherTabs = false;
     };
 
     const handleSectionTitleClick = (event) => {
@@ -100,12 +103,17 @@
         ], (parameter) => parameter.name === value);
     };
 
+    const handleShowOtherTabs = () => {
+      showOtherTabs = true;
+    };
+
 
     // exports //////////
 
     export let element = null;
     export let onPropertiesChanged = noop;
     export let templates = [];
+    export let tabsReplaceComponent;
 
     
     // helpers //////////
@@ -126,11 +134,15 @@
 
         <ul class="tabs">
           <li class="tab tab-active"><p>General</p></li>
-          {#if !element.template}
+          {#if showOtherTabs || !element.template}
             <li class="tab"><p>Listeners</p></li>
             <li class="tab"><p>Input/Output</p></li>
             <li class="tab"><p>Field Injections</p></li>
             <li class="tab"><p>Extensions</p></li>
+          {:else}
+            <svelte:component 
+              this="{tabsReplaceComponent}"
+              onAction={handleShowOtherTabs} />
           {/if}
         </ul>
       </div>

@@ -1,5 +1,7 @@
 <script>
-    import Editor from '../Editor';
+    import BasicEditor from '../BasicEditor';
+
+    import ToggleAllTabs from './ToggleAllTabs';
 </script>
 
-<Editor />
+<BasicEditor tabsReplaceComponent={ToggleAllTabs} />

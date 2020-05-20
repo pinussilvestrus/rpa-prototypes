@@ -1,5 +1,7 @@
 <script>
-    import Editor from '../Editor';
+    import BasicEditor from '../BasicEditor';
+
+    // no variation
 </script>
 
-<Editor />
+<BasicEditor />

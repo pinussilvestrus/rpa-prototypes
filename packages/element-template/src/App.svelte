@@ -9,9 +9,12 @@
   // variant B
   import Editor_B from './components/variant_B/Editor.svelte';
 
+  // variant C
+  import Editor_C from './components/variant_C/Editor.svelte';
+
   import './App.scss';
 
-  const VARIANTS = ['A', 'B' ];
+  const VARIANTS = ['A', 'B', 'C' ];
 
   const DEFAULT_VARIANT = 'A';
 
@@ -78,5 +81,11 @@
 <div class="variant-b">
   {#if active === 'B'}
     <Editor_B />
+  {/if}
+</div>
+
+<div class="variant-c">
+  {#if active === 'C'}
+    <Editor_C />
   {/if}
 </div>
