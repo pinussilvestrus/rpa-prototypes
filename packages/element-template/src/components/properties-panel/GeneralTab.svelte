@@ -3,6 +3,7 @@
 
     import Section from './Section';
     import VariableDetails from './VariableDetails';
+    import VariableList from './VariableList';
 
     const noop = () => {};
 
@@ -50,25 +51,18 @@
       <label>Topic</label>
       <input disabled value="{element.template.topic}"/>
 
-      <label>Input Variables</label>
-      <select 
-        id="input-select" 
-        size="3" 
-        on:change={handleVariableSelect} >
-          {#each element.template.inputs as {name}}
-            <option>{name}</option>
-          {/each}
-      </select>
+      <VariableList
+        id="input-select"
+        title="Input Variables"
+        onSelectionChanged={handleVariableSelect}
+        variables={element.template.inputs} />
 
-      <label>Output Variables</label>
-      <select 
+      <VariableList
         id="output-select"
-        size="3" 
-        on:change={handleVariableSelect} >
-          {#each element.template.outputs as {name}}
-            <option>{name}</option>
-          {/each}
-      </select>
+        title="Output Variables"
+        onSelectionChanged={handleVariableSelect}
+        variables={element.template.outputs} />
+
     </Section>
 
     {#if element.currentVariable}
