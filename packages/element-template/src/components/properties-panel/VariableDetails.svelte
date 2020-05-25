@@ -52,7 +52,7 @@
         value="{ variable.value }" />
     
     <label>Mapping</label>
-    <span class="enable-complex-mapping" on:click={toggleComplexMode}>Enable Complex</span>
+    <span class="enable-complex-mapping" on:click={toggleComplexMode}>Enable Advanced</span>
     <input 
         name="mapping"
         on:input={debounce(handleInput, 500)}
