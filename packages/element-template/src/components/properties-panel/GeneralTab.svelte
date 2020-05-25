@@ -38,7 +38,7 @@
 
   {#if element.template}
 
-    <Section id="template" title="Implementation">
+    <Section id="template" title="{element.template.name}">
       <!-- <label>Type</label>
       <input disabled value="{element.template.type}"/>
 
