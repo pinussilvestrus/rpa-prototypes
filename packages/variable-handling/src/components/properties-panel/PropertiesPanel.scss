@@ -1,0 +1,191 @@
+@import "../../colors";
+
+.properties-panel {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  overflow-y: auto;
+
+  .container {
+    border: solid 2px $color-silver-darken-80;
+    border-top: none;
+    border-bottom: none;
+    background-color: $color-silver-base-97;
+    min-height: 100%;
+    width: 420px;
+  }
+
+  .open-properties-panel {
+    position: absolute;
+    left: -30px;
+    top: 50%;
+    background: #f8f8f8;
+    padding: 7px 10px;
+    transform: rotate(-90deg);
+    white-space: nowrap;
+    font-size: 13px;
+    border: solid 1px #ccc;
+    border-bottom: none;
+    border-radius: 2px 2px 0 0;
+    transform-origin: top left;
+    z-index: 10;
+    cursor: default;
+    user-select: none;
+  }
+
+  .enable-complex-mapping {
+    float: right;
+    margin-bottom: 3px;
+    margin-top: -2px;
+    font-size: 12px;
+    font-weight: bold;
+    color: $color-grey-darken-33;
+
+    padding: 4px 7px;
+    border: 1px solid $color-silver-darken-80;
+    background: $color-grey-light;
+    border-radius: 3px;
+
+    cursor: pointer;
+  }
+
+  .header {
+    .title {
+      padding: 15px 15px 5px 15px;
+      margin-bottom: 10px;
+      font-size: 120%;
+      font-weight: bolder;
+    }
+
+    .tabs {
+      border-bottom: solid 1px $color-silver-darken-80;
+      margin: 5px 0 -1px 0;
+      padding: 0;
+      padding-left: 5px;
+      white-space: nowrap;
+      overflow: hidden;
+
+      .tab {
+        display: inline-block;
+        margin: 0;
+
+        p {
+          margin-bottom: 0;
+          font-size: 12px;
+          padding: 4px 7px;
+
+          border: 1px solid $color-silver-darken-80;
+          border-radius: 3px 3px 0 0;
+          border-bottom: transparent;
+
+          color: $color-grey-darken-33;
+
+          text-decoration: none;
+
+          &:hover {
+            color: black;
+          }
+        }
+
+        &.tab-active {
+          font-weight: bold;
+
+          p {
+            border-top: 2px solid $color-select;
+            position: relative;
+
+            &:before {
+              content: "";
+              z-index: 5;
+              bottom: -2px;
+              left: 0;
+              right: 0;
+              border-bottom: 3px solid $color-silver-base-97;
+              position: absolute;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .section-title {
+    font-size: 110%;
+    font-weight: bolder;
+    color: $color-grey-darken-33;
+    font-style: italic;
+    padding: 15px;
+
+    cursor: pointer;
+
+    i {
+      display: none; // for now
+      float: right;
+      height: 12px;
+      content: url('data:image/svg+xml,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-down" class="svg-inline--fa fa-chevron-down fa-w-14" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M207.029 381.476L12.686 187.132c-9.373-9.373-9.373-24.569 0-33.941l22.667-22.667c9.357-9.357 24.522-9.375 33.901-.04L224 284.505l154.745-154.021c9.379-9.335 24.544-9.317 33.901.04l22.667 22.667c9.373 9.373 9.373 24.569 0 33.941L240.971 381.476c-9.373 9.372-24.569 9.372-33.942 0z"></path></svg>');
+    }
+
+    &.inactive {
+      i {
+        content: url('data:image/svg+xml,<svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="chevron-right" class="svg-inline--fa fa-chevron-right fa-w-10" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M285.476 272.971L91.132 467.314c-9.373 9.373-24.569 9.373-33.941 0l-22.667-22.667c-9.357-9.357-9.375-24.522-.04-33.901L188.505 256 34.484 101.255c-9.335-9.379-9.317-24.544.04-33.901l22.667-22.667c9.373-9.373 24.569-9.373 33.941 0L285.475 239.03c9.373 9.372 9.373 24.568.001 33.941z"></path></svg>');
+      }
+    }
+  }
+
+  .section {
+    border-bottom: solid 1px $color-silver-darken-80;
+    padding: 15px;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
+
+    &.hidden {
+      display: none;
+    }
+
+    label {
+      font-weight: bold;
+      display: inline-block;
+      vertical-align: middle;
+      color: $color-grey-darken-33;
+      margin-bottom: 5px;
+    }
+
+    input,
+    select,
+    textarea {
+      margin-bottom: 12px;
+
+      &:disabled {
+        background: $color-silver-base-97;
+        color: $color-grey-darken-50;
+        cursor: not-allowed;
+      }
+    }
+
+    input {
+      width: 100%;
+
+      &[type="checkbox"] {
+        width: auto;
+      }
+    }
+
+    select {
+      width: 100%;
+      background: white;
+
+      option:checked {
+        color: $color-select;
+      }
+    }
+
+    textarea {
+      width: 100%;
+      resize: none;
+      min-height: 5em;
+    }
+  }
+}

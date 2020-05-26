@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<bpmn:definitions xmlns:bpmn="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" id="Definitions_0be9urb" targetNamespace="http://bpmn.io/schema/bpmn" exporter="Camunda Modeler" exporterVersion="4.0.0-alpha.3">
+  <bpmn:process id="Process_019ozw2" isExecutable="true">
+    <bpmn:startEvent id="StartEvent_1" name="Quote Requested">
+      <bpmn:outgoing>Flow_0d7lv87</bpmn:outgoing>
+    </bpmn:startEvent>
+    <bpmn:endEvent id="Event_121l8el" name="Quote provided">
+      <bpmn:incoming>Flow_0rt3mc7</bpmn:incoming>
+    </bpmn:endEvent>
+    <bpmn:serviceTask id="ServiceTask_1" name="Get Price">
+      <bpmn:incoming>Flow_0d7lv87</bpmn:incoming>
+      <bpmn:outgoing>Flow_1atmui1</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:serviceTask id="ServiceTask_2" name="Generate Quote">
+      <bpmn:incoming>Flow_1atmui1</bpmn:incoming>
+      <bpmn:outgoing>Flow_0o3wbb0</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0o3wbb0" sourceRef="ServiceTask_2" targetRef="ServiceTask_3" />
+    <bpmn:serviceTask id="ServiceTask_3" name="Send Quote">
+      <bpmn:incoming>Flow_0o3wbb0</bpmn:incoming>
+      <bpmn:outgoing>Flow_0rt3mc7</bpmn:outgoing>
+    </bpmn:serviceTask>
+    <bpmn:sequenceFlow id="Flow_0rt3mc7" sourceRef="ServiceTask_3" targetRef="Event_121l8el" />
+    <bpmn:sequenceFlow id="Flow_0d7lv87" sourceRef="StartEvent_1" targetRef="ServiceTask_1" />
+    <bpmn:sequenceFlow id="Flow_1atmui1" sourceRef="ServiceTask_1" targetRef="ServiceTask_2" />
+  </bpmn:process>
+  <bpmndi:BPMNDiagram id="BPMNDiagram_1">
+    <bpmndi:BPMNPlane id="BPMNPlane_1" bpmnElement="Process_019ozw2">
+      <bpmndi:BPMNEdge id="Flow_0o3wbb0_di" bpmnElement="Flow_0o3wbb0">
+        <di:waypoint x="520" y="117" />
+        <di:waypoint x="570" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0rt3mc7_di" bpmnElement="Flow_0rt3mc7">
+        <di:waypoint x="670" y="117" />
+        <di:waypoint x="722" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_0d7lv87_di" bpmnElement="Flow_0d7lv87">
+        <di:waypoint x="215" y="117" />
+        <di:waypoint x="270" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="Flow_1atmui1_di" bpmnElement="Flow_1atmui1">
+        <di:waypoint x="370" y="117" />
+        <di:waypoint x="420" y="117" />
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNShape id="_BPMNShape_StartEvent_2" bpmnElement="StartEvent_1">
+        <dc:Bounds x="179" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="154" y="142" width="87" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_06l2ldl_di" bpmnElement="ServiceTask_1">
+        <dc:Bounds x="270" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_0pjy2d9_di" bpmnElement="ServiceTask_2">
+        <dc:Bounds x="420" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Activity_1rwdq20_di" bpmnElement="ServiceTask_3">
+        <dc:Bounds x="570" y="77" width="100" height="80" />
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="Event_121l8el_di" bpmnElement="Event_121l8el">
+        <dc:Bounds x="722" y="99" width="36" height="36" />
+        <bpmndi:BPMNLabel>
+          <dc:Bounds x="702" y="142" width="76" height="14" />
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+    </bpmndi:BPMNPlane>
+  </bpmndi:BPMNDiagram>
+</bpmn:definitions>
