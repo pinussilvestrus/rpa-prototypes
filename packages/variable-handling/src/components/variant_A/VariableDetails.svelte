@@ -43,15 +43,8 @@
   <label>Description</label>
   <input name="description" disabled value="{ variable.description }" />
 
-  {#if !variable.complexModeEnabled}
-    <label>(Default) Value</label>
-    <input 
-        name="value"
-        on:input={debounce(handleInput, 500)}
-        placeholder="{`${isInputVariable(variable) ? 'auto-filled by' : 'auto-written to'} <${variable.name}> process variable`}"
-        value="{ variable.value }" />
-    
-    <label>Mapping</label>
+  {#if !variable.complexModeEnabled}    
+    <label>Value</label>
     <span class="enable-complex-mapping" on:click={toggleComplexMode}>Enable Advanced</span>
     <input 
         name="mapping"
