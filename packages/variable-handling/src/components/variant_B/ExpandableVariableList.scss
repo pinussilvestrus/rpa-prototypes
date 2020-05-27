@@ -1,0 +1,30 @@
+@import "../../colors";
+
+.expandable-list {
+  margin-top: 8px;
+  margin-bottom: 12px;
+
+  .expandable-list-title {
+    font-weight: bolder;
+    color: $color-grey-darken-33;
+  }
+
+  .variable {
+    margin-top: 10px;
+    padding-left: 8px;
+
+    .variable-name {
+      margin: 0;
+    }
+
+    .variable-description {
+      margin: 0;
+      color: $color-silver-darken-80;
+    }
+  }
+
+  .empty {
+    padding-left: 8px;
+    font-style: italic;
+  }
+}
