@@ -1,10 +1,15 @@
 <script>
     import BasicEditor from '../BasicEditor';
 
+    import VariableList from './VariableList';
+    import VariableDetails from './VariableDetails';
+
     export let elements;
     export let templates;
-
-    // no variation
 </script>
 
-<BasicEditor {elements} {templates} />
+<BasicEditor 
+    {elements} 
+    {templates} 
+    variableListComponent={VariableList}
+    variableDetailsComponent={VariableDetails} />

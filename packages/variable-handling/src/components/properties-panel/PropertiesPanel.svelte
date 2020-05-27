@@ -1,5 +1,5 @@
 <script>
-    import { find, findIndex } from 'min-dash';
+    import { find } from 'min-dash';
 
     import dom from 'domtastic';
 
@@ -23,23 +23,6 @@
       }
     }
 
-    // reset visual selections
-    $: {
-      const _resetSelection = (type) => {
-        const otherSelect = dom(`#${type}-select`);
-        otherSelect.val(null);
-      };
-
-      if (!(element && element.currentVariable)) {
-        _resetSelection('input');
-        _resetSelection('output');
-      } else {
-        isInputVariable(element.currentVariable)
-          ? _resetSelection('output')
-          : _resetSelection('input');
-      }
-    }
-
     // methods //////////
 
     const handlePropertyChanged = (event) => {
@@ -48,42 +31,6 @@
       onPropertiesChanged(element.id, {
         [inputNode.attr('name')]: inputNode.val()
       });
-    };
-
-    const handleVariableChanged = (variableId, attrs) => {
-      let currentVariable = element.currentVariable;
-
-      if (!currentVariable) {
-        return;
-      }
-
-      // (1) update current displayed variable
-      currentVariable = {
-        ...currentVariable,
-        ...attrs
-      };
-
-      // (2) update in templates
-      // NOTE: this is just for prototype purpose, normally we have to update the value
-      // on the element itself, not in the template
-      const template = find(templates, (t) => t.id === element.templateId);
-
-      if (isInputVariable(currentVariable)) {
-        const idx = findIndex(template.inputs, (i) => i.id === currentVariable.id);
-
-        template.inputs[idx] = {
-          ...template.inputs[idx],
-          ...attrs
-        };
-      } else {
-        const idx = findIndex(template.outputs, (o) => o.id === currentVariable.id);
-
-        template.outputs[idx] = {
-          ...template.outputs[idx],
-          ...attrs
-        };
-      }
-
     };
 
     const handleTemplateChanged = (event) => {
@@ -98,26 +45,6 @@
       showOtherTabs = false;
     };
 
-    const handleVariableSelect = (event) => {
-      const variableNode = dom(event.target);
-
-      if (!element.template) {
-        return;
-      }
-
-      const value = variableNode.val();
-
-      // find and set populated variable
-      element.currentVariable = find(
-        [
-          ...element.template.inputs,
-          ...element.template.outputs
-        ], (variable) => variable.name === value);
-
-      // reset variable complex mode, monkey patching :(
-      element.currentVariable.complexModeEnabled = false;
-    };
-
     const handleShowOtherTabs = () => {
       showOtherTabs = true;
     };
@@ -128,16 +55,13 @@
     export let element = null;
     export let onPropertiesChanged = noop;
     export let variableListComponent;
+    export let variableDetailsComponent;
     export let templates = [];
     
     // helpers //////////
 
     const getTemplate = (element) => {
       return element && find(templates, t => t.id === element.templateId);
-    };
-
-    const isInputVariable = (variable) => {
-      return variable.type === 'input';
     };
 
 </script>
@@ -168,9 +92,8 @@
           {handleTemplateChanged}
           {element}
           {templates}
-          {handleVariableSelect}
-          {handleVariableChanged}
-          {variableListComponent} />
+          {variableListComponent}
+          {variableDetailsComponent} />
       </div>
   </div>
   {/if}

@@ -3,7 +3,7 @@
 
     import { debounce } from 'min-dash';
 
-    import Section from './Section';
+    import Section from '../properties-panel/Section';
 
     const noop = () => {};
 
