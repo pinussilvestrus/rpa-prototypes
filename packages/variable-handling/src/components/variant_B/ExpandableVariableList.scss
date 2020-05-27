@@ -13,13 +13,32 @@
     margin-top: 10px;
     padding-left: 8px;
 
-    .variable-name {
-      margin: 0;
+    .variable-header {
+      .variable-name {
+        margin: 0;
+      }
+
+      .variable-description {
+        margin: 0;
+        color: $color-silver-darken-80;
+        padding-left: 0.6rem;
+      }
     }
 
-    .variable-description {
-      margin: 0;
-      color: $color-silver-darken-80;
+    .variable-details {
+      display: none;
+      padding-left: 0.6rem;
+      padding-top: 8px;
+
+      label {
+        font-weight: normal;
+      }
+    }
+
+    &.active {
+      .variable-details {
+        display: block;
+      }
     }
   }
 
