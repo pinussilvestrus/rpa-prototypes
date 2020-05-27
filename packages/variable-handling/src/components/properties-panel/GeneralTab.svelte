@@ -111,6 +111,7 @@
     <input name="name" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.name}" />
 
     <label>Element Template</label>
+    <!-- svelte-ignore a11y-no-onchange -->
     <select id="element-template" on:change="{handleTemplateChanged}">
       <option></option>
       {#each templates as {id, name, type}}

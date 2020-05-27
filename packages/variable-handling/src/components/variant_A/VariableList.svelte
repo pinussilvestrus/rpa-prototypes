@@ -9,6 +9,7 @@
 
 
 <label>{title}</label>
+<!-- svelte-ignore a11y-no-onchange -->
 <select 
   id="{id}"
   size="3" 
