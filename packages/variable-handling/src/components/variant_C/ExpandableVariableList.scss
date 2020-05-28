@@ -13,7 +13,11 @@ $details-padding: 1rem;
 
   .variable {
     margin-top: 10px;
-    padding-left: 8px;
+    padding: 10px;
+    padding-left: 5px;
+    border: solid 1px $color-silver-darken-80;
+    background-color: $color-silver-darken-94;
+    border-radius: 2px;
 
     .variable-header {
       &:hover {
@@ -22,6 +26,7 @@ $details-padding: 1rem;
 
       .variable-name {
         margin: 0;
+        display: inline-block;
 
         .chevron {
           height: 12px;
@@ -33,15 +38,15 @@ $details-padding: 1rem;
 
       .variable-description {
         margin: 0;
-        color: $color-silver-darken-80;
-        padding-left: $details-padding;
+        color: $color-grey-darken-50;
+        float: right;
       }
     }
 
     .variable-details {
       display: none;
       padding-left: $details-padding;
-      padding-top: 8px;
+      padding-top: 20px;
 
       label {
         font-weight: normal;
