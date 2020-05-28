@@ -56,6 +56,7 @@
     export let onPropertiesChanged = noop;
     export let variableListComponent;
     export let variableDetailsComponent;
+    export let templateSelectLabel;
     export let templates = [];
     
     // helpers //////////
@@ -92,6 +93,7 @@
           {handleTemplateChanged}
           {element}
           {templates}
+          {templateSelectLabel}
           {variableListComponent}
           {variableDetailsComponent} />
       </div>

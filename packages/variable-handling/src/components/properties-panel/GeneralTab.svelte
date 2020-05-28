@@ -92,6 +92,7 @@
     export let templates;
     export let variableListComponent;
     export let variableDetailsComponent;
+    export let templateSelectLabel;
 
 
     // helpers //////////
@@ -110,7 +111,7 @@
     <label>Name</label>
     <input name="name" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.name}" />
 
-    <label>Element Template</label>
+    <label>{templateSelectLabel ? templateSelectLabel : 'Element Template'}</label>
     <!-- svelte-ignore a11y-no-onchange -->
     <select id="element-template" on:change="{handleTemplateChanged}">
       <option></option>
