@@ -59,7 +59,8 @@
             value={variable.value} />
 
         <!-- todo(pinussilvestrus): add other type content and make it dynamic (maybe in variant C) -->
-        <!-- Type === Script -->
+        <!-- Type === Inline Script -->
+        <!-- Type === External Script -->
         <!-- Type === List -->
         <!-- Type === Map -->
       </div>
