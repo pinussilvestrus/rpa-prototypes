@@ -6,6 +6,7 @@ Prototypes built via our RPA Prototyping phase, Q2 2020
 
 * [`element-template`](./packages/element-template)
 * [`variable-handling`](./packages/variable-handling)
+* [`variable-handling-next`](./packages/variable-handling-next)
 
 ## Setup
 
