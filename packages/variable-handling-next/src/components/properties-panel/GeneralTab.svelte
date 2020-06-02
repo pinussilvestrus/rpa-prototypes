@@ -122,6 +122,12 @@
             {name} ({type})
         </option>
       {/each}
+      <option disabled="disabled">───────────</option>
+      <option>Java Class</option>
+      <option>Expression</option>
+      <option>Delegate Expression</option>
+      <option>External</option>
+      <option>Connector</option>
     </select>
   </Section>
 
