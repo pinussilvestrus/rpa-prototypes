@@ -3,6 +3,8 @@
 
   import { find } from 'min-dash';
 
+  import AutocompleteInput from '../AutocompleteInput';
+
   const MAPPING_TYPES = [
     {
       id: 'simple',
@@ -133,13 +135,14 @@
       <label>{isInputVariable(variable) ? 'Value' : 'Process Variable'}</label>
 
       {#if isInputVariable(variable)}
-
-        <select name="value">
-          <option disabled selected>{`auto-filled by <${variable.name}> process variable`}</option>
-          {#each variable.availableOptions as option}
-            <option>{option}</option>
-          {/each}
-        </select>
+          <AutocompleteInput 
+            id="value"
+            name="value"
+            type="text"
+            value={variable.value}
+            items={variable.availableOptions}
+            placeholder="{`auto-filled by <${variable.name}> process variable`}"
+          />
       {:else}
 
         <input 
