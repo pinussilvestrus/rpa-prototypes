@@ -1,4 +1,4 @@
-@import '../colors';
+@import "../colors";
 
 .autocomplete {
   position: relative;
@@ -7,7 +7,11 @@
     margin-bottom: 0 !important;
   }
 
-  .items {
+  input::-webkit-calendar-picker-indicator {
+    opacity: 100;
+  }
+
+  #items {
     display: none;
     position: absolute;
     box-shadow: 0 0.05rem 0.25rem 0 rgba(0, 0, 0, 0.2);
