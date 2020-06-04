@@ -1,6 +1,19 @@
 <script>
     import './AutocompleteInput.scss';
 
+    import { afterUpdate } from 'svelte';
+
+    import dom from 'domtastic';
+
+    afterUpdate(async () => {
+    
+      // as long no reactivity is stated here, remove input content
+      if (!value) {
+        const inputNode = dom(`input[id="${id}"]`);
+        inputNode.val(null);
+      }
+    });
+
     const noop = () => {};
 
     export let id;
@@ -20,8 +33,8 @@
     type="{type}" 
     name="{name}" 
     placeholder="{placeholder}"
-    value={value}
     list="items"
+    value="{value}"
     on:focus={onInputFocus}
     on:focusout={onInputFocusOut} />
   <datalist id="items">

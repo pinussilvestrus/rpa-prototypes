@@ -136,7 +136,7 @@
 
       {#if isInputVariable(variable)}
           <AutocompleteInput 
-            id="value"
+            id="{`${variable.id}-value`}"
             name="value"
             type="text"
             value={variable.value}
