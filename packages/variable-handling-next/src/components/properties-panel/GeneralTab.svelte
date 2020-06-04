@@ -115,19 +115,22 @@
     <!-- svelte-ignore a11y-no-onchange -->
     <select id="element-template" on:change="{handleTemplateChanged}">
       <option></option>
-      {#each templates as {id, name, type}}
-        <option 
-          selected={element.template && element.template.id === id} 
-          value="{id}" >
-            {name} ({type})
-        </option>
-      {/each}
-      <option disabled="disabled">───────────</option>
-      <option>Java Class</option>
-      <option>Expression</option>
-      <option>Delegate Expression</option>
-      <option>External</option>
-      <option>Connector</option>
+      <optgroup label="Bot Templates">
+        {#each templates as {id, name, type}}
+          <option 
+            selected={element.template && element.template.id === id} 
+            value="{id}" >
+              {name} ({type})
+          </option>
+        {/each}
+      </optgroup>
+      <optgroup label="Default Implementation Types">
+        <option>Java Class</option>
+        <option>Expression</option>
+        <option>Delegate Expression</option>
+        <option>External</option>
+        <option>Connector</option>
+      </optgroup>
     </select>
   </Section>
 
