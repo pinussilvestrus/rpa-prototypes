@@ -1,0 +1,61 @@
+@import './colors';
+
+.btn {
+  min-width: 120px;
+  height: 35px;
+  border-radius: 3px;
+  font-size: 13px;
+  font-weight: bold;
+  font-stretch: normal;
+  font-style: normal;
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+
+.btn-primary {
+  color: #fdfdfe;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.2);
+  border: solid 1px $color-blue-darken-62;
+  background-color: $color-blue-base-65;
+
+  &:hover {
+    border: solid 1px $color-blue-darken-55;
+    background-color: $color-blue-darken-62;
+  }
+
+  &:disabled {
+    box-shadow: none;
+    border: solid 1px $color-blue-lighten-82;
+    background-color: $color-blue-lighten-75;
+    color: rgba(253, 253, 254, 0.8);
+  }
+}
+
+.btn-secondary {
+  color: $color-grey-darken-33;
+  box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.1);
+  border: solid 1px $color-silver-darken-80;
+  background-color: $color-silver-base-97;
+
+  &:hover {
+    background-color: $color-silver-darken-94;
+  }
+
+  &:active {
+    background-color: $color-silver-darken-87;
+  }
+
+  &:disabled {
+    box-shadow: none;
+    border: solid 1px $color-silver-darken-87;
+    background-color: $color-silver-base-97;
+    color: rgba(83, 83, 83, 0.5);
+  }
+}
+
+.btn + .btn {
+  margin-left: 15px;
+}
