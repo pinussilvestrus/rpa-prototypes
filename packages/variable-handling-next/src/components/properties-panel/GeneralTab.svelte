@@ -48,37 +48,32 @@
     };
 
     const handleVariableChanged = (variableId, attrs) => {
-      let currentVariable = element.currentVariable;
 
-      if (!currentVariable) {
-        return;
-      }
-
-      // (1) update current displayed variable
-      currentVariable = {
-        ...currentVariable,
-        ...attrs
-      };
-
-      // (2) update in templates
+      // update in templates
       // NOTE: this is just for prototype purpose, normally we have to update the value
       // on the element itself, not in the template
       const template = find(templates, (t) => t.id === element.templateId);
 
-      if (isInputVariable(currentVariable)) {
-        const idx = findIndex(template.inputs, (i) => i.id === currentVariable.id);
+      // (1) try to find in inputs
+      let idx = findIndex(template.inputs, (i) => i.id === variableId);
 
+      if (idx >= 0) {
         template.inputs[idx] = {
           ...template.inputs[idx],
           ...attrs
         };
-      } else {
-        const idx = findIndex(template.outputs, (o) => o.id === currentVariable.id);
 
+      }
+
+      // (2) try to find in outputs
+      idx = findIndex(template.outputs, (i) => i.id === variableId);
+
+      if (idx >= 0) {
         template.outputs[idx] = {
           ...template.outputs[idx],
           ...attrs
         };
+
       }
 
     };
@@ -91,16 +86,15 @@
     export let element;
     export let templates;
     export let variableListComponent;
-    export let variableDetailsComponent;
     export let templateSelectLabel;
 
 
     // helpers //////////
 
-
     const isInputVariable = (variable) => {
       return variable.type === 'input';
     };
+
 </script>
 
 
@@ -149,6 +143,7 @@
         id="input-select"
         title="Input Variables"
         onSelectionChanged={handleVariableSelect}
+        onUpdateVariable={handleVariableChanged}
         variables={element.template.inputs} />
 
       <svelte:component
@@ -156,16 +151,10 @@
         id="output-select"
         title="Output Variables"
         onSelectionChanged={handleVariableSelect}
+        onUpdateVariable={handleVariableChanged}
         variables={element.template.outputs} />
 
     </Section>
-
-    {#if element.currentVariable}
-      <svelte:component
-        this="{variableDetailsComponent}"
-        variable={element.currentVariable}
-        onUpdateVariable={handleVariableChanged} />
-    {/if}
 
   {:else}
 

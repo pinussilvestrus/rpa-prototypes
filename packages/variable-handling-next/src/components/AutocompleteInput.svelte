@@ -24,6 +24,7 @@
     export let items = [];
     export let onInputFocus = noop;
     export let onInputFocusOut = noop;
+    export let onChange = noop;
 </script>
 
 <div class="autocomplete">
@@ -36,7 +37,8 @@
     list="items"
     value="{value}"
     on:focus={onInputFocus}
-    on:focusout={onInputFocusOut} />
+    on:focusout={onInputFocusOut}
+    on:change={onChange} />
   <datalist id="items">
      {#each items as item }
         <option class="item" value="{item}" />

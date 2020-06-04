@@ -5,6 +5,8 @@
 
   import AutocompleteInput from '../AutocompleteInput';
 
+  const noop = () => {};
+
   const MAPPING_TYPES = [
     {
       id: 'simple',
@@ -53,7 +55,7 @@
       selectedMappingType = id;
     }
 
-};
+  };
 
   const handleTitleClick = (event) => {
     const titleNode = dom(event.target),
@@ -66,9 +68,18 @@
     }
   };
 
+  const handleInputChange = (event) => {
+    const inputNode = dom(event.target);
+  
+    onUpdateVariable(variable.id, {
+      [inputNode.attr('name')]: inputNode.val()
+    });
+  };
+
   // exports //////////
   
   export let variable;
+  export let onUpdateVariable = noop;
   
   
   // helpers //////////
@@ -139,6 +150,7 @@
             id="{`${variable.id}-value`}"
             name="value"
             type="text"
+            onChange={handleInputChange}
             value={variable.value}
             items={variable.availableOptions}
             placeholder="{`auto-filled by <${variable.name}> process variable`}"
@@ -147,6 +159,7 @@
 
         <input 
           name="value" 
+          on:change={handleInputChange}
           autocomplete="off"
           placeholder="{`auto-written to <${variable.name}> process variable`}"
           value={variable.value} />
