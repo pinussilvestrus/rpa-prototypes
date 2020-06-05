@@ -11,7 +11,7 @@
       collection.push({
         id,
         name: id,
-        description: 'foo'
+        description: ''
       });
 
       onUpdateCollection('outputs', collection);

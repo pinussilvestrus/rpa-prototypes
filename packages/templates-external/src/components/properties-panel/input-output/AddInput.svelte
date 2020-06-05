@@ -11,7 +11,7 @@
       collection.push({
         id,
         name: id,
-        description: 'foo'
+        description: 'Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua.'
       });
 
       onUpdateCollection('inputs', collection);
