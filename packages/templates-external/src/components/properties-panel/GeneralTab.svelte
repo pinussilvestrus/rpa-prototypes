@@ -78,7 +78,7 @@
       <!-- svelte-ignore a11y-no-onchange -->
       <select id="element-template" on:change="{handleTemplateChanged}">
         <option></option>
-        <optgroup label="Bot Templates">
+        <optgroup label="Implementation Templates">
           {#each templates as {id, name, type}}
             <option 
               selected={element.template && element.template.id === id} 
