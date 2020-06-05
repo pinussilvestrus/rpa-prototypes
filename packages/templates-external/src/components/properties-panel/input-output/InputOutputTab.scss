@@ -5,13 +5,24 @@ $details-padding: 1rem;
 .input-output-tab {
   .add {
     float: right;
-    font-weight: normal;
     font-size: 12px;
-    margin-top: 4px;
-    font-style: normal;
-    text-decoration-line: underline;
-
+    font-weight: bold;
+  
+    border: 1px solid $color-silver-darken-80;
+    background: $color-grey-light;
+    border-radius: 3px;
+  
+    color: $color-grey-darken-33;
+  
+    margin: 0;
+    text-decoration: none;
+    padding: 4px 7px;
+  
     cursor: pointer;
+   
+    svg {
+      width: 8px;
+    }
   }
 
   .item {

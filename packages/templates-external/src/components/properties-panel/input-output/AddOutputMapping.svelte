@@ -1,5 +1,7 @@
 <script>
     import generateId from '../../../util/generateId';
+    
+    import PlusSvg from '../../svg/plus.svg';
 
     const noop = () => {};
 
@@ -26,5 +28,5 @@
 </script>
 
 <div class="add add-output-mapping" on:click={handleAddOutputMapping}>
-    Add Output Mapping
+  {@html PlusSvg}
 </div>

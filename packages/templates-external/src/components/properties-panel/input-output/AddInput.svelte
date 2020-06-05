@@ -1,6 +1,8 @@
 <script>
     import generateId from '../../../util/generateId';
 
+    import PlusSvg from '../../svg/plus.svg';
+
     const noop = () => {};
 
     // methods //////////
@@ -26,5 +28,5 @@
 </script>
 
 <div class="add add-input" on:click={handleAddInput}>
-    Add Input Parameter
+  {@html PlusSvg}
 </div>

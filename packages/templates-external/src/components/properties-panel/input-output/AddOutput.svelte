@@ -1,6 +1,8 @@
 <script>
     import generateId from '../../../util/generateId';
 
+    import PlusSvg from '../../svg/plus.svg';
+
     const noop = () => {};
 
     // methods //////////
@@ -25,5 +27,5 @@
 </script>
 
 <div class="add add-output" on:click={handleAddOutput}>
-    Add Output Parameter
+  {@html PlusSvg}
 </div>
