@@ -7,6 +7,10 @@
   right: 0;
   overflow-y: auto;
 
+  .hidden {
+    display: none;
+  }
+
   .container {
     border: solid 2px $color-silver-darken-80;
     border-top: none;

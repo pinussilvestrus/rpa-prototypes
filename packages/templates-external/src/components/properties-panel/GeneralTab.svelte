@@ -54,6 +54,7 @@
     export let handleTemplateChanged = noop;
     export let element;
     export let templates;
+    export let hidden = false;
     export let variableListComponent;
 
 
@@ -65,8 +66,8 @@
 
 </script>
 
-
-<Section id="general" title="General">
+<div class="general-tab" class:hidden={hidden}>
+  <Section id="general" title="General">
     <label>Id</label>
     <input name="id" on:change="{handlePropertyChanged}" value="{element.id}" />
 
@@ -175,3 +176,4 @@
     </Section>
 
   {/if}
+</div>

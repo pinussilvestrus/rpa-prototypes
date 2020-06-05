@@ -4,6 +4,7 @@
     import dom from 'domtastic';
 
     import GeneralTab from './GeneralTab';
+    import InputOutputTab from './InputOutputTab';
 
     import ToggleAllTabs from './ToggleAllTabs';
 
@@ -12,6 +13,7 @@
     const noop = () => {};
 
     let showOtherTabs = false;
+    let activeTab = 'general';
 
     // populate, monkey-patching :(
     $: {
@@ -50,6 +52,13 @@
       showOtherTabs = true;
     };
 
+    const handleTabClick = (event) => {
+      const tabNode = dom(event.target).closest('.tab'),
+            newTab = tabNode.attr('data-tab');
+    
+      activeTab = newTab;
+    };
+
 
     // exports //////////
 
@@ -74,10 +83,18 @@
         <div class="title">{element.id}</div>
 
         <ul class="tabs">
-          <li class="tab tab-active"><p>General</p></li>
+          <li 
+            class="tab" 
+            data-tab="general" 
+            class:tab-active="{activeTab === 'general'}"
+            on:click={handleTabClick}><p>General</p></li>
           {#if showOtherTabs || !element.template}
             <li class="tab"><p>Listeners</p></li>
-            <li class="tab"><p>Input/Output</p></li>
+            <li 
+              class="tab" 
+              class:tab-active="{activeTab === 'input-output'}"
+              data-tab="input-output" 
+              on:click={handleTabClick}><p>Input/Output</p></li>
             <li class="tab"><p>Field Injections</p></li>
             <li class="tab"><p>Extensions</p></li>
           {:else}
@@ -92,9 +109,15 @@
           {handlePropertyChanged}
           {handleTemplateChanged}
           {element}
+          hidden="{activeTab !== 'general'}"
           {templates}
           {variableListComponent}
           {variableDetailsComponent} />
+        
+        <InputOutputTab 
+          {element}
+          hidden="{activeTab !== 'input-output'}"
+        />
       </div>
   </div>
   {/if}
