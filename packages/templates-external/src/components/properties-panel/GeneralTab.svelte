@@ -7,45 +7,14 @@
 
     const noop = () => {};
 
-    // reset visual selections
     $: {
-      const _resetSelection = (type) => {
-        const otherSelect = dom(`#${type}-select`);
-        otherSelect.val(null);
-      };
-
-      if (!(element && element.currentVariable)) {
-        _resetSelection('input');
-        _resetSelection('output');
-      } else {
-        isInputVariable(element.currentVariable)
-          ? _resetSelection('output')
-          : _resetSelection('input');
+      if (!element.implementation) {
+        dom('#implementation-select').val(null);
       }
     }
 
 
     // methods //////////
-
-    const handleVariableSelect = (event) => {
-      const variableNode = dom(event.target);
-
-      if (!element.template) {
-        return;
-      }
-
-      const value = variableNode.val();
-
-      // find and set populated variable
-      element.currentVariable = find(
-        [
-          ...element.template.inputs,
-          ...element.template.outputs
-        ], (variable) => variable.name === value);
-    
-      // reset variable complex mode, monkey patching :(
-      element.currentVariable.complexModeEnabled = false;
-    };
 
     const handleVariableChanged = (variableId, attrs) => {
 
@@ -89,10 +58,6 @@
 
 
     // helpers //////////
-
-    const isInputVariable = (variable) => {
-      return variable.type === 'input';
-    };
 
     const hasTemplates = () => {
       return !!templates.length;
@@ -147,7 +112,6 @@
         this="{variableListComponent}"
         id="input-select"
         title="Input Variables"
-        onSelectionChanged={handleVariableSelect}
         onUpdateVariable={handleVariableChanged}
         variables={element.template.inputs} />
 
@@ -155,7 +119,6 @@
         this="{variableListComponent}"
         id="output-select"
         title="Output Variables"
-        onSelectionChanged={handleVariableSelect}
         onUpdateVariable={handleVariableChanged}
         variables={element.template.outputs} />
 
@@ -167,7 +130,8 @@
     {#if !hasTemplates()}
       <Section id="details" title="Details">
         <label>Implementation</label>
-        <select>
+        <!-- svelte-ignore a11y-no-onchange -->
+        <select id="implementation-select" bind:value={element.implementation}>
           <option selected></option>
           <option>Java Class</option>
           <option>Expression</option>
@@ -175,6 +139,25 @@
           <option>External</option>
           <option>Connector</option>
         </select>
+
+        {#if element.implementation === 'External'}
+          <label>Topic</label>
+          <input value=""/>
+        {:else if element.implementation === 'Java Class'}
+          <label>Java Class</label>
+          <input value=""/>
+        {:else if element.implementation === 'Expression'}
+          <label>Expression</label>
+          <input value=""/>
+
+          <label>Result Variable</label>
+          <input value=""/>
+        {:else if element.implementation === 'Delegate Expression'}
+          <label>Delegate Expression</label>
+          <input value=""/>
+        {:else if element.implementation === 'Connector'}
+          <p>Must configure Connector!</p>
+        {/if}
       </Section>
     {/if}
 

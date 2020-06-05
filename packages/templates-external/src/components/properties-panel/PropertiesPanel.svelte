@@ -13,10 +13,11 @@
 
     let showOtherTabs = false;
 
-    // populate
+    // populate, monkey-patching :(
     $: {
       if (element) {
         element.template = null;
+    
         if (element.templateId) {
           element.template = getTemplate(element);
         }

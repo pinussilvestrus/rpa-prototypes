@@ -10,7 +10,6 @@
 
 </script>
 
-/* todo(pinussilvestrus): move variable list to basic */
 <BasicEditor 
   {elements} 
   {templates} 

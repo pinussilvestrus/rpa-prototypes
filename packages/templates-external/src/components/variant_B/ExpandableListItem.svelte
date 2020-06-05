@@ -159,10 +159,9 @@
 
         <input 
           name="value" 
-          on:change={handleInputChange}
+          bind:value={variable.value}
           autocomplete="off"
-          placeholder="{`auto-written to <${variable.name}> process variable`}"
-          value={variable.value} />
+          placeholder="{`auto-written to <${variable.name}> process variable`}" />
       {/if}
     {/if}
   </div>
