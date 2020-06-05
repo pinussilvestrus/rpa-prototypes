@@ -34,6 +34,8 @@
 
   const DUMMY_VARS = ['var_1', 'otherVar'];
 
+  const noop = () => {};
+
 
   // methods //////////
 
@@ -48,10 +50,15 @@
     }
   };
 
+  const handleDelete = () => {
+    onDeleteItem('inputs', input.id);
+  };
+
 
   // exports //////////
 
   export let input;
+  export let onDeleteItem = noop;
 </script>
 
 <div class="item input" id={`${input.id}`}>
@@ -86,5 +93,6 @@
         ...
       {/if}
 
+      <div class="delete" on:click={handleDelete}>Delete Parameter</div>
     </div>
 </div>

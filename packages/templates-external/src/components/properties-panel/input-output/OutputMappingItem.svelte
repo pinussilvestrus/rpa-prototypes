@@ -22,6 +22,8 @@
     }
   ];
 
+  const noop = () => {};
+
 
 
   // methods //////////
@@ -37,10 +39,15 @@
     }
   };
 
+  const handleDelete = () => {
+    onDeleteItem('outputMappings', outputMapping.id);
+  };
+
 
   // exports //////////
 
   export let outputMapping;
+  export let onDeleteItem = noop;
 </script>
 
 <div class="item output-mapping" id={`${outputMapping.id}`}>
@@ -67,5 +74,7 @@
       {:else}
         ...
       {/if}
+
+      <div class="delete" on:click={handleDelete}>Delete Mapping</div>
     </div>
 </div>

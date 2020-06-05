@@ -3,6 +3,7 @@
 
   import './OutputItem.scss';
 
+  const noop = () => {};
 
   // methods //////////
 
@@ -17,10 +18,15 @@
     }
   };
 
+  const handleDelete = () => {
+    onDeleteItem('outputs', output.id);
+  };
+
 
   // exports //////////
 
   export let output;
+  export let onDeleteItem = noop;
 </script>
 
 <div class="item output" id={`${output.id}`}>
@@ -34,5 +40,7 @@
 
       <label>Description</label>
       <textarea name="description" bind:value={output.description} />
+
+      <div class="delete" on:click={handleDelete}>Delete Parameter</div>
     </div>
 </div>

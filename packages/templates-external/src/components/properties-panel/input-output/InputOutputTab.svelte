@@ -1,4 +1,6 @@
 <script>
+    import { findIndex } from 'min-dash';
+    
     import Section from '../Section';
 
     import AddInput from './AddInput';
@@ -21,6 +23,17 @@
       };
     };
 
+    const handleDeleteItem = (type, id) => {
+      let collection = element[type];
+
+      const itemIdx = findIndex(collection, c => c.id === id);
+
+      if (itemIdx >= 0) {
+        collection.splice(itemIdx, 1);
+        handleUpdateCollection(type, collection);
+      }
+    };
+
 
     // exports //////////
 
@@ -36,7 +49,7 @@
         onUpdateCollection={handleUpdateCollection}
         addComponent={AddInput}>
           {#each element.inputs as input}
-            <InputItem {input} />
+            <InputItem {input} onDeleteItem={handleDeleteItem} />
           {:else}
             <p class="empty">None</p>
           {/each}
@@ -49,7 +62,7 @@
         onUpdateCollection={handleUpdateCollection}
         addComponent={AddOutput}>
           {#each element.outputs as output}
-            <OutputItem {output} />
+            <OutputItem {output} onDeleteItem={handleDeleteItem} />
           {:else}
             <p class="empty">None</p>
           {/each}
@@ -62,7 +75,7 @@
         onUpdateCollection={handleUpdateCollection}
         addComponent={AddOutputMapping}>
           {#each element.outputMappings as outputMapping}
-            <OutputMappingItem {outputMapping} />
+            <OutputMappingItem {outputMapping} onDeleteItem={handleDeleteItem} />
           {:else}
             <p class="empty">None</p>
           {/each}
