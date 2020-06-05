@@ -11,6 +11,11 @@
     display: none;
   }
 
+  .empty {
+    padding-left: 8px;
+    font-style: italic;
+  }
+
   .container {
     border: solid 2px $color-silver-darken-80;
     border-top: none;

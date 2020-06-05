@@ -15,6 +15,8 @@
 
     export let id;
     export let title;
+    export let collection;
+    export let onUpdateCollection;
     export let addComponent;
 </script>
 
@@ -22,7 +24,7 @@
   class="section-title" 
   id="{id}">
     {title}
-    <svelte:component this="{addComponent}"></svelte:component>
+    <svelte:component this="{addComponent}" {collection} {onUpdateCollection}></svelte:component>
 </div>
 <div class="section" data-title-ref="#{id}">
     <slot/>
