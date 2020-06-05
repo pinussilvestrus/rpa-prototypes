@@ -20,7 +20,7 @@
     },
     {
       id: 'script',
-      name: 'script'
+      name: 'Script'
     },
     {
       id: 'list',
@@ -64,7 +64,7 @@
       <label>Description</label>
       <textarea name="description" bind:value={input.description} />
 
-      <label>Mapping Type</label>
+      <label>Input Mapping</label>
       <select name="type" bind:value={input.mappingType}>
           {#each MAPPING_TYPES as {id, name}}
             <option value={id}>{name}</option>

@@ -11,7 +11,8 @@
       collection.push({
         id,
         name: id,
-        description: ''
+        description: '',
+        mappingType: 'expression'
       });
 
       onUpdateCollection('outputMappings', collection);
