@@ -4,7 +4,7 @@
     import dom from 'domtastic';
 
     import GeneralTab from './GeneralTab';
-    import InputOutputTab from './InputOutputTab';
+    import InputOutputTab from './input-output/InputOutputTab';
 
     import ToggleAllTabs from './ToggleAllTabs';
 

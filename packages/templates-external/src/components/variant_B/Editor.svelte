@@ -1,7 +1,7 @@
 <script>
     import BasicEditor from '../BasicEditor';
 
-    import ExpandableVariableList from './ExpandableVariableList';
+    import ExpandableVariableList from './template/ExpandableVariableList';
 
     import {
       ELEMENTS as elements,

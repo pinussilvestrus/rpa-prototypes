@@ -3,7 +3,7 @@
 
   import { find } from 'min-dash';
 
-  import AutocompleteInput from '../AutocompleteInput';
+  import AutocompleteInput from '../../AutocompleteInput';
 
   const noop = () => {};
 

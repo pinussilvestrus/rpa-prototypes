@@ -2,17 +2,26 @@ export const ELEMENTS = [
   {
     id: 'ServiceTask_1',
     name: 'Get Price',
-    templateId: null
+    templateId: null,
+    inputs: [],
+    outputs: [],
+    outputMappings: []
   },
   {
     id: 'ServiceTask_2',
     name: 'Generate Quote',
-    templateId: null
+    templateId: null,
+    inputs: [],
+    outputs: [],
+    outputMappings: []
   },
   {
     id: 'ServiceTask_3',
     name: 'Send Quote',
-    templateId: null
+    templateId: null,
+    inputs: [],
+    outputs: [],
+    outputMappings: []
   }
 ];
 
