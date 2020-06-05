@@ -84,12 +84,20 @@ $details-padding: 1rem;
     }
 
     .delete {
-      text-align: right;
-      font-weight: normal;
-      font-size: 12px;
+      margin-left: 65%;
       margin-top: 12px;
-      font-style: normal;
-      text-decoration-line: underline;
+      text-align: center;
+      font-size: 12px;
+      font-weight: bold;
+    
+      border: 1px solid $color-silver-darken-80;
+      background: $color-grey-light;
+      border-radius: 3px;
+    
+      color: $color-grey-darken-33;
+    
+      text-decoration: none;
+      padding: 4px 7px;
   
       cursor: pointer;
     }
