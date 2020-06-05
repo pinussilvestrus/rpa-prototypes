@@ -27,9 +27,9 @@
     autocomplete="off"
     name="{name}" 
     placeholder="{placeholder}"
-    list="items"
+    list="{`items-${id}`}"
     bind:value="{value}"/>
-  <datalist id="items">
+  <datalist id="{`items-${id}`}">
      {#each items as item }
         <option class="item" value="{item}" />
      {/each}
