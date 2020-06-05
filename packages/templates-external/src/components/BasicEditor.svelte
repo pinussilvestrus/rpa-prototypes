@@ -104,6 +104,7 @@
   export let templates = [];
   export let variableListComponent;
   export let variableDetailsComponent;
+  export let selectTemplateComponent;
 
 </script>
 
@@ -117,5 +118,6 @@
     {templates}
     {variableListComponent}
     {variableDetailsComponent}
+    {selectTemplateComponent}
     onPropertiesChanged={handleUpdateProperties} />
 </div>

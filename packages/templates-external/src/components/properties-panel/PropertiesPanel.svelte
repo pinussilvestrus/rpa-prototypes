@@ -66,6 +66,7 @@
     export let onPropertiesChanged = noop;
     export let variableListComponent;
     export let variableDetailsComponent;
+    export let selectTemplateComponent;
     export let templates = [];
     
     // helpers //////////
@@ -112,6 +113,7 @@
           hidden="{activeTab !== 'general'}"
           {templates}
           {variableListComponent}
+          {selectTemplateComponent}
           {variableDetailsComponent} />
         
         <InputOutputTab 

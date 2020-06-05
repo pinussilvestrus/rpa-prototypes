@@ -2,6 +2,7 @@
     import BasicEditor from '../BasicEditor';
 
     import ExpandableVariableList from './template/ExpandableVariableList';
+    import TemplateSelect from './TemplateSelect';
 
     import {
       ELEMENTS as elements,
@@ -13,4 +14,5 @@
 <BasicEditor 
   {elements} 
   {templates} 
-  variableListComponent={ExpandableVariableList} />
+  variableListComponent={ExpandableVariableList}
+  selectTemplateComponent={TemplateSelect} />
