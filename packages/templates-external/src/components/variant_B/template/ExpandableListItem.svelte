@@ -5,8 +5,6 @@
 
   import AutocompleteInput from '../../AutocompleteInput';
 
-  const noop = () => {};
-
   const MAPPING_TYPES = [
     {
       id: 'simple',
@@ -68,18 +66,9 @@
     }
   };
 
-  const handleInputChange = (event) => {
-    const inputNode = dom(event.target);
-  
-    onUpdateVariable(variable.id, {
-      [inputNode.attr('name')]: inputNode.val()
-    });
-  };
-
   // exports //////////
   
   export let variable;
-  export let onUpdateVariable = noop;
   
   
   // helpers //////////
@@ -150,8 +139,7 @@
             id="{`${variable.id}-value`}"
             name="value"
             type="text"
-            onChange={handleInputChange}
-            value={variable.value}
+            bind:value={variable.value}
             items={variable.availableOptions}
             placeholder="{`auto-filled by <${variable.name}> process variable`}"
           />

@@ -3,6 +3,35 @@
 
   import './InputItem.scss';
 
+  import AutocompleteInput from '../../AutocompleteInput';
+
+  const MAPPING_TYPES = [
+    {
+      id: 'process-variable',
+      name: 'Process Variable'
+    },
+    {
+      id: 'constant-value',
+      name: 'Constant Value'
+    },
+    {
+      id: 'expression',
+      name: 'Expression'
+    },
+    {
+      id: 'script',
+      name: 'script'
+    },
+    {
+      id: 'list',
+      name: 'List'
+    },
+    {
+      id: 'map',
+      name: 'Map'
+    }
+  ];
+
 
   // methods //////////
 
@@ -17,7 +46,7 @@
     }
   };
 
-  
+
   // exports //////////
 
   export let input;
@@ -29,6 +58,31 @@
       <p class="item-description">{input.description}</p>
     </div>
     <div class="item-details input-details">
-     
+      <label>Input Parameter Name</label>
+      <input name="name" bind:value={input.name} />
+
+      <label>Description</label>
+      <textarea name="description" bind:value={input.description} />
+
+      <label>Mapping Type</label>
+      <select name="type" bind:value={input.mappingType}>
+          {#each MAPPING_TYPES as {id, name}}
+            <option value={id}>{name}</option>
+          {/each}
+      </select>
+
+      {#if input.mappingType === 'process-variable'}
+        <AutocompleteInput 
+          id="{`${input.id}-value`}"
+          name="mapping"
+          type="text"
+          bind:value={input.mapping}
+          items={['var_1']}
+          placeholder="{`auto-filled by <${input.name}> process variable`}"
+        />
+      {:else}
+        ...
+      {/if}
+
     </div>
 </div>

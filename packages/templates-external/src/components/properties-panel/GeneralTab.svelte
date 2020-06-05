@@ -1,5 +1,5 @@
 <script>
-    import { debounce, findIndex, find } from 'min-dash';
+    import { debounce } from 'min-dash';
 
     import dom from 'domtastic';
 
@@ -12,40 +12,6 @@
         dom('#implementation-select').val(null);
       }
     }
-
-
-    // methods //////////
-
-    const handleVariableChanged = (variableId, attrs) => {
-
-      // update in templates
-      // NOTE: this is just for prototype purpose, normally we have to update the value
-      // on the element itself, not in the template
-      const template = find(templates, (t) => t.id === element.templateId);
-
-      // (1) try to find in inputs
-      let idx = findIndex(template.inputs, (i) => i.id === variableId);
-
-      if (idx >= 0) {
-        template.inputs[idx] = {
-          ...template.inputs[idx],
-          ...attrs
-        };
-
-      }
-
-      // (2) try to find in outputs
-      idx = findIndex(template.outputs, (i) => i.id === variableId);
-
-      if (idx >= 0) {
-        template.outputs[idx] = {
-          ...template.outputs[idx],
-          ...attrs
-        };
-
-      }
-
-    };
 
 
     // exports //////////
@@ -113,14 +79,12 @@
         this="{variableListComponent}"
         id="input-select"
         title="Input Variables"
-        onUpdateVariable={handleVariableChanged}
         variables={element.template.inputs} />
 
       <svelte:component
         this="{variableListComponent}"
         id="output-select"
         title="Output Variables"
-        onUpdateVariable={handleVariableChanged}
         variables={element.template.outputs} />
 
     </Section>
