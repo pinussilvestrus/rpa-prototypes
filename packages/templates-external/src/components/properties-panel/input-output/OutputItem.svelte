@@ -17,7 +17,7 @@
     }
   };
 
-  
+
   // exports //////////
 
   export let output;
@@ -29,6 +29,10 @@
       <p class="item-description">{output.description}</p>
     </div>
     <div class="item-details output-details">
-     
+      <label>Result Variable Name</label>
+      <input name="name" bind:value={output.name} />
+
+      <label>Description</label>
+      <textarea name="description" bind:value={output.description} />
     </div>
 </div>
