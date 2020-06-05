@@ -3,7 +3,7 @@
 
 .properties-panel {
   position: absolute;
-  top: 0;
+  top: 44px;
   bottom: 0;
   right: 0;
   overflow-y: auto;
@@ -19,7 +19,6 @@
 
   .container {
     border: solid 2px $color-silver-darken-80;
-    border-top: none;
     border-bottom: none;
     background-color: $color-silver-base-97;
     min-height: 100%;

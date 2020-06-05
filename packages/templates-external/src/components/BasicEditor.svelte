@@ -7,6 +7,7 @@
 
   import Diagram from './Diagram.svelte';
   import PropertiesPanel from './properties-panel/PropertiesPanel.svelte';
+  import Toolbar from './Toolbar.svelte';
 
   import getElement from '../util/getElement';
 
@@ -106,6 +107,7 @@
 
 </script>
 
+<Toolbar />
 <div class="editor-container">
   <Diagram 
     onOpenProperties={handleOpenProperties} 
