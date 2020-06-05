@@ -32,6 +32,8 @@
     }
   ];
 
+  const DUMMY_VARS = ['var_1', 'otherVar'];
+
 
   // methods //////////
 
@@ -59,7 +61,7 @@
     </div>
     <div class="item-details input-details">
       <label>Input Parameter Name</label>
-      <input name="name" bind:value={input.name} />
+      <input autocomplete="off" name="name" bind:value={input.name} />
 
       <label>Description</label>
       <textarea name="description" bind:value={input.description} />
@@ -77,7 +79,7 @@
           name="mapping"
           type="text"
           bind:value={input.mapping}
-          items={['var_1']}
+          items={DUMMY_VARS}
           placeholder="{`auto-filled by <${input.name}> process variable`}"
         />
       {:else}

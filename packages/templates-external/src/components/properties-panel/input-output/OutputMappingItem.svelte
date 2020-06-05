@@ -50,7 +50,7 @@
     </div>
     <div class="item-details outputMapping-details">
       <label>New Process Variable Name</label>
-      <input name="name" bind:value={outputMapping.name} />
+      <input autocomplete="off" name="name" bind:value={outputMapping.name} />
 
       <label>Description</label>
       <textarea name="description" bind:value={outputMapping.description} />
@@ -63,7 +63,7 @@
       </select>
 
       {#if outputMapping.mappingType === 'expression'}
-        <input />
+        <input autocomplete="off" />
       {:else}
         ...
       {/if}

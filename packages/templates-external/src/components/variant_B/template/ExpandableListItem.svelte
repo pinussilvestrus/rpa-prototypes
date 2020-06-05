@@ -132,7 +132,7 @@
       </div>
       
     {:else}
-      <label>{isInputVariable(variable) ? 'Value' : 'Process Variable'}</label>
+      <label>{isInputVariable(variable) ? 'Value' : 'New Process Variable Name'}</label>
 
       {#if isInputVariable(variable)}
           <AutocompleteInput 

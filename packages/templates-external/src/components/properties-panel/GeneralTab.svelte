@@ -107,7 +107,7 @@
 
         {#if element.implementation === 'External'}
           <label>Topic</label>
-          <input value=""/>
+          <input autocomplete="off" bind:value={element.topic}/>
         {:else if element.implementation === 'Java Class'}
           <label>Java Class</label>
           <input value=""/>

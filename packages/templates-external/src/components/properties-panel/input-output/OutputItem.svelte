@@ -30,7 +30,7 @@
     </div>
     <div class="item-details output-details">
       <label>Result Variable Name</label>
-      <input name="name" bind:value={output.name} />
+      <input autocomplete="off" name="name" bind:value={output.name} />
 
       <label>Description</label>
       <textarea name="description" bind:value={output.description} />

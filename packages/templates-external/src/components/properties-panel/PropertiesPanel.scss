@@ -126,7 +126,7 @@
     font-style: italic;
     padding: 15px;
 
-    // cursor: pointer;
+    user-select: none;
 
     i {
       display: none; // for now
