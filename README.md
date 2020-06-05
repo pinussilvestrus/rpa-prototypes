@@ -4,9 +4,11 @@ Prototypes built via our RPA Prototyping phase, Q2 2020
 
 ## Demos
 
-* [`element-template`](./packages/element-template)
-* [`variable-handling`](./packages/variable-handling)
-* [`variable-handling-next`](./packages/variable-handling-next)
+* Hypothesis 1 + 2: Element Templates for RPA
+    * [`element-template`](./packages/element-template)
+    * [`variable-handling`](./packages/variable-handling)
+    * [`variable-handling-next`](./packages/variable-handling-next)
+    * [`templates-external`](./packages/templates-external)
 
 ## Setup
 
