@@ -73,20 +73,20 @@
   <span>{active}</span>
 </div>
 
-<div class="variant-a">
-  {#if active === 'A'}
-    <Editor_A />
-  {/if}
-</div>
+{#if active === 'A'}
+  <div class="variant variant-a">
+      <Editor_A />
+  </div>
+{/if}
 
-<div class="variant-b">
-  {#if active === 'B'}
-    <Editor_B />
-  {/if}
-</div>
+{#if active === 'B'}
+  <div class="variant variant-b">
+      <Editor_B />
+  </div>
+{/if}
 
-<div class="variant-c">
-  {#if active === 'C'}
-    <Editor_C />
-  {/if}
-</div>
+{#if active === 'C'}
+  <div class="variant variant-c">
+      <Editor_C />
+  </div>
+{/if}
