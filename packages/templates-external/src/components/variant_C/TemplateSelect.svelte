@@ -1,8 +1,6 @@
 <script>
   import dom from 'domtastic';
 
-  import { forEach } from 'min-dash';
-
   import MicroModal from 'micromodal';
 
   import { onMount } from 'svelte';
@@ -11,11 +9,23 @@
 
   const modalId = 'catalog-modal';
 
+  const noop = () => {};
+
   // lifecycle //////////
 
   onMount(async () => {
     MicroModal.init();
   });
+
+  $: {
+  
+    // values can be hidden
+    if (element.template) {
+      dom('#element-template').val(element.template.id);
+    } else {
+      dom('#element-template').val(null);
+    }
+  }
 
 
   // methods //////////
@@ -39,15 +49,15 @@
     // (1) close Modal
     MicroModal.close(modalId);
 
-    // (2) early return if no selection was made
+    // (2) check for template id
     const templateId = selection.templateId;
   
+    // (3) update select visually
     if (!templateId) {
-      return selectNode.val(null);
+      selectNode.val(null);
+    } else {
+      selectNode.val(templateId);
     }
-
-    // (3) update visual selection
-    selectNode.val(templateId);
 
     // (4) notify selection
     handleTemplateChanged({
@@ -59,9 +69,9 @@
   // exports //////////
 
   export let templates;
-  export let handleTemplateChanged;
+  export let element;
+  export let handleTemplateChanged = noop;
 </script>
-
 
 <label>Implementation</label>
 <!-- svelte-ignore a11y-no-onchange -->

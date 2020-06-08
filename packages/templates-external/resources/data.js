@@ -81,7 +81,7 @@ export const TEMPLATES = [
   {
     id: 'calculate-price',
     type: 'UiPath Bot',
-    name: 'Product-Price-Calculator',
+    name: 'Product Price Calculator',
     topic: 'calculate-price',
     description: 'Calculates total price for any product of the Webshop',
     inputs: [

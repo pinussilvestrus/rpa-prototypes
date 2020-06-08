@@ -95,20 +95,21 @@
   background-color: $color-silver-99;
 
   .worker {
-      margin-bottom: 20px;
-  }
+    margin-bottom: 20px;
 
-  label {
-    float: left;
-    clear: none;
-    display: block;
-    padding: 0px 1em 0px 8px;
-  }
-
-  input[type="radio"] {
-    float: left;
-    clear: none;
-    margin: 2px 0 0 2px;
+    label {
+      float: left;
+      clear: none;
+      display: block;
+      padding: 0px 1em 0px 8px;
+    }
+  
+    input[type="radio"] {
+      float: left;
+      clear: none;
+      margin: 2px 0 0 2px;
+      width: auto;
+    }
   }
 }
 
