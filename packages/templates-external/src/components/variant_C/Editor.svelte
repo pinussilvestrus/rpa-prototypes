@@ -1,7 +1,7 @@
 <script>
     import BasicEditor from '../BasicEditor';
 
-    import ExpandableVariableList from '../variant_B/template/ExpandableVariableList';
+    import ExpandableVariableList from '../properties-panel/element-template/ExpandableVariableList';
 
     import TemplateSelect from './TemplateSelect';
 
