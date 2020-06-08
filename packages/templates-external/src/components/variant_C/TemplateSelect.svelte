@@ -1,6 +1,8 @@
 <script>
   import dom from 'domtastic';
 
+  import { forEach } from 'min-dash';
+
   import MicroModal from 'micromodal';
 
   import { onMount } from 'svelte';
@@ -32,6 +34,7 @@
   };
 
   const handleModalClose = (selection) => {
+    const selectNode = dom('select#element-template');
   
     // (1) close Modal
     MicroModal.close(modalId);
@@ -40,12 +43,10 @@
     const templateId = selection.templateId;
   
     if (!templateId) {
-      return;
+      return selectNode.val(null);
     }
 
-    // (3) update visual selection, TODO(pinussilvestrus): you're not working rn...
-    const selectNode = dom(event.target);
-
+    // (3) update visual selection
     selectNode.val(templateId);
 
     // (4) notify selection
@@ -58,7 +59,6 @@
   // exports //////////
 
   export let templates;
-  export let element;
   export let handleTemplateChanged;
 </script>
 
@@ -67,6 +67,9 @@
 <!-- svelte-ignore a11y-no-onchange -->
 <select id="element-template" on:change="{handleSelect}">
   <option></option>
+  {#each templates as template}
+    <option hidden value="{template.id}">{template.name}</option>
+  {/each}
   <option value="bot-template">Select From Worker Catalog ...</option>
   <optgroup label="Default Implementation Types">
     <option>Java Class</option>
