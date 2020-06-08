@@ -1,12 +1,6 @@
-<style>
-    .toolbar {
-      border-bottom: 2px solid #dedede;
-    }
-
-    .toolbar img {
-      height: 40px;
-    }
-</style>
+<script>
+  import './Toolbar.scss';
+</script>
 
 <div class="toolbar">   
   <img src="./public/toolbar.png"    alt="Toolbar" />
