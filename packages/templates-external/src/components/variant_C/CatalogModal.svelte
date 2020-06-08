@@ -41,6 +41,8 @@
       <button class="modal-close" aria-label="Close modal" on:click={onClose}></button>
     </header>
       <main class="modal-content" id="{modalId}-content">
+        <input class="search-bar" placeholder="search for item ..." />
+
         <form bind:this={formNode}>
           {#each templates as template}
             <div class="worker">

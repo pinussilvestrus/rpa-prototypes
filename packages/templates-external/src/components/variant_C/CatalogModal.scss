@@ -94,9 +94,33 @@
 
   background-color: $color-silver-99;
 
+  .search-bar {
+    margin-bottom: 24px;
+  }
+
+  form {
+    max-height: 350px;
+    overflow-y: scroll;
+
+    &::-webkit-scrollbar {
+      -webkit-appearance: none;
+      width: 10px;
+    }
+    
+    &::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background-color: rgba(0,0,0,.5);
+      -webkit-box-shadow: 0 0 1px rgba(255,255,255,.5);
+    }
+  }
+
   .worker {
     margin-bottom: 12px;
-    border-top: solid 1px $color-silver-darken-87;
+    border-bottom: solid 1px $color-silver-darken-87;
+
+    &:last-of-type {
+      border-bottom: none;
+    }
 
     label {
       clear: none;
