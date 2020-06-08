@@ -28,7 +28,7 @@ export const ELEMENTS = [
 export const TEMPLATES = [
   {
     id: 'analyze-delivery-price',
-    type: 'UI Path Bot',
+    type: 'UiPath Bot',
     name: 'Competitor Delivery Price Analysis',
     description: 'Collects types and prices for delivery from our top10 competitors',
     topic: 'analyze-delivery-price',
@@ -54,7 +54,7 @@ export const TEMPLATES = [
   },
   {
     id: 'anaylize-product-price',
-    type: 'UI Path Bot',
+    type: 'UiPath Bot',
     name: 'Competitor Product Price Analysis',
     description: 'Collects prices from our top10 competitors, considers top100 products',
     topic: 'anaylize-product-price',
@@ -80,7 +80,7 @@ export const TEMPLATES = [
   },
   {
     id: 'calculate-price',
-    type: 'UI Path Bot',
+    type: 'UiPath Bot',
     name: 'Product-Price-Calculator',
     topic: 'calculate-price',
     description: 'Calculates total price for any product of the Webshop',
@@ -114,7 +114,7 @@ export const TEMPLATES = [
   },
   {
     id: 'calculate-price-sale',
-    type: 'UI Path Bot',
+    type: 'UiPath Bot',
     name: 'Product Price Calculator Sommer Sale 2020',
     topic: 'calculate-price-sale',
     description: 'Only use for special offers on campaign microsite!',
@@ -156,7 +156,7 @@ export const TEMPLATES = [
   },
   {
     id: 'generate-pdf-quote',
-    type: 'UI Path Bot',
+    type: 'UiPath Bot',
     name: 'Quote PDF Generator',
     topic: 'generate-pdf-quote',
     description: 'Generates a generic PDF for product quotes based on a corporate design template',
@@ -198,7 +198,7 @@ export const TEMPLATES = [
   },
   {
     id: 'respond-support-case',
-    type: 'UI Path Bot',
+    type: 'UiPath Bot',
     name: 'Support Case Response',
     topic: 'respond-support-case',
     description: 'Creates automatic reply when new support ticket has been created',
@@ -216,7 +216,7 @@ export const TEMPLATES = [
   },
   {
     id: 'generate-support-case',
-    type: 'UI Path Bot',
+    type: 'UiPath Bot',
     name: 'Support Case Ticket Generator',
     topic: 'generate-support-case',
     description: 'Creates JIRA ticket when customer fill out support form in webshop',
@@ -266,7 +266,7 @@ export const TEMPLATES = [
   },
   {
     id: 'send-quote',
-    type: 'UI Path Bot',
+    type: 'UiPath Bot',
     name: 'Webshop Request Mail Response',
     topic: 'send-quote',
     description: 'Send email with quote based on request from webshop',
