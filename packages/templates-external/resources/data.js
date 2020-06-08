@@ -1,23 +1,23 @@
 export const ELEMENTS = [
   {
-    id: 'ServiceTask_1',
-    name: 'Get Price',
+    id: 'Activity_1rjzrcj',
+    name: 'Calculate price',
     templateId: null,
     inputs: [],
     outputs: [],
     outputMappings: []
   },
   {
-    id: 'ServiceTask_2',
-    name: 'Generate Quote',
+    id: 'Activity_07c75k4',
+    name: 'Generate quote',
     templateId: null,
     inputs: [],
     outputs: [],
     outputMappings: []
   },
   {
-    id: 'ServiceTask_3',
-    name: 'Send Quote',
+    id: 'Activity_0iuynvp',
+    name: 'Send quote',
     templateId: null,
     inputs: [],
     outputs: [],
