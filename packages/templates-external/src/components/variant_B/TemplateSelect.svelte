@@ -14,7 +14,7 @@
       <option 
         selected={element.template && element.template.id === id} 
         value="{id}" >
-          {name} ({type})
+          {name}  
       </option>
     {/each}
   </optgroup>
