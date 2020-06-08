@@ -95,17 +95,24 @@
   background-color: $color-silver-99;
 
   .worker {
-    margin-bottom: 20px;
+    margin-bottom: 12px;
+    border-top: solid 1px $color-silver-darken-87;
 
     label {
-      float: left;
       clear: none;
-      display: block;
-      padding: 0px 1em 0px 8px;
+      display: inline-block;
+      padding: 0px 1em 4px 8px;
+
+      .worker-name {
+        font-weight: bold;
+      }
+
+      .worker-description {
+        font-weight: normal;
+      }
     }
   
     input[type="radio"] {
-      float: left;
       clear: none;
       margin: 2px 0 0 2px;
       width: auto;

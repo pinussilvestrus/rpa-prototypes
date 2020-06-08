@@ -38,14 +38,17 @@
       <p class="modal-title" id="{modalId}-title">
         Worker Catalog
       </p>
-      <button class="modal-close" aria-label="Close modal" data-micromodal-close></button>
+      <button class="modal-close" aria-label="Close modal" on:click={onClose}></button>
     </header>
       <main class="modal-content" id="{modalId}-content">
         <form bind:this={formNode}>
           {#each templates as template}
             <div class="worker">
               <input type="radio" id="{template.id}" name="templateId" value="{template.id}">
-              <label for="{template.id}">{template.name}</label><br>
+              <label for="{template.id}">
+                <div class="worker-name">{template.name}</div>
+                <div class="worker-description">{template.description}</div>
+              </label><br>
             </div>
           {/each}
         </form>
