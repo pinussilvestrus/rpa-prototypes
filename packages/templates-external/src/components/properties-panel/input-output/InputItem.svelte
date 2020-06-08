@@ -19,8 +19,12 @@
       name: 'Expression'
     },
     {
-      id: 'script',
-      name: 'Script'
+      id: 'inline-script',
+      name: 'Inline Script'
+    },
+    {
+      id: 'external-script',
+      name: 'External Script Resource'
     },
     {
       id: 'list',
@@ -89,10 +93,41 @@
           items={DUMMY_VARS}
           placeholder="{`auto-filled by <${input.name}> process variable`}"
         />
-      {:else}
-        ...
+      {:else if input.mappingType === 'constant-value'}
+        <input autocomplete="off" name="constantValue" bind:value={input.constantValue} />
+      {:else if input.mappingType === 'expression'}
+        <input autocomplete="off" name="expression" bind:value={input.expression} />
+      {:else if input.mappingType === 'inline-script'}
+        <label>Format</label>
+        <input autocomplete="off" name="script-format" bind:value={input.scriptFormat}  />
+
+        <label>Script</label>
+        <textarea name="script-content" rows="5" bind:value={input.internalScript}></textarea>
+      {:else if input.mappingType === 'external-script'}
+        <label>Format</label>
+        <input autocomplete="off" name="script-format" bind:value={input.scriptFormat} />
+
+        <label>Resource</label>
+        <input autocomplete="off" name="script-resource" bind:value={input.externalScriptRespource} />
+
+      {:else if input.mappingType === 'list'}
+        <div class="action add-list-value">+ Add Value</div>
+    
+        <label>Value</label>
+        <input />
+  
+      {:else if input.mappingType === 'map'}
+        <div class="action add-list-value">+ Add Entry</div>
+    
+        <div class="map-entry-header">
+            <p>Key</p><p>Value</p>
+        </div>
+        <div class="map-entry">
+          <input />
+          <input />
+        </div>
       {/if}
 
-      <div class="delete" on:click={handleDelete}>Delete Parameter</div>
+      <div class="action delete" on:click={handleDelete}>Delete Parameter</div>
     </div>
 </div>

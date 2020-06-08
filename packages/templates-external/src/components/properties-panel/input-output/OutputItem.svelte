@@ -41,6 +41,6 @@
       <label>Description</label>
       <textarea name="description" bind:value={output.description} />
 
-      <div class="delete" on:click={handleDelete}>Delete Parameter</div>
+      <div class="action delete" on:click={handleDelete}>Delete Parameter</div>
     </div>
 </div>

@@ -9,8 +9,12 @@
       name: 'Expression'
     },
     {
-      id: 'script',
-      name: 'Script'
+      id: 'inline-script',
+      name: 'Inline Script'
+    },
+    {
+      id: 'external-script',
+      name: 'External Script Resource'
     },
     {
       id: 'list',
@@ -70,11 +74,38 @@
       </select>
 
       {#if outputMapping.mappingType === 'expression'}
-        <input autocomplete="off" />
-      {:else}
-        ...
+        <input autocomplete="off" name="expression" bind:value={outputMapping.expression} />
+      {:else if outputMapping.mappingType === 'inline-script'}
+        <label>Format</label>
+        <input autocomplete="off" name="script-format" bind:value={outputMapping.scriptFormat}  />
+
+        <label>Script</label>
+        <textarea name="script-content" rows="5" bind:value={outputMapping.internalScript}></textarea>
+      {:else if outputMapping.mappingType === 'external-script'}
+        <label>Format</label>
+        <input autocomplete="off" name="script-format" bind:value={outputMapping.scriptFormat} />
+
+        <label>Resource</label>
+        <input autocomplete="off" name="script-resource" bind:value={outputMapping.externalScriptRespource} />
+
+      {:else if outputMapping.mappingType === 'list'}
+        <div class="action add-list-value">+ Add Value</div>
+    
+        <label>Value</label>
+        <input />
+  
+      {:else if outputMapping.mappingType === 'map'}
+        <div class="action add-list-value">+ Add Entry</div>
+    
+        <div class="map-entry-header">
+            <p>Key</p><p>Value</p>
+        </div>
+        <div class="map-entry">
+          <input />
+          <input />
+        </div>
       {/if}
 
-      <div class="delete" on:click={handleDelete}>Delete Mapping</div>
+      <div class="action delete" on:click={handleDelete}>Delete Mapping</div>
     </div>
 </div>

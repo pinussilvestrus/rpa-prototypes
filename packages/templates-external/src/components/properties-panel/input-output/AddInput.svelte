@@ -27,6 +27,6 @@
     export let onUpdateCollection = noop;
 </script>
 
-<div class="add add-input" on:click={handleAddInput}>
+<div class="action add add-input" on:click={handleAddInput}>
   {@html PlusSvg}
 </div>

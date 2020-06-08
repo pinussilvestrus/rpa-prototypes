@@ -27,6 +27,6 @@
     export let onUpdateCollection = noop;
 </script>
 
-<div class="add add-output-mapping" on:click={handleAddOutputMapping}>
+<div class="action add add-output-mapping" on:click={handleAddOutputMapping}>
   {@html PlusSvg}
 </div>

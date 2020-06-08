@@ -3,23 +3,27 @@
 $details-padding: 1rem;
 
 .input-output-tab {
-  .add {
-    float: right;
+
+  .action {
+    text-align: center;
     font-size: 12px;
     font-weight: bold;
-  
+
     border: 1px solid $color-silver-darken-80;
     background: $color-grey-light;
     border-radius: 3px;
-  
+
     color: $color-grey-darken-33;
-  
-    margin: 0;
+
     text-decoration: none;
     padding: 4px 7px;
-  
+
     cursor: pointer;
-   
+  }
+
+  .add {
+    float: right;
+
     svg {
       width: 8px;
     }
@@ -86,20 +90,31 @@ $details-padding: 1rem;
     .delete {
       margin-left: 65%;
       margin-top: 12px;
-      text-align: center;
-      font-size: 12px;
-      font-weight: bold;
-    
-      border: 1px solid $color-silver-darken-80;
-      background: $color-grey-light;
-      border-radius: 3px;
-    
-      color: $color-grey-darken-33;
-    
-      text-decoration: none;
-      padding: 4px 7px;
-  
-      cursor: pointer;
+    }
+  }
+
+  .add-list-value {
+    width: 75px;
+    margin-bottom: 12px;
+  }
+
+  .map-entry-header {
+    display: flex;
+    justify-items: flex-start;
+
+    p {
+      flex: 1;
+      margin-bottom: 2px;
+      margin-top: 3px;
+    }
+  }
+
+  .map-entry {
+    display: flex;
+
+    input {
+      flex: 1;
+      margin-right: 2px;
     }
   }
 }
