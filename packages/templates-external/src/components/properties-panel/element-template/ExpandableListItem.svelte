@@ -86,6 +86,9 @@
     <p class="variable-description">{variable.description}</p>
   </div>
   <div class="variable-details">
+
+    <label>Description</label>
+    <textarea name="description" bind:value={variable.description} rows="3" disabled />
     <!-- <label>Mapping Type</label> -->
 
     <!-- svelte-ignore a11y-no-onchange -->

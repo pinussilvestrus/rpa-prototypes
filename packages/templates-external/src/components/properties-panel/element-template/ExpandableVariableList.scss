@@ -57,6 +57,12 @@ $details-padding: 1rem;
         font-weight: normal;
       }
 
+      input, textarea {
+        &:disabled {
+          background-color: $color-silver-darken-94;
+        }
+      }
+
       .add-list-value {
         width: 75px;
 
