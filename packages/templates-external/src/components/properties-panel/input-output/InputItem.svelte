@@ -36,7 +36,7 @@
     }
   ];
 
-  const DUMMY_VARS = ['var_1', 'otherVar'];
+  const DUMMY_VARS = ['product', 'count', 'email'];
 
   const noop = () => {};
 
