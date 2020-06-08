@@ -1,7 +1,21 @@
 <script>
     import './CatalogModal.scss';
 
+    const noop = () => {};
+
+    // methods //////////
+
+    const handleSelectTemplate = () => {
+      onClose({
+        templateId: 'generate-pdf-quote'
+      });
+    };
+
+
+    // exports //////////
+
     export let modalId = '';
+    export let onClose = noop;
     export let templates = [];
 </script>
   
@@ -19,8 +33,8 @@
         </form>
     </main>
     <footer class="modal-footer">
-      <button class="btn btn-primary" data-micromodal-close aria-label="Save Choice">Select</button>
-      <button class="btn btn-secondary" data-micromodal-close aria-label="Close this dialog window">Close</button>
+      <button class="btn btn-primary" on:click={handleSelectTemplate} aria-label="Save Choice">Select</button>
+      <button class="btn btn-secondary" on:click={onClose} aria-label="Close this dialog window">Close</button>
     </footer>
   </div>
 </div>

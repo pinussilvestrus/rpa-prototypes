@@ -31,6 +31,29 @@
     }
   };
 
+  const handleModalClose = (selection) => {
+  
+    // (1) close Modal
+    MicroModal.close(modalId);
+
+    // (2) early return if no selection was made
+    const templateId = selection.templateId;
+  
+    if (!templateId) {
+      return;
+    }
+
+    // (3) update visual selection, TODO(pinussilvestrus): you're not working rn...
+    const selectNode = dom(event.target);
+
+    selectNode.val(templateId);
+
+    // (4) notify selection
+    handleTemplateChanged({
+      target: selectNode[0]
+    });
+  };
+
 
   // exports //////////
 
@@ -54,4 +77,4 @@
   </optgroup>
 </select>
 
-<CatalogModal {modalId} />
+<CatalogModal {templates} {modalId} onClose={handleModalClose}  />
