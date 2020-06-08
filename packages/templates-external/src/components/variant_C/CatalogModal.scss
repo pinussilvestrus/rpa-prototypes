@@ -95,7 +95,9 @@
   background-color: $color-silver-99;
 
   .search-bar {
-    margin-bottom: 24px;
+    margin-bottom: 24px !important;
+    padding-left: 12px;
+    border-radius: 10px;
   }
 
   form {
@@ -129,6 +131,7 @@
 
       .worker-name {
         font-weight: bold;
+        margin-bottom: 4px;
       }
 
       .worker-description {
