@@ -44,7 +44,7 @@
 <!-- svelte-ignore a11y-no-onchange -->
 <select id="element-template" on:change="{handleSelect}">
   <option></option>
-  <option value="bot-template">Select From Worker Catalog</option>
+  <option value="bot-template">Select From Worker Catalog ...</option>
   <optgroup label="Default Implementation Types">
     <option>Java Class</option>
     <option>Expression</option>
