@@ -3,6 +3,8 @@
 
   import AutocompleteInput from '../../AutocompleteInput';
 
+  import { variableStore } from '../../../stores';
+
   const MAPPING_TYPES = [
     {
       id: 'process-variable',
@@ -34,6 +36,15 @@
     //   name: 'Map'
     // }
   ];
+
+
+  let availableOptions;
+  variableStore.subscribe(list => {
+    availableOptions = list;
+  });
+
+
+  // methods //////////
 
   const handleTitleClick = (event) => {
     const titleNode = dom(event.target),
@@ -119,11 +130,11 @@
 
         {#if isInputVariable(variable)}
           <AutocompleteInput 
-            id="{`${variable.id}-value`}"
+            id="{`${variable.id}-template-value`}"
             name="value"
             type="text"
             bind:value={variable.mapping}
-            items={variable.availableOptions}
+            items={availableOptions}
             placeholder="{`auto-filled by <${variable.name}> process variable`}"
           />
         {:else}

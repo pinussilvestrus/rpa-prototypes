@@ -5,6 +5,8 @@
 
   import AutocompleteInput from '../../AutocompleteInput';
 
+  import { variableStore } from '../../../stores';
+
   const MAPPING_TYPES = [
     {
       id: 'process-variable',
@@ -37,7 +39,10 @@
     // }
   ];
 
-  const DUMMY_VARS = ['product', 'count', 'email'];
+  let availableOptions;
+  variableStore.subscribe(list => {
+    availableOptions = list;
+  });
 
   const noop = () => {};
 
@@ -91,7 +96,7 @@
           name="mapping"
           type="text"
           bind:value={input.mapping}
-          items={DUMMY_VARS}
+          items={availableOptions}
           placeholder="{`auto-filled by <${input.name}> process variable`}"
         />
       {:else if input.mappingType === 'constant-value'}

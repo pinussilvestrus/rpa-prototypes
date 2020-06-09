@@ -25,6 +25,8 @@ export const ELEMENTS = [
   }
 ];
 
+export const PROCESS_INPUT_VARS = ['product', 'count', 'email'];
+
 export const TEMPLATES = [
   {
     id: 'analyze-delivery-price',

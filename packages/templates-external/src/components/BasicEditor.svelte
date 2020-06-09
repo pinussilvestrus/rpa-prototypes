@@ -1,6 +1,8 @@
 <script>
   import { find, findIndex } from 'min-dash';
 
+  import { onMount } from 'svelte';
+
   import dom from 'domtastic';
 
   import TextUtil from 'diagram-js/lib/util/Text';
@@ -10,6 +12,10 @@
   import Toolbar from './Toolbar.svelte';
 
   import getElement from '../util/getElement';
+
+  import { variableStore } from '../stores';
+
+  import { PROCESS_INPUT_VARS } from '../../resources/data';
 
   import './BasicEditor.scss';
 
@@ -24,6 +30,17 @@
   });
 
   let currentElement = null;
+
+
+  // lifecycle //////////
+
+  onMount(async () => {
+    variableStore.set(PROCESS_INPUT_VARS);
+  });
+
+
+
+  // methods //////////
 
   const handleOpenProperties = (elementOrId) => {
     if (typeof elementOrId === 'string') {
