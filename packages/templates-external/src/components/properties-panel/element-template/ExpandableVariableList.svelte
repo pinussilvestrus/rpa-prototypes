@@ -15,7 +15,7 @@
   <div class="expandable-list-title">{title}</div>
 
   {#each variables as variable}
-    <ExpandableListItem {variable} />
+    <ExpandableListItem bind:variable={variable} />
   {:else}
     <p class="empty">None</p>
   {/each}

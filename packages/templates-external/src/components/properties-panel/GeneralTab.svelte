@@ -1,5 +1,5 @@
 <script>
-    import { debounce } from 'min-dash';
+    import { debounce, find } from 'min-dash';
 
     import dom from 'domtastic';
 
@@ -10,6 +10,19 @@
     $: {
       if (!element.implementation) {
         dom('#implementation-select').val(null);
+      }
+    }
+
+    // populate, monkey-patching :(
+    $: {
+      if (element) {
+        element.template = null;
+    
+        if (element.templateId) {
+          element.template = getTemplate(element);
+          element.inputs = element.template.inputs;
+          element.outputs = element.template.outputs;
+        }
       }
     }
 
@@ -29,6 +42,10 @@
 
     const hasTemplates = () => {
       return !!templates.length;
+    };
+
+    const getTemplate = (element) => {
+      return element && find(templates, t => t.id === element.templateId);
     };
 
 </script>
@@ -66,13 +83,13 @@
         this="{variableListComponent}"
         id="input-select"
         title="Input Variables"
-        variables={element.template.inputs} />
+        bind:variables={element.template.inputs} />
 
       <svelte:component
         this="{variableListComponent}"
         id="output-select"
         title="Output Variables"
-        variables={element.template.outputs} />
+        bind:variables={element.template.outputs} />
 
     </Section>
 

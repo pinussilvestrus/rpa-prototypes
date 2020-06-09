@@ -30,15 +30,16 @@ export const TEMPLATES = [
     id: 'analyze-delivery-price',
     type: 'UiPath Bot',
     name: 'Competitor Delivery Price Analysis',
-    description: 'Collects types and prices for delivery from our top10 competitors',
+    description:
+      'Collects types and prices for delivery from our top10 competitors',
     topic: 'analyze-delivery-price',
     inputs: [
       {
         id: 'competitor-api-key',
         name: 'competitorAPIKey',
         type: 'input',
-        description: 'Endpoint of competitors API to get delivery options and prices',
-        value: '',
+        description:
+          'Endpoint of competitors API to get delivery options and prices',
         availableOptions: ['product', 'count', 'email']
       }
     ],
@@ -47,8 +48,7 @@ export const TEMPLATES = [
         id: 'competitor-delivery-options',
         name: 'competitorDeliveryOptions',
         type: 'output',
-        description: 'CSV file with list of delivery options and prices',
-        value: ''
+        description: 'CSV file with list of delivery options and prices'
       }
     ]
   },
@@ -56,15 +56,16 @@ export const TEMPLATES = [
     id: 'anaylize-product-price',
     type: 'UiPath Bot',
     name: 'Competitor Product Price Analysis',
-    description: 'Collects prices from our top10 competitors, considers top100 products',
+    description:
+      'Collects prices from our top10 competitors, considers top100 products',
     topic: 'anaylize-product-price',
     inputs: [
       {
         id: 'competitor-api-key-2',
         name: 'competitorAPIKey',
         type: 'input',
-        description: 'Endpoint of competitors API to get top100 products and prices',
-        value: '',
+        description:
+          'Endpoint of competitors API to get top100 products and prices',
         availableOptions: ['product', 'count', 'email']
       }
     ],
@@ -73,8 +74,7 @@ export const TEMPLATES = [
         id: 'competitor-top-100',
         name: 'competitorTop100ProductPrices',
         type: 'output',
-        description: 'CSV file with list of top100 products and prices',
-        value: ''
+        description: 'CSV file with list of top100 products and prices'
       }
     ]
   },
@@ -90,7 +90,7 @@ export const TEMPLATES = [
         name: 'product',
         type: 'input',
         description: 'Product ID as string',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       },
       {
@@ -98,7 +98,7 @@ export const TEMPLATES = [
         name: 'count',
         type: 'input',
         description: 'Quantity of products as integer',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       }
     ],
@@ -107,8 +107,7 @@ export const TEMPLATES = [
         id: 'price',
         name: 'price',
         type: 'output',
-        description: 'Price in EUR including tax as string',
-        value: ''
+        description: 'Price in EUR including tax as string'
       }
     ]
   },
@@ -124,7 +123,7 @@ export const TEMPLATES = [
         name: 'product',
         type: 'input',
         description: 'Product ID as string',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       },
       {
@@ -132,7 +131,7 @@ export const TEMPLATES = [
         name: 'count',
         type: 'input',
         description: 'Quantity of products as integer',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       },
       {
@@ -140,7 +139,7 @@ export const TEMPLATES = [
         name: 'discount',
         type: 'input',
         description: 'Discount for the campaign in percent or as static number',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       }
     ],
@@ -149,8 +148,7 @@ export const TEMPLATES = [
         id: 'price-2',
         name: 'price',
         type: 'output',
-        description: 'Price in EUR including tax as string',
-        value: ''
+        description: 'Price in EUR including tax as string'
       }
     ]
   },
@@ -159,14 +157,14 @@ export const TEMPLATES = [
     type: 'UiPath Bot',
     name: 'Quote PDF Generator',
     topic: 'generate-pdf-quote',
-    description: 'Generates a generic PDF for product quotes based on a corporate design template',
+    description:
+      'Generates a generic PDF for product quotes based on a corporate design template',
     inputs: [
       {
         id: 'product-3',
         name: 'product',
         type: 'input',
         description: 'Product ID as string',
-        value: '',
         availableOptions: ['product', 'count', 'email']
       },
       {
@@ -174,7 +172,6 @@ export const TEMPLATES = [
         name: 'count',
         type: 'input',
         description: 'Quantity of products as integer',
-        value: '',
         availableOptions: ['product', 'count', 'email']
       },
       {
@@ -182,7 +179,7 @@ export const TEMPLATES = [
         name: 'price',
         type: 'input',
         description: 'Price in EUR including tax as string',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       }
     ],
@@ -191,8 +188,7 @@ export const TEMPLATES = [
         id: 'pdfStorage',
         name: 'pdfStorage',
         type: 'output',
-        description: 'URL where generated PDF is stored',
-        value: ''
+        description: 'URL where generated PDF is stored'
       }
     ]
   },
@@ -201,14 +197,15 @@ export const TEMPLATES = [
     type: 'UiPath Bot',
     name: 'Support Case Response',
     topic: 'respond-support-case',
-    description: 'Creates automatic reply when new support ticket has been created',
+    description:
+      'Creates automatic reply when new support ticket has been created',
     inputs: [
       {
         id: 'support-ticket-id',
         name: 'supportTickedId',
         type: 'input',
         description: 'Support ticket ID from JIRA',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       }
     ],
@@ -219,14 +216,15 @@ export const TEMPLATES = [
     type: 'UiPath Bot',
     name: 'Support Case Ticket Generator',
     topic: 'generate-support-case',
-    description: 'Creates JIRA ticket when customer fill out support form in webshop',
+    description:
+      'Creates JIRA ticket when customer fill out support form in webshop',
     inputs: [
       {
         id: 'support-topic',
         name: 'supportTopic',
         type: 'input',
         description: 'Selection from the list of support areas',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       },
       {
@@ -234,7 +232,7 @@ export const TEMPLATES = [
         name: 'email',
         type: 'input',
         description: 'Email contact of customer',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       },
       {
@@ -242,7 +240,7 @@ export const TEMPLATES = [
         name: 'messageBody',
         type: 'input',
         description: 'Message body of support form',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       },
       {
@@ -250,7 +248,7 @@ export const TEMPLATES = [
         name: 'attachment',
         type: 'input',
         description: 'Attachments uploaded to the support form',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       }
     ],
@@ -259,8 +257,7 @@ export const TEMPLATES = [
         id: 'supportTicketId-2',
         name: 'supportTicketId',
         type: 'output',
-        description: 'Support ticket ID from JIRA',
-        value: ''
+        description: 'Support ticket ID from JIRA'
       }
     ]
   },
@@ -276,7 +273,7 @@ export const TEMPLATES = [
         name: 'pdfStorage',
         type: 'input',
         description: 'URL where the generated quote PDF is stored',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       },
       {
@@ -284,7 +281,7 @@ export const TEMPLATES = [
         name: 'email',
         type: 'input',
         description: 'Email address of requester',
-        value: '',
+
         availableOptions: ['product', 'count', 'email']
       }
     ],

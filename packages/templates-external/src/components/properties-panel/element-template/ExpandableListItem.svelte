@@ -122,7 +122,7 @@
             id="{`${variable.id}-value`}"
             name="value"
             type="text"
-            bind:value={variable.value}
+            bind:value={variable.mapping}
             items={variable.availableOptions}
             placeholder="{`auto-filled by <${variable.name}> process variable`}"
           />
@@ -130,7 +130,7 @@
 
         <input 
             name="value" 
-            bind:value={variable.value}
+            bind:value={variable.mapping}
             autocomplete="off"
             placeholder="{`auto-written to <${variable.name}> process variable`}" />
         {/if}

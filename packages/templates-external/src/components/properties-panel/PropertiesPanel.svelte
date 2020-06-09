@@ -1,6 +1,4 @@
 <script>
-    import { find } from 'min-dash';
-
     import dom from 'domtastic';
 
     import GeneralTab from './GeneralTab';
@@ -14,17 +12,6 @@
 
     let showOtherTabs = false;
     let activeTab = 'general';
-
-    // populate, monkey-patching :(
-    $: {
-      if (element) {
-        element.template = null;
-    
-        if (element.templateId) {
-          element.template = getTemplate(element);
-        }
-      }
-    }
 
     // methods //////////
 
@@ -68,12 +55,6 @@
     export let variableDetailsComponent;
     export let selectTemplateComponent;
     export let templates = [];
-    
-    // helpers //////////
-
-    const getTemplate = (element) => {
-      return element && find(templates, t => t.id === element.templateId);
-    };
 
 </script>
 
@@ -109,7 +90,7 @@
         <GeneralTab
           {handlePropertyChanged}
           {handleTemplateChanged}
-          {element}
+          bind:element={element}
           hidden="{activeTab !== 'general'}"
           {templates}
           {variableListComponent}
@@ -117,7 +98,7 @@
           {variableDetailsComponent} />
         
         <InputOutputTab 
-          {element}
+          bind:element={element}
           hidden="{activeTab !== 'input-output'}"
         />
       </div>
