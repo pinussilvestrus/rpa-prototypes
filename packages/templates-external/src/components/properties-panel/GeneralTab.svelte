@@ -17,11 +17,14 @@
     $: {
       if (element) {
         element.template = null;
+
+        const template = getTemplate(element);
     
-        if (element.templateId) {
-          element.template = getTemplate(element);
-          element.inputs = element.template.inputs;
-          element.outputs = element.template.outputs;
+        if (template) {
+
+          element.template = template;
+          element.inputs = template.inputs;
+          element.outputs = template.outputs;
         }
       }
     }

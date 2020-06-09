@@ -20,8 +20,8 @@
   $: {
   
     // values can be hidden
-    if (element.template) {
-      dom('#element-template').val(element.template.id);
+    if (element.templateId) {
+      dom('#element-template').val(element.templateId);
     } else {
       dom('#element-template').val(null);
     }
