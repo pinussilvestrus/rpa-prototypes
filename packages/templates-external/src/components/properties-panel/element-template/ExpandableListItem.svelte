@@ -1,14 +1,20 @@
 <script>
   import dom from 'domtastic';
 
-  import { find } from 'min-dash';
-
   import AutocompleteInput from '../../AutocompleteInput';
 
   const MAPPING_TYPES = [
     {
-      id: 'simple',
-      name: 'Simple'
+      id: 'process-variable',
+      name: 'Process Variable'
+    },
+    {
+      id: 'constant-value',
+      name: 'Constant Value'
+    },
+    {
+      id: 'expression',
+      name: 'Expression'
     },
     {
       id: 'inline-script',
@@ -17,43 +23,17 @@
     {
       id: 'external-script',
       name: 'External Script Resource'
-    },
-    {
-      id: 'list',
-      name: 'List'
-    },
-    {
-      id: 'map',
-      name: 'Map'
     }
+  
+  // {
+    //   id: 'list',
+    //   name: 'List'
+    // },
+    // {
+    //   id: 'map',
+    //   name: 'Map'
+    // }
   ];
-
-  const DEFAULT_MAPPING_TYPE = 'simple';
-
-  let selectedMappingType = DEFAULT_MAPPING_TYPE;
-
-
-  // lifecycle //////////
-
-  // reset mapping selection if update comes
-  $: {
-    if (variable) {
-      selectedMappingType = selectMappingType(DEFAULT_MAPPING_TYPE);
-    }
-  }
-
-  // methods //////////
-
-  const selectMappingType = (id) => {
-    if (!find(MAPPING_TYPES, type => type.id === id)) {
-
-      // default
-      selectedMappingType = 'simple';
-    } else {
-      selectedMappingType = id;
-    }
-
-  };
 
   const handleTitleClick = (event) => {
     const titleNode = dom(event.target),
@@ -89,55 +69,55 @@
 
     <label>Description</label>
     <textarea name="description" bind:value={variable.description} rows="3" disabled />
-    <!-- <label>Mapping Type</label> -->
 
-    <!-- svelte-ignore a11y-no-onchange -->
-    <!-- <select name="type" on:change={handleMappingTypeChange}>
-        {#each MAPPING_TYPES as {id, name}}
-        <option value={id} selected={selectedMappingType === id}>{name}</option>
-        {/each}
-    </select> -->
+    {#if isInputVariable(variable)}
 
-    {#if selectedMappingType === 'inline-script'}
-      <label>Format</label>
-      <input 
-        name="script-format" />
+      <label>Input Mapping Type</label>
 
-      <label>Script</label>
-      <textarea
-        name="script-content"
-        rows="5"></textarea>
+      <select name="type" bind:value={variable.mappingType}>
+          {#each MAPPING_TYPES as {id, name}}
+            <option value={id} selected={variable.mappingType === id}>{name}</option>
+          {/each}
+      </select>
 
-    {:else if selectedMappingType === 'external-script'}
-      <label>Format</label>
-      <input 
-        name="script-format" />
+      {#if variable.mappingType === 'constant-value'}
+        <input autocomplete="off" name="constantValue" bind:value={variable.constantValue} />
+      {:else if variable.mappingType === 'expression'}
+        <textarea autocomplete="off" name="expression" bind:value={variable.expression} />
+      {:else if variable.mappingType === 'inline-script'}
+        <label>Format</label>
+        <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat}  />
 
-      <label>Resource</label>
-      <input
-        name="script-resource" />
+        <label>Script</label>
+        <textarea name="script-content" rows="5" bind:value={variable.internalScript}></textarea>
+      {:else if variable.mappingType === 'external-script'}
+        <label>Format</label>
+        <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat} />
 
-    {:else if selectedMappingType === 'list'}
-      <div class="add-list-value">+ Add Value</div>
-  
-      <label>Value</label>
-      <input />
+        <label>Resource</label>
+        <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptRespource} />
 
-    {:else if selectedMappingType === 'map'}
-      <div class="add-list-value">+ Add Entry</div>
-  
-      <div class="map-entry-header">
-          <p>Key</p><p>Value</p>
-      </div>
-      <div class="map-entry">
+      {:else if variable.mappingType === 'list'}
+        <div class="action add-list-value">+ Add Value</div>
+
+        <label>Value</label>
         <input />
-        <input />
-      </div>
-      
-    {:else}
-      <label>{isInputVariable(variable) ? 'Value' : 'New Process Variable Name'}</label>
 
-      {#if isInputVariable(variable)}
+      {:else if variable.mappingType === 'map'}
+        <div class="action add-list-value">+ Add Entry</div>
+
+        <div class="map-entry-header">
+            <p>Key</p><p>Value</p>
+        </div>
+        <div class="map-entry">
+          <input />
+          <input />
+        </div>
+
+      {:else}
+        <label>{isInputVariable(variable) ? 'Value' : 'New Process Variable Name'}</label>
+
+        {#if isInputVariable(variable)}
           <AutocompleteInput 
             id="{`${variable.id}-value`}"
             name="value"
@@ -146,13 +126,14 @@
             items={variable.availableOptions}
             placeholder="{`auto-filled by <${variable.name}> process variable`}"
           />
-      {:else}
+        {:else}
 
         <input 
-          name="value" 
-          bind:value={variable.value}
-          autocomplete="off"
-          placeholder="{`auto-written to <${variable.name}> process variable`}" />
+            name="value" 
+            bind:value={variable.value}
+            autocomplete="off"
+            placeholder="{`auto-written to <${variable.name}> process variable`}" />
+        {/if}
       {/if}
     {/if}
   </div>

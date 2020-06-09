@@ -15,15 +15,16 @@
     {
       id: 'external-script',
       name: 'External Script Resource'
-    },
-    {
-      id: 'list',
-      name: 'List'
-    },
-    {
-      id: 'map',
-      name: 'Map'
     }
+  
+  // {
+    //   id: 'list',
+    //   name: 'List'
+    // },
+    // {
+    //   id: 'map',
+    //   name: 'Map'
+    // }
   ];
 
   const noop = () => {};
@@ -74,7 +75,7 @@
       </select>
 
       {#if outputMapping.mappingType === 'expression'}
-        <input autocomplete="off" name="expression" bind:value={outputMapping.expression} />
+        <textarea autocomplete="off" name="expression" bind:value={outputMapping.expression} />
       {:else if outputMapping.mappingType === 'inline-script'}
         <label>Format</label>
         <input autocomplete="off" name="script-format" bind:value={outputMapping.scriptFormat}  />
@@ -106,6 +107,6 @@
         </div>
       {/if}
 
-      <div class="action delete" on:click={handleDelete}>Delete Mapping</div>
+      <div class="action delete" on:click={handleDelete}>Delete Transformation</div>
     </div>
 </div>

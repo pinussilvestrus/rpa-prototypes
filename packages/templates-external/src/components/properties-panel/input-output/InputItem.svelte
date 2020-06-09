@@ -25,15 +25,16 @@
     {
       id: 'external-script',
       name: 'External Script Resource'
-    },
-    {
-      id: 'list',
-      name: 'List'
-    },
-    {
-      id: 'map',
-      name: 'Map'
     }
+  
+  // {
+    //   id: 'list',
+    //   name: 'List'
+    // },
+    // {
+    //   id: 'map',
+    //   name: 'Map'
+    // }
   ];
 
   const DUMMY_VARS = ['product', 'count', 'email'];
@@ -96,7 +97,7 @@
       {:else if input.mappingType === 'constant-value'}
         <input autocomplete="off" name="constantValue" bind:value={input.constantValue} />
       {:else if input.mappingType === 'expression'}
-        <input autocomplete="off" name="expression" bind:value={input.expression} />
+        <textarea autocomplete="off" name="expression" bind:value={input.expression} />
       {:else if input.mappingType === 'inline-script'}
         <label>Format</label>
         <input autocomplete="off" name="script-format" bind:value={input.scriptFormat}  />
