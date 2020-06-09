@@ -8,7 +8,7 @@
     // methods //////////
 
     const handleAddOutputMapping = () => {
-      const id = `output-mapping-${generateId()}`;
+      const id = `transformation_${generateId()}`;
 
       collection.push({
         id,

@@ -8,7 +8,7 @@
     // methods //////////
 
     const handleAddOutput = () => {
-      const id = `output-${generateId()}`;
+      const id = `output_${generateId()}`;
 
       collection.push({
         id,

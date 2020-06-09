@@ -70,7 +70,7 @@
 
     <Section 
         id="output-mappings" 
-        title="Output Mapping"
+        title="Output Transformation"
         bind:collection={element.outputMappings}
         onUpdateCollection={handleUpdateCollection}
         addComponent={AddOutputMapping}>

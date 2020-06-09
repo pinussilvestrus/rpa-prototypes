@@ -8,7 +8,7 @@
     // methods //////////
 
     const handleAddInput = () => {
-      const id = `input-${generateId()}`;
+      const id = `input_${generateId()}`;
 
       collection.push({
         id,
