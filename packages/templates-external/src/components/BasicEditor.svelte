@@ -1,7 +1,7 @@
 <script>
-  import { find, findIndex } from 'min-dash';
+  import { find, findIndex, forEach } from 'min-dash';
 
-  import { onMount } from 'svelte';
+  import { onMount, afterUpdate } from 'svelte';
 
   import dom from 'domtastic';
 
@@ -35,7 +35,26 @@
   // lifecycle //////////
 
   onMount(async () => {
-    variableStore.set(PROCESS_INPUT_VARS);
+    variableStore.set(PROCESS_INPUT_VARS.slice(0, PROCESS_INPUT_VARS.length));
+  });
+
+
+  afterUpdate(async () => {
+
+    // restore variable store
+    variableStore.reset();
+    variableStore.set(PROCESS_INPUT_VARS.slice(0, PROCESS_INPUT_VARS.length));
+
+    // collect variables from process data
+  
+    forEach(elements, (element) => {
+      forEach(element.outputs, (output) => {
+        variableStore.addVariable({
+          id: output.id,
+          value: output.name
+        });
+      });
+    });
   });
 
 
@@ -131,7 +150,7 @@
     onOpenProperties={handleOpenProperties} 
     bind:elements={elements} />
   <PropertiesPanel 
-    element={currentElement} 
+    bind:element={currentElement} 
     {templates}
     {variableListComponent}
     {variableDetailsComponent}

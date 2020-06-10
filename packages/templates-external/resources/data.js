@@ -25,7 +25,11 @@ export const ELEMENTS = [
   }
 ];
 
-export const PROCESS_INPUT_VARS = ['product', 'count', 'email'];
+export const PROCESS_INPUT_VARS = [
+  { id: 'start_1', value: 'product' },
+  { id: 'start_2', value: 'count' },
+  { id: 'start_3', value: 'email' }
+];
 
 export const TEMPLATES = [
   {

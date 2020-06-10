@@ -86,6 +86,7 @@
         this="{variableListComponent}"
         id="input-select"
         title="Input Variables"
+        otherOutputs={element.template.outputs}
         bind:variables={element.template.inputs} />
 
       <svelte:component

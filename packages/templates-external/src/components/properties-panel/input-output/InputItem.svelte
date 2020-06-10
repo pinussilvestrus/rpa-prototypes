@@ -1,6 +1,10 @@
 <script>
   import dom from 'domtastic';
 
+  import { onMount } from 'svelte';
+
+  import { filter, find, map } from 'min-dash';
+
   import './InputItem.scss';
 
   import AutocompleteInput from '../../AutocompleteInput';
@@ -39,12 +43,21 @@
     // }
   ];
 
-  let availableOptions;
-  variableStore.subscribe(list => {
-    availableOptions = list;
-  });
-
   const noop = () => {};
+
+  // lifecycle //////////
+
+  let availableOptions;
+  onMount(async () => {
+    variableStore.subscribe(list => {
+      availableOptions = map(list, (item) => item.value);
+
+      // do not use variables which are in this scope (e.g. as output)
+      availableOptions = filter(availableOptions, (option) => {
+        return !find(otherOutputs, (output) => option === output.name);
+      });
+    });
+  });
 
 
   // methods //////////
@@ -68,6 +81,7 @@
   // exports //////////
 
   export let input;
+  export let otherOutputs;
   export let onDeleteItem = noop;
 </script>
 

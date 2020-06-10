@@ -49,7 +49,7 @@
         onUpdateCollection={handleUpdateCollection}
         addComponent={AddInput}>
           {#each element.inputs as input}
-            <InputItem {input} onDeleteItem={handleDeleteItem} />
+            <InputItem {input} onDeleteItem={handleDeleteItem} otherOutputs={element.outputs} />
           {:else}
             <p class="empty">None</p>
           {/each}
