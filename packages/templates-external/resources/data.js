@@ -110,8 +110,8 @@ export const TEMPLATES = [
     ],
     outputs: [
       {
-        id: 'price',
-        name: 'price',
+        id: 'priceInEUR',
+        name: 'priceInEUR',
         type: 'output',
         description: 'Price in EUR including tax as string'
       }
@@ -152,7 +152,7 @@ export const TEMPLATES = [
     outputs: [
       {
         id: 'price-2',
-        name: 'price',
+        name: 'priceInEUR',
         type: 'output',
         description: 'Price in EUR including tax as string'
       }
@@ -191,8 +191,8 @@ export const TEMPLATES = [
     ],
     outputs: [
       {
-        id: 'pdfStorage',
-        name: 'pdfStorage',
+        id: 'pdfStorageUrl',
+        name: 'pdfStorageUrl',
         type: 'output',
         description: 'URL where generated PDF is stored'
       }
