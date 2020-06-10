@@ -31,7 +31,6 @@
       });
 
       // reset to default state
-      element.currentVariable = null;
       showOtherTabs = false;
     };
 

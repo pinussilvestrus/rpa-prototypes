@@ -40,15 +40,14 @@
 
 
   afterUpdate(async () => {
-
+  
     // restore variable store
     variableStore.reset();
     variableStore.set(PROCESS_INPUT_VARS.slice(0, PROCESS_INPUT_VARS.length));
 
-    // collect variables from process data
-  
+    // collect output variables from process data
     forEach(elements, (element) => {
-      forEach(element.outputs, (output) => {
+      forEach([ ...element.outputs, ...element.outputMappings ], (output) => {
         variableStore.addVariable({
           id: output.id,
           value: output.name
@@ -70,9 +69,11 @@
       return;
     }
   
-    currentElement = elementOrId;
-
-    currentElement.currentVariable = null;
+    // wait a bit for some changes to be made in rest of properties (very dirty stuff)
+    // todo(pinussilvestrus): refactor me
+    setTimeout(function() {
+      currentElement = elementOrId;
+    }, 100);
   };
 
   const handleNameChanged = (element, name) => {

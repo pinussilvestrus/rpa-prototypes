@@ -71,7 +71,7 @@
     <Section 
         id="output-mappings" 
         title="Output Transformation"
-        bind:collection={element.outputMappings}
+        collection={element.outputMappings}
         onUpdateCollection={handleUpdateCollection}
         addComponent={AddOutputMapping}>
           {#each element.outputMappings as outputMapping}
