@@ -49,7 +49,10 @@
         onUpdateCollection={handleUpdateCollection}
         addComponent={AddInput}>
           {#each element.inputs as input}
-            <InputItem {input} onDeleteItem={handleDeleteItem} otherOutputs={element.outputs} />
+            <InputItem 
+              {input} 
+              onDeleteItem={handleDeleteItem} 
+              ignoredSuggestions={[...element.outputs, ...element.outputMappings ]} />
           {:else}
             <p class="empty">None</p>
           {/each}

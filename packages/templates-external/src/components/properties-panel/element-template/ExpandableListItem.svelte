@@ -49,7 +49,7 @@
 
       // do not use variables which are in this scope (e.g. as output)
       availableOptions = filter(availableOptions, (option) => {
-        return !find(otherOutputs, (output) => option === output.name);
+        return !find(ignoredSuggestions, (output) => option === output.name);
       });
     });
   });
@@ -71,7 +71,7 @@
   // exports //////////
   
   export let variable;
-  export let otherOutputs = [];
+  export let ignoredSuggestions = [];
 
   
   // helpers //////////
