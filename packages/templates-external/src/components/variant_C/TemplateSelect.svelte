@@ -9,6 +9,8 @@
 
   const modalId = 'catalog-modal';
 
+  let isCatalogModalOpen = false;
+
   const noop = () => {};
 
   // lifecycle //////////
@@ -38,6 +40,7 @@
   
       // open  modal
       MicroModal.show(modalId);
+      isCatalogModalOpen = true;
     } else {
       handleTemplateChanged(event);
     }
@@ -48,6 +51,7 @@
   
     // (1) close Modal
     MicroModal.close(modalId);
+    isCatalogModalOpen = false;
 
     // (2) check for template id
     const templateId = selection.templateId;
@@ -90,4 +94,8 @@
   </optgroup>
 </select>
 
-<CatalogModal {templates} {modalId} onClose={handleModalClose}  />
+<CatalogModal 
+  {templates} 
+  {modalId} 
+  isOpen={isCatalogModalOpen}
+  onClose={handleModalClose}  />

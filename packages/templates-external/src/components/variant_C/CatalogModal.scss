@@ -96,8 +96,31 @@
 
   .search-bar {
     margin-bottom: 24px !important;
-    padding-left: 12px;
+    border: solid 1px $color-silver-darken-87;
     border-radius: 10px;
+    background-color: white;
+
+    padding: 4px 7px;
+
+    display: flex;
+
+    input {
+      border: none;
+      width: auto;
+      flex: 1;
+      margin: 0;
+
+      &:focus {
+        outline: none;
+      }
+    }
+
+    .icon {
+      margin-top: 7px;
+      margin-right: 8px;
+      width: 14px;
+      color: $color-grey-darken-50;
+    }
   }
 
   form {

@@ -5,6 +5,8 @@
 
     import './CatalogModal.scss';
 
+    import SearchSvg from '../svg/search.svg';
+
     const noop = () => {};
 
     let formNode;
@@ -12,8 +14,15 @@
     let filteredTemplates = [];
 
     $: {
-      if (templates.length) {
+      if (isOpen) {
+
+        // (1) reset filtered templates
         filteredTemplates = templates;
+
+        // (2) reset search bar
+        const searchBar = dom('.search-bar input');
+        searchBar && searchBar.val(null);
+        searchBar && searchBar[0].focus();
       }
     }
 
@@ -61,6 +70,7 @@
 
     export let modalId = '';
     export let onClose = noop;
+    export let isOpen = false;
     export let templates = [];
 
 
@@ -87,10 +97,12 @@
       <button class="modal-close" aria-label="Close modal" on:click={onClose}></button>
     </header>
       <main class="modal-content" id="{modalId}-content">
-        <input 
-          class="search-bar" 
-          on:input={debounce(handleSearch, 300)}
-          placeholder="search for item ..." />
+        <div class="search-bar">
+          <span class="icon"> {@html SearchSvg}</span>
+          <input 
+            on:input={debounce(handleSearch, 300)}
+            placeholder="search for item ..." />
+        </div>
 
         <form bind:this={formNode}>
           {#each filteredTemplates as template}
@@ -101,6 +113,8 @@
                 <div class="worker-description">{template.description}</div>
               </label><br>
             </div>
+          {:else}
+            <div class="empty">No worker available.</div>
           {/each}
         </form>
     </main>
