@@ -138,8 +138,6 @@
         </div>
 
       {:else}
-        <label>{isInputVariable(variable) ? 'Value' : 'New Process Variable Name'}</label>
-
         {#if isInputVariable(variable)}
           <AutocompleteInput 
             id="{`${variable.id}-template-value`}"
