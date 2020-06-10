@@ -1,11 +1,21 @@
 <script>
     import dom from 'domtastic';
 
+    import { debounce, filter } from 'min-dash';
+
     import './CatalogModal.scss';
 
     const noop = () => {};
 
     let formNode;
+
+    let filteredTemplates = [];
+
+    $: {
+      if (templates.length) {
+        filteredTemplates = templates;
+      }
+    }
 
     // methods //////////
 
@@ -14,6 +24,35 @@
 
       onClose({
         templateId: checkedOption.val()
+      });
+    };
+
+    const handleSearch = (event) => {
+      const inputNode = dom(event.target),
+            searchValue = inputNode.val();
+
+      filteredTemplates = filter(templates, t => {
+
+        // todo(pinussilvestrus): also for topic, variables, description ?
+
+    
+        // (1) search in name (lower and upper case)
+        if (
+          t.name.includes(searchValue) ||
+          t.name.includes(toTitleCase(searchValue))
+        ) {
+          return true;
+        }
+
+        // (2) search in description (lower and upper case)
+        if (
+          t.description.includes(searchValue)
+          || t.description.includes(toTitleCase(searchValue))
+        ) {
+          return true;
+        }
+
+        return false;
       });
     };
 
@@ -30,6 +69,13 @@
     const findCheckedOption = (form, name) => {
       return dom(form).find(`input[name="${name}"]:checked`);
     };
+
+    const toTitleCase = (string) => {
+      return string.toLowerCase()
+        .split(' ')
+        .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
+        .join(' ');
+    };
 </script>
   
 <div class="modal" id="{modalId}" aria-hidden="true">
@@ -41,10 +87,13 @@
       <button class="modal-close" aria-label="Close modal" on:click={onClose}></button>
     </header>
       <main class="modal-content" id="{modalId}-content">
-        <input class="search-bar" placeholder="search for item ..." />
+        <input 
+          class="search-bar" 
+          on:input={debounce(handleSearch, 300)}
+          placeholder="search for item ..." />
 
         <form bind:this={formNode}>
-          {#each templates as template}
+          {#each filteredTemplates as template}
             <div class="worker">
               <input type="radio" id="{template.id}" name="templateId" value="{template.id}">
               <label for="{template.id}">
