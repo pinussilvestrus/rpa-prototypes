@@ -97,7 +97,7 @@
       <label>Description</label>
       <textarea name="description" bind:value={input.description} />
 
-      <label>Input Mapping</label>
+      <label>Input Transformation Type</label>
       <select name="type" bind:value={input.mappingType}>
           {#each MAPPING_TYPES as {id, name}}
             <option value={id}>{name}</option>
