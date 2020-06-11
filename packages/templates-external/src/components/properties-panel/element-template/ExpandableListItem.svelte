@@ -9,7 +9,8 @@
 
   import { variableStore } from '../../../stores';
 
-  const MAPPING_TYPES = [
+  // todo(pinussilvestrus): that could be refactored to something easier
+  const INPUT_MAPPING_TYPES = [
     {
       id: 'process-variable',
       name: 'Process Variable'
@@ -39,6 +40,21 @@
     //   id: 'map',
     //   name: 'Map'
     // }
+  ];
+
+  const OUTPUT_MAPPING_TYPES = [
+    {
+      id: 'expression',
+      name: 'Expression'
+    },
+    {
+      id: 'inline-script',
+      name: 'Inline Script'
+    },
+    {
+      id: 'external-script',
+      name: 'External Script Resource'
+    }
   ];
 
 
@@ -98,7 +114,7 @@
       <label>Input Transformation Type</label>
 
       <select name="type" bind:value={variable.mappingType}>
-          {#each MAPPING_TYPES as {id, name}}
+          {#each INPUT_MAPPING_TYPES as {id, name}}
             <option value={id} selected={variable.mappingType === id}>{name}</option>
           {/each}
       </select>
@@ -138,7 +154,6 @@
         </div>
 
       {:else}
-        {#if isInputVariable(variable)}
           <AutocompleteInput 
             id="{`${variable.id}-template-value`}"
             name="value"
@@ -147,14 +162,31 @@
             items={availableOptions}
             placeholder="{`auto-filled by <${variable.name}> process variable`}"
           />
-        {:else}
+      {/if}
+    {:else}
+      <label>Output Transformation Type</label>
 
-        <input 
-            name="value" 
-            bind:value={variable.mapping}
-            autocomplete="off"
-            placeholder="{`auto-written to <${variable.name}> process variable`}" />
-        {/if}
+      <select name="type" bind:value={variable.mappingType}>
+          <option value="auto-map">{`auto-written to <${variable.name}> process variable`}</option>
+          {#each OUTPUT_MAPPING_TYPES as {id, name}}
+            <option value={id} selected={variable.mappingType === id}>{name}</option>
+          {/each}
+      </select>
+
+      {#if variable.mappingType === 'expression'}
+        <textarea autocomplete="off" name="expression" bind:value={variable.expression} />
+      {:else if variable.mappingType === 'inline-script'}
+        <label>Format</label>
+        <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat}  />
+
+        <label>Script</label>
+        <textarea name="script-content" rows="5" bind:value={variable.internalScript}></textarea>
+      {:else if variable.mappingType === 'external-script'}
+        <label>Format</label>
+        <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat} />
+
+        <label>Resource</label>
+        <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptRespource} />
       {/if}
     {/if}
   </div>
