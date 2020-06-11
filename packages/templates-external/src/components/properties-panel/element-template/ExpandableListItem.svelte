@@ -44,6 +44,10 @@
 
   const OUTPUT_MAPPING_TYPES = [
     {
+      id: 'process-variable',
+      name: 'Process Variable'
+    },
+    {
       id: 'expression',
       name: 'Expression'
     },
@@ -167,7 +171,6 @@
       <label>Output Transformation Type</label>
 
       <select name="type" bind:value={variable.mappingType}>
-          <option value="auto-map">{`auto-written to <${variable.name}> process variable`}</option>
           {#each OUTPUT_MAPPING_TYPES as {id, name}}
             <option value={id} selected={variable.mappingType === id}>{name}</option>
           {/each}
@@ -187,6 +190,12 @@
 
         <label>Resource</label>
         <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptRespource} />
+      {:else}
+        <input 
+          autocomplete="off" 
+          name="process-variable" 
+          bind:value={variable.processVariable} 
+          placeholder={`auto-written to <${variable.name}> process variable`} />
       {/if}
     {/if}
   </div>
