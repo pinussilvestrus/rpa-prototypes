@@ -42,22 +42,16 @@
 
       filteredTemplates = filter(templates, t => {
 
-        // todo(pinussilvestrus): also for topic, variables, description ?
+        // todo(pinussilvestrus): also for topic, variables, ...?
 
     
-        // (1) search in name (lower and upper case)
-        if (
-          t.name.includes(searchValue) ||
-          t.name.includes(toTitleCase(searchValue))
-        ) {
+        // (1) search in name
+        if (includesLowerCase(t.name, searchValue)) {
           return true;
         }
 
         // (2) search in description (lower and upper case)
-        if (
-          t.description.includes(searchValue)
-          || t.description.includes(toTitleCase(searchValue))
-        ) {
+        if (includesLowerCase(t.description, searchValue)) {
           return true;
         }
 
@@ -80,11 +74,8 @@
       return dom(form).find(`input[name="${name}"]:checked`);
     };
 
-    const toTitleCase = (string) => {
-      return string.toLowerCase()
-        .split(' ')
-        .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
-        .join(' ');
+    const includesLowerCase = (a, b) => {
+      return a.toLowerCase().includes(b.toLowerCase());
     };
 </script>
   

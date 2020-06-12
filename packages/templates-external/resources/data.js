@@ -120,7 +120,7 @@ export const TEMPLATES = [
   {
     id: 'calculate-price-sale',
     type: 'UiPath Bot',
-    name: 'Product Price Calculator Sommer Sale 2020',
+    name: 'Product Price Calculator Summer Sale 2020',
     topic: 'calculate-price-sale',
     description: 'Only use for special offers on campaign microsite!',
     inputs: [
