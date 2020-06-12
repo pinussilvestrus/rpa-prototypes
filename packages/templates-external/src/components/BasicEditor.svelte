@@ -50,7 +50,7 @@
       forEach([ ...element.outputs, ...element.outputMappings ], (output) => {
         variableStore.addVariable({
           id: output.id,
-          value: output.name
+          name: output.name
         });
       });
     });

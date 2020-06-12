@@ -36,6 +36,19 @@ $details-padding: 1rem;
         }
       }
 
+      .variable-missing {
+        display: none;
+
+        &.active {
+          width: 14px;
+          display: inline-block;
+          margin: 0;
+          margin-left: 4px;
+          vertical-align: middle;
+          color: $color-yellow-base;
+        }
+      }
+
       .variable-description {
         margin: 0;
         color: $color-grey-darken-50;
@@ -98,6 +111,17 @@ $details-padding: 1rem;
         input {
           flex: 1;
           margin-right: 2px;
+        }
+      }
+
+      .mapping-missing {
+        input {
+          border: 2px solid $color-yellow-dark;
+        }
+
+        p {
+          color: $color-yellow-dark;
+          margin-top: 8px;
         }
       }
     }

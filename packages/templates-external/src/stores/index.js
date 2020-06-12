@@ -12,7 +12,7 @@ function createVariableStore() {
       return update((list) => {
 
         // prevent duplicates
-        if (!find(list, (i) => item.id === i.id)) {
+        if (!find(list, (i) => item.id === i.id || item.name === i.name)) {
           list.push(item);
         }
 

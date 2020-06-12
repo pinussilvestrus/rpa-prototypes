@@ -3,11 +3,15 @@
 
   import { onMount } from 'svelte';
 
+  import { get } from 'svelte/store';
+
   import { filter, find, map } from 'min-dash';
 
   import AutocompleteInput from '../../AutocompleteInput';
 
   import { variableStore } from '../../../stores';
+
+  import WarningSvg from '../../svg/warning.svg';
 
   // todo(pinussilvestrus): that could be refactored to something easier
   const INPUT_MAPPING_TYPES = [
@@ -62,10 +66,12 @@
   ];
 
 
+  // lifecycle //////////
+
   let availableOptions;
   onMount(async () => {
     variableStore.subscribe(list => {
-      availableOptions = map(list, (item) => item.value);
+      availableOptions = map(list, (item) => item.name);
 
       // do not use variables which are in this scope (e.g. as output)
       availableOptions = filter(availableOptions, (option) => {
@@ -73,6 +79,17 @@
       });
     });
   });
+
+  // check whether template variable is already available in process context
+  $: {
+    if (isInputVariable(variable)) {
+      const allVariables = get(variableStore);
+  
+      variable.isMissing =
+        !hasMapping(variable) &&
+        !find(allVariables, (v) => v.name === variable.name);
+    }
+  }
 
 
   // methods //////////
@@ -100,12 +117,19 @@
     return variable.type === 'input';
   };
 
+  const hasMapping = (variable) => {
+    return !!variable.mapping ||
+      (variable.mappingType && variable.mappingType !== 'process-variable') ||
+      (variable.mappingType === 'process-variable' && variable.mapping !== '');
+  };
+
 </script>
 
 
 <div class="variable" id={`variable-${variable.id}`}>
   <div class="variable-header" on:click={handleTitleClick}>
     <p class="variable-name"><i class="chevron"></i>{variable.name}</p>
+    <p class="variable-missing" class:active="{variable.isMissing}">{@html WarningSvg}</p>
     <p class="variable-description">{variable.description}</p>
   </div>
   <div class="variable-details">
@@ -158,16 +182,22 @@
         </div>
 
       {:else}
-          <AutocompleteInput 
-            id="{`${variable.id}-template-value`}"
-            name="value"
-            type="text"
-            bind:value={variable.mapping}
-            items={availableOptions}
-            placeholder="{`auto-filled by <${variable.name}> process variable`}"
-          />
+          <div class:mapping-missing="{variable.isMissing}">
+            <AutocompleteInput 
+              id="{`${variable.id}-template-value`}"
+              name="mapping"
+              type="text"
+              bind:value={variable.mapping}
+              items={availableOptions}
+              placeholder="{`auto-filled by <${variable.name}> process variable`}"
+            />
+
+            {#if variable.isMissing}
+              <p>The auto-filled variable is not available in the process context!</p>
+            {/if}
+          </div>
       {/if}
-    {:else}
+    {:else if false}
       <label>Output Transformation Type</label>
 
       <select name="type" bind:value={variable.mappingType}>

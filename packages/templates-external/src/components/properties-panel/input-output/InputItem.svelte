@@ -50,7 +50,7 @@
   let availableOptions;
   onMount(async () => {
     variableStore.subscribe(list => {
-      availableOptions = map(list, (item) => item.value);
+      availableOptions = map(list, (item) => item.name);
 
       // do not use variables which are in this scope (e.g. as output)
       availableOptions = filter(availableOptions, (option) => {
