@@ -34,10 +34,14 @@
     const found = findIndex(VARIANTS, v => v === active);
 
     if (found === VARIANTS.length - 1) {
-      return toggleVariant(VARIANTS[0]);
+      toggleVariant(VARIANTS[0]);
+    } else {
+      toggleVariant(VARIANTS[found + 1]);
     }
 
-    return toggleVariant(VARIANTS[found + 1]);
+    // only for this prototype: restore data
+    // todo(pinussilvestrus): find better way
+    window.location.reload();
   };
 
 
