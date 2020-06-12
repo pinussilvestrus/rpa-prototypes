@@ -17,7 +17,9 @@
         mappingType: 'expression'
       });
 
-      onUpdateCollection('outputMappings', collection);
+      onUpdateCollection('outputMappings', collection, {
+        lastAddedItemIdx: id
+      });
     };
 
 

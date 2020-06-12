@@ -17,7 +17,9 @@
         description: ''
       });
 
-      onUpdateCollection('inputs', collection);
+      onUpdateCollection('inputs', collection, {
+        lastAddedItemIdx: id
+      });
     };
 
 

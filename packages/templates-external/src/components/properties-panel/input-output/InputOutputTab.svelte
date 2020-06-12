@@ -1,5 +1,9 @@
 <script>
     import { findIndex } from 'min-dash';
+
+    import { afterUpdate } from 'svelte';
+
+    import dom from 'domtastic';
     
     import Section from '../Section';
 
@@ -13,14 +17,39 @@
 
     import './InputOutputTab.scss';
 
+    let lastAddedItem = null;
+
+
+    // lifecycle //////////
+    
+    afterUpdate(async () => {
+
+      // collapse last added item if available
+      if (lastAddedItem) {
+        dom(`#${lastAddedItem}`).addClass('active');
+        lastAddedItem = null;
+      }
+    });
+
 
     // methods
 
-    const handleUpdateCollection = (key, collection) => {
+    const handleUpdateCollection = (key, collection, hints = {}) => {
+      const {
+        lastAddedItemIdx
+      } = hints;
+
       element = {
         ...element,
         [key]: collection
       };
+
+
+      // store last added item for later operations
+      if (lastAddedItemIdx) {
+        lastAddedItem = lastAddedItemIdx;
+      }
+
     };
 
     const handleDeleteItem = (type, id) => {
