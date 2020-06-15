@@ -91,13 +91,13 @@
       <p class="item-description">{input.description}</p>
     </div>
     <div class="item-details input-details">
-      <label>Input Parameter Name</label>
+      <label>Input Variable Name</label>
       <input autocomplete="off" name="name" bind:value={input.name} />
 
       <label>Description</label>
       <textarea name="description" bind:value={input.description} />
 
-      <label>Input Transformation Type</label>
+      <label>Input Mapping</label>
       <select name="type" bind:value={input.mappingType}>
           {#each MAPPING_TYPES as {id, name}}
             <option value={id}>{name}</option>

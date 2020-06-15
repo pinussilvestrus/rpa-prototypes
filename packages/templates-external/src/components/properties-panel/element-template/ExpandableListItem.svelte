@@ -139,7 +139,7 @@
 
     {#if isInputVariable(variable)}
 
-      <label>Input Transformation Type</label>
+      <label>Input Mapping</label>
 
       <select name="type" bind:value={variable.mappingType}>
           {#each INPUT_MAPPING_TYPES as {id, name}}

@@ -35,7 +35,7 @@
       <p class="item-description">{output.description}</p>
     </div>
     <div class="item-details output-details">
-      <label>Result Variable Name</label>
+      <label>Output Variable Name</label>
       <input autocomplete="off" name="name" bind:value={output.name} />
 
       <label>Description</label>
