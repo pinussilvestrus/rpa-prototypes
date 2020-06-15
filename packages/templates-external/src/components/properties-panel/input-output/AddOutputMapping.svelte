@@ -10,7 +10,7 @@
     const handleAddOutputMapping = () => {
       const id = `transformation_${generateId()}`;
 
-      collection.push({
+      collection.unshift({
         id,
         name: id,
         description: '',

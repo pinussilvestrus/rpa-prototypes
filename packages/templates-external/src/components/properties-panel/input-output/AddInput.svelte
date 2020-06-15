@@ -10,7 +10,7 @@
     const handleAddInput = () => {
       const id = `input_${generateId()}`;
 
-      collection.push({
+      collection.unshift({
         id,
         name: id,
         mappingType: 'process-variable',

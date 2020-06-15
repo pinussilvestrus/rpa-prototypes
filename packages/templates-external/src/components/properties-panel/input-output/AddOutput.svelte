@@ -10,7 +10,7 @@
     const handleAddOutput = () => {
       const id = `output_${generateId()}`;
 
-      collection.push({
+      collection.unshift({
         id,
         name: id,
         description: ''
