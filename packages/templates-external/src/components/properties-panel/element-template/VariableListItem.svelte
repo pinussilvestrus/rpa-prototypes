@@ -80,12 +80,7 @@
   let availableOptions;
   onMount(async () => {
     variableStore.subscribe(list => {
-      availableOptions = map(list, (item) => item.name);
-
-      // do not use variables which are in this scope (e.g. as output)
-      availableOptions = filter(availableOptions, (option) => {
-        return !find(ignoredSuggestions, (output) => option === output.name);
-      });
+      availableOptions = getAllAvailableOptions(list);
     });
   });
 
@@ -93,10 +88,12 @@
   $: {
     if (isInputVariable(variable)) {
       const allVariables = get(variableStore);
+
+      const allAvailableOptions = getAllAvailableOptions(allVariables);
   
       variable.isMissing =
         !hasMapping(variable) &&
-        !find(allVariables, (v) => v.name === variable.name);
+        !find(allAvailableOptions, (v) => v === variable.name);
     }
   }
 
@@ -126,6 +123,15 @@
     return variable.type === 'input';
   };
 
+  const getAllAvailableOptions = (list) => {
+    const options = map(list, (item) => item.name);
+  
+    // do not use variables which are in this scope (e.g. as output)
+    return filter(options, (option) => {
+      return !find(ignoredSuggestions, (output) => option === output.name);
+    });
+  };
+
   const hasMapping = (variable) => {
     return !!variable.mapping ||
       (variable.mappingType && variable.mappingType !== 'process-variable') ||
@@ -141,7 +147,7 @@
       isInputVariable(variable) ? INPUT_MAPPING_TYPES : OUTPUT_MAPPING_TYPES,
       (type) => type.id === variable.mappingType);
 
-    return variable[mappingType.descriptionProperty]
+    return mappingType && variable[mappingType.descriptionProperty]
       ? `Mapping: ${variable[mappingType.descriptionProperty]}`
       : variable.description;
   };
