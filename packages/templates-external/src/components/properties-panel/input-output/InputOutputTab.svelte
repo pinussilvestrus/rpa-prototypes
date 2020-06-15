@@ -24,8 +24,10 @@
     
     afterUpdate(async () => {
 
-      // collapse last added item if available
+      // expand last added item if available, collapse all other
       if (lastAddedItem) {
+        dom('.item').removeClass('active');
+
         dom(`#${lastAddedItem}`).addClass('active');
         lastAddedItem = null;
       }
