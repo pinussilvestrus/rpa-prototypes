@@ -1,7 +1,7 @@
 <script>
     import BasicEditor from '../BasicEditor';
 
-    import ExpandableVariableList from '../properties-panel/element-template/ExpandableVariableList';
+    import VariableList from '../properties-panel/element-template/VariableList';
 
     import TemplateSelect from './TemplateSelect';
 
@@ -15,5 +15,5 @@
 <BasicEditor 
   {elements} 
   {templates} 
-  variableListComponent={ExpandableVariableList}
+  variableListComponent={VariableList}
   selectTemplateComponent={TemplateSelect} />
