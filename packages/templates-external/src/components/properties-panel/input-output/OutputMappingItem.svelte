@@ -1,20 +1,25 @@
 <script>
   import dom from 'domtastic';
 
+  import { find } from 'min-dash';
+
   import './OutputMappingItem.scss';
 
   const MAPPING_TYPES = [
     {
       id: 'expression',
-      name: 'Expression'
+      name: 'Expression',
+      descriptionProperty: 'expression'
     },
     {
       id: 'inline-script',
-      name: 'Inline Script'
+      name: 'Inline Script',
+      descriptionProperty: 'inlineScript'
     },
     {
       id: 'external-script',
-      name: 'External Script Resource'
+      name: 'External Script Resource',
+      descriptionProperty: 'externalScriptResource'
     }
   
   // {
@@ -53,12 +58,30 @@
 
   export let outputMapping;
   export let onDeleteItem = noop;
+
+
+  // helper //////////
+
+  const getHeaderDescription = (variable) => {
+    if (!variable.mappingType) {
+      return variable.description;
+    }
+
+    const mappingType = find(
+      MAPPING_TYPES,
+      (type) => type.id === variable.mappingType);
+
+    return variable[mappingType.descriptionProperty]
+      ? `Mapping: ${variable[mappingType.descriptionProperty]}`
+      : variable.description;
+  };
+
 </script>
 
 <div class="item output-mapping" id={`${outputMapping.id}`}>
     <div class="item-header output-mapping-header" on:click={handleTitleClick}>
       <p class="item-name"><i class="chevron"></i>{outputMapping.name}</p>
-      <p class="item-description">{outputMapping.description}</p>
+      <p class="item-description">{getHeaderDescription(outputMapping)}</p>
     </div>
     <div class="item-details outputMapping-details">
       <label>New Process Variable Name</label>
@@ -81,13 +104,13 @@
         <input autocomplete="off" name="script-format" bind:value={outputMapping.scriptFormat}  />
 
         <label>Script</label>
-        <textarea name="script-content" rows="5" bind:value={outputMapping.internalScript}></textarea>
+        <textarea name="script-content" rows="5" bind:value={outputMapping.inlineScript}></textarea>
       {:else if outputMapping.mappingType === 'external-script'}
         <label>Format</label>
         <input autocomplete="off" name="script-format" bind:value={outputMapping.scriptFormat} />
 
         <label>Resource</label>
-        <input autocomplete="off" name="script-resource" bind:value={outputMapping.externalScriptRespource} />
+        <input autocomplete="off" name="script-resource" bind:value={outputMapping.externalScriptResource} />
 
       {:else if outputMapping.mappingType === 'list'}
         <div class="action add-list-value">+ Add Value</div>

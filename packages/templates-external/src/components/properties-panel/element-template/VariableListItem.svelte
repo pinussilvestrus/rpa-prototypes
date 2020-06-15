@@ -17,23 +17,28 @@
   const INPUT_MAPPING_TYPES = [
     {
       id: 'process-variable',
-      name: 'Process Variable'
+      name: 'Process Variable',
+      descriptionProperty: 'mapping'
     },
     {
       id: 'constant-value',
-      name: 'Constant Value'
+      name: 'Constant Value',
+      descriptionProperty: 'constantValue'
     },
     {
       id: 'expression',
-      name: 'Expression'
+      name: 'Expression',
+      descriptionProperty: 'expression'
     },
     {
       id: 'inline-script',
-      name: 'Inline Script'
+      name: 'Inline Script',
+      descriptionProperty: 'inlineScript'
     },
     {
       id: 'external-script',
-      name: 'External Script Resource'
+      name: 'External Script Resource',
+      descriptionProperty: 'externalScriptResource'
     }
   
   // {
@@ -49,19 +54,23 @@
   const OUTPUT_MAPPING_TYPES = [
     {
       id: 'process-variable',
-      name: 'Process Variable'
+      name: 'Process Variable',
+      descriptionProperty: 'mapping'
     },
     {
       id: 'expression',
-      name: 'Expression'
+      name: 'Expression',
+      descriptionProperty: 'expression'
     },
     {
       id: 'inline-script',
-      name: 'Inline Script'
+      name: 'Inline Script',
+      descriptionProperty: 'inlineScript'
     },
     {
       id: 'external-script',
-      name: 'External Script Resource'
+      name: 'External Script Resource',
+      descriptionProperty: 'externalScriptResource'
     }
   ];
 
@@ -123,6 +132,20 @@
       (variable.mappingType === 'process-variable' && variable.mapping !== '');
   };
 
+  const getHeaderDescription = (variable) => {
+    if (!hasMapping(variable)) {
+      return variable.description;
+    }
+
+    const mappingType = find(
+      isInputVariable(variable) ? INPUT_MAPPING_TYPES : OUTPUT_MAPPING_TYPES,
+      (type) => type.id === variable.mappingType);
+
+    return variable[mappingType.descriptionProperty]
+      ? `Mapping: ${variable[mappingType.descriptionProperty]}`
+      : variable.description;
+  };
+
 </script>
 
 
@@ -130,7 +153,7 @@
   <div class="variable-header" on:click={handleTitleClick}>
     <p class="variable-name"><i class="chevron"></i>{variable.name}</p>
     <p class="variable-missing" class:active="{variable.isMissing}">{@html WarningSvg}</p>
-    <p class="variable-description">{variable.description}</p>
+    <p class="variable-description">{getHeaderDescription(variable)}</p>
   </div>
   <div class="variable-details">
 
@@ -156,13 +179,13 @@
         <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat}  />
 
         <label>Script</label>
-        <textarea name="script-content" rows="5" bind:value={variable.internalScript}></textarea>
+        <textarea name="script-content" rows="5" bind:value={variable.inlineScript}></textarea>
       {:else if variable.mappingType === 'external-script'}
         <label>Format</label>
         <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat} />
 
         <label>Resource</label>
-        <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptRespource} />
+        <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptResource} />
 
       {:else if variable.mappingType === 'list'}
         <div class="action add-list-value">+ Add Value</div>
@@ -213,13 +236,13 @@
         <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat}  />
 
         <label>Script</label>
-        <textarea name="script-content" rows="5" bind:value={variable.internalScript}></textarea>
+        <textarea name="script-content" rows="5" bind:value={variable.inlineScript}></textarea>
       {:else if variable.mappingType === 'external-script'}
         <label>Format</label>
         <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat} />
 
         <label>Resource</label>
-        <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptRespource} />
+        <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptResource} />
       {:else}
         <input 
           autocomplete="off" 

@@ -14,23 +14,28 @@
   const MAPPING_TYPES = [
     {
       id: 'process-variable',
-      name: 'Process Variable'
+      name: 'Process Variable',
+      descriptionProperty: 'mapping'
     },
     {
       id: 'constant-value',
-      name: 'Constant Value'
+      name: 'Constant Value',
+      descriptionProperty: 'constantValue'
     },
     {
       id: 'expression',
-      name: 'Expression'
+      name: 'Expression',
+      descriptionProperty: 'expression'
     },
     {
       id: 'inline-script',
-      name: 'Inline Script'
+      name: 'Inline Script',
+      descriptionProperty: 'inlineScript'
     },
     {
       id: 'external-script',
-      name: 'External Script Resource'
+      name: 'External Script Resource',
+      descriptionProperty: 'externalSriptResource'
     }
   
   // {
@@ -83,12 +88,30 @@
   export let input;
   export let ignoredSuggestions;
   export let onDeleteItem = noop;
+
+
+  // helpers //////////
+
+  const getHeaderDescription = (variable) => {
+    if (!variable.mappingType) {
+      return variable.description;
+    }
+  
+    const mappingType = find(
+      MAPPING_TYPES,
+      (type) => type.id === variable.mappingType);
+
+    return variable[mappingType.descriptionProperty]
+      ? `Mapping: ${variable[mappingType.descriptionProperty]}`
+      : variable.description;
+  };
+
 </script>
 
 <div class="item input" id={`${input.id}`}>
     <div class="item-header input-header" on:click={handleTitleClick}>
       <p class="item-name"><i class="chevron"></i>{input.name}</p>
-      <p class="item-description">{input.description}</p>
+      <p class="item-description">{getHeaderDescription(input)}</p>
     </div>
     <div class="item-details input-details">
       <label>Input Variable Name</label>
@@ -122,13 +145,13 @@
         <input autocomplete="off" name="script-format" bind:value={input.scriptFormat}  />
 
         <label>Script</label>
-        <textarea name="script-content" rows="5" bind:value={input.internalScript}></textarea>
+        <textarea name="script-content" rows="5" bind:value={input.inlineScript}></textarea>
       {:else if input.mappingType === 'external-script'}
         <label>Format</label>
         <input autocomplete="off" name="script-format" bind:value={input.scriptFormat} />
 
         <label>Resource</label>
-        <input autocomplete="off" name="script-resource" bind:value={input.externalScriptRespource} />
+        <input autocomplete="off" name="script-resource" bind:value={input.externalScriptResource} />
 
       {:else if input.mappingType === 'list'}
         <div class="action add-list-value">+ Add Value</div>
