@@ -23,6 +23,9 @@
         const searchBar = dom('.search-bar input');
         searchBar && searchBar.val(null);
         searchBar && searchBar[0].focus();
+
+        // (3) reset item selection
+        formNode && formNode.reset();
       }
     }
 
