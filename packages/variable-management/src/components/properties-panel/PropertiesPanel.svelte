@@ -14,6 +14,21 @@
     let showOtherTabs = false;
     let activeTab = 'general';
 
+
+    // lifecycle //////////
+
+    // fix impossible active tabs / element combinations
+    // todo(pinussilvestrus): that's dirty. prevent in the first place?
+    $: {
+      if (activeTab === 'variables' && !isProcess(element)) {
+        activeTab = 'general';
+      }
+
+      if (activeTab === 'input-output' && isProcess(element)) {
+        activeTab = 'general';
+      }
+    }
+
     // methods //////////
 
     const handlePropertyChanged = (event) => {
@@ -55,66 +70,68 @@
 
 
     // helpers //////////
+
     const isProcess = (element) => {
       return element.type === 'bpmn:Process';
     };
+
 </script>
 
 <div class="properties-panel">
   {#if element}
-  <div class="container">
-      <div class="header">
-        <div class="title">{element.id}</div>
+    <div class="container">
+        <div class="header">
+          <div class="title">{element.id}</div>
 
-        <ul class="tabs">
-          <li 
-            class="tab" 
-            data-tab="general" 
-            class:tab-active="{activeTab === 'general'}"
-            on:click={handleTabClick}><p>General</p></li>
-          {#if showOtherTabs || !element.template}
-            <li class="tab"><p>Listeners</p></li>
-            {#if isProcess(element)}
-              <li 
-                class="tab" 
-                class:tab-active="{activeTab === 'variables'}"
-                data-tab="variables" 
-                on:click={handleTabClick}><p>Variables</p></li>
+          <ul class="tabs">
+            <li 
+              class="tab" 
+              data-tab="general" 
+              class:tab-active="{activeTab === 'general'}"
+              on:click={handleTabClick}><p>General</p></li>
+            {#if showOtherTabs || !element.template}
+              <li class="tab"><p>Listeners</p></li>
+              {#if isProcess(element)}
+                <li 
+                  class="tab" 
+                  class:tab-active="{activeTab === 'variables'}"
+                  data-tab="variables" 
+                  on:click={handleTabClick}><p>Variables</p></li>
+              {:else}
+                <li 
+                  class="tab" 
+                  class:tab-active="{activeTab === 'input-output'}"
+                  data-tab="input-output" 
+                  on:click={handleTabClick}><p>Input/Output</p></li>
+                <li class="tab"><p>Field Injections</p></li>
+              {/if}
+              <li class="tab"><p>Extensions</p></li>
             {:else}
-              <li 
-                class="tab" 
-                class:tab-active="{activeTab === 'input-output'}"
-                data-tab="input-output" 
-                on:click={handleTabClick}><p>Input/Output</p></li>
-              <li class="tab"><p>Field Injections</p></li>
+              <ToggleAllTabs onAction={handleShowOtherTabs} />
             {/if}
-            <li class="tab"><p>Extensions</p></li>
-          {:else}
-            <ToggleAllTabs onAction={handleShowOtherTabs} />
-          {/if}
-        </ul>
-      </div>
+          </ul>
+        </div>
 
-      <div class="properties">
+        <div class="properties">
 
-        <GeneralTab
-          {handlePropertyChanged}
-          {handleTemplateChanged}
-          bind:element={element}
-          hidden="{activeTab !== 'general'}"
-          {templates} />
-        
-        <InputOutputTab 
-          bind:element={element}
-          hidden="{activeTab !== 'input-output'}"
-        />
+          <GeneralTab
+            {handlePropertyChanged}
+            {handleTemplateChanged}
+            bind:element={element}
+            hidden="{activeTab !== 'general'}"
+            {templates} />
+          
+          <InputOutputTab 
+            bind:element={element}
+            hidden="{activeTab !== 'input-output'}"
+          />
 
-        <Variables 
-          bind:element={element}
-          hidden="{activeTab !== 'variables'}"
-        />
-      </div>
-  </div>
+          <Variables 
+            bind:element={element}
+            hidden="{activeTab !== 'variables'}"
+          />
+        </div>
+    </div>
   {/if}
   <div class="open-properties-panel">Properties Panel</div>
 </div>
