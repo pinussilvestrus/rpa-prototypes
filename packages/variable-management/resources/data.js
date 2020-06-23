@@ -1,11 +1,20 @@
 export const ELEMENTS = [
   {
+    id: 'Process_1',
+    name: 'Process_1',
+    type: 'bpmn:Process',
+    inputs: [],
+    outputs: [],
+    outputMappings: []
+  },
+  {
     id: 'Activity_1rjzrcj',
     name: 'Calculate price',
     templateId: null,
     inputs: [],
     outputs: [],
-    outputMappings: []
+    outputMappings: [],
+    type: 'bpmn:ServiceTask'
   },
   {
     id: 'Activity_07c75k4',
@@ -13,7 +22,8 @@ export const ELEMENTS = [
     templateId: null,
     inputs: [],
     outputs: [],
-    outputMappings: []
+    outputMappings: [],
+    type: 'bpmn:ServiceTask'
   },
   {
     id: 'Activity_0iuynvp',
@@ -21,7 +31,8 @@ export const ELEMENTS = [
     templateId: null,
     inputs: [],
     outputs: [],
-    outputMappings: []
+    outputMappings: [],
+    type: 'bpmn:SendTask'
   }
 ];
 

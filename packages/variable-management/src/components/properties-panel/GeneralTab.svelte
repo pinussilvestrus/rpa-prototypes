@@ -44,12 +44,12 @@
 
     // helpers //////////
 
-    const hasTemplates = () => {
-      return !!templates.length;
-    };
-
     const getTemplate = (element) => {
       return element && find(templates, t => t.id === element.templateId);
+    };
+
+    const isProcess = (element) => {
+      return element.type === 'bpmn:Process';
     };
 
 </script>
@@ -62,12 +62,39 @@
     <label>Name</label>
     <input name="name" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.name}" />
 
-    {#if hasTemplates()}
+    {#if isProcess(element)}
+      <label>Version Tag</label>
+      <input name="versionTag" bind:value={element.versionTag}>
+
+      <input type="checkbox" name="executable" bind:value={element.executable}/>
+      <label>Executable</label>
+      <br/>
+
+    {:else}
       <TemplateSelect
         {element}
         {templates}
         {handleTemplateChanged} /> 
-    {/if}
+
+        {#if element.templateId === 'External'}
+          <label>Topic</label>
+          <input autocomplete="off" bind:value={element.topic}/>
+        {:else if element.templateId === 'Java Class'}
+          <label>Java Class</label>
+          <input bind:value={element.javaClass}/>
+        {:else if element.templateId === 'Expression'}
+          <label>Expression</label>
+          <input bind:value={element.expression}/>
+
+          <label>Result Variable</label>
+          <input bind:value={element.resultVariable}/>
+        {:else if element.templateId === 'Delegate Expression'}
+          <label>Delegate Expression</label>
+          <input bind:value={element.delegateExpression}/>
+        {:else if element.templateId === 'Connector'}
+          <p>Must configure Connector!</p>
+        {/if}
+      {/if}
   </Section>
 
   {#if element.template}
@@ -93,50 +120,17 @@
 
     </Section>
 
-  {:else}
+  {:else}        
 
-
-    {#if !hasTemplates()}
-      <Section id="details" title="Details">
-        <label>Implementation</label>
-        <!-- svelte-ignore a11y-no-onchange -->
-        <select id="implementation-select" bind:value={element.implementation}>
-          <option selected></option>
-          <option>Java Class</option>
-          <option>Expression</option>
-          <option>Delegate Expression</option>
-          <option>External</option>
-          <option>Connector</option>
-        </select>
-
-        {#if element.implementation === 'External'}
-          <label>Topic</label>
-          <input autocomplete="off" bind:value={element.topic}/>
-        {:else if element.implementation === 'Java Class'}
-          <label>Java Class</label>
-          <input value=""/>
-        {:else if element.implementation === 'Expression'}
-          <label>Expression</label>
-          <input value=""/>
-
-          <label>Result Variable</label>
-          <input value=""/>
-        {:else if element.implementation === 'Delegate Expression'}
-          <label>Delegate Expression</label>
-          <input value=""/>
-        {:else if element.implementation === 'Connector'}
-          <p>Must configure Connector!</p>
-        {/if}
+    {#if !isProcess(element)}
+      <Section id="async" title="Asynchronous Continuations">
+        <input type="checkbox"/>
+        <label>Asynchronous Before</label>
+        <br/>
+        <input type="checkbox"/>
+        <label>Asynchronous After</label>
       </Section>
     {/if}
-
-    <Section id="async" title="Asynchronous Continuations">
-      <input type="checkbox"/>
-      <label>Asynchronous Before</label>
-      <br/>
-      <input type="checkbox"/>
-      <label>Asynchronous After</label>
-    </Section>
 
     <Section id="documentation" title="Documentation">
       <label>Element Documentation</label>

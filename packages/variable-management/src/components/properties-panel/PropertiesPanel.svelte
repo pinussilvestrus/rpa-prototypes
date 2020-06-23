@@ -52,6 +52,11 @@
     export let onPropertiesChanged = noop;
     export let templates = [];
 
+
+    // helpers //////////
+    const isProcess = (element) => {
+      return element.type === 'bpmn:Process';
+    };
 </script>
 
 <div class="properties-panel">
@@ -68,12 +73,14 @@
             on:click={handleTabClick}><p>General</p></li>
           {#if showOtherTabs || !element.template}
             <li class="tab"><p>Listeners</p></li>
-            <li 
-              class="tab" 
-              class:tab-active="{activeTab === 'input-output'}"
-              data-tab="input-output" 
-              on:click={handleTabClick}><p>Input/Output</p></li>
-            <li class="tab"><p>Field Injections</p></li>
+            {#if !isProcess(element)}
+              <li 
+                class="tab" 
+                class:tab-active="{activeTab === 'input-output'}"
+                data-tab="input-output" 
+                on:click={handleTabClick}><p>Input/Output</p></li>
+              <li class="tab"><p>Field Injections</p></li>
+            {/if}
             <li class="tab"><p>Extensions</p></li>
           {:else}
             <ToggleAllTabs onAction={handleShowOtherTabs} />

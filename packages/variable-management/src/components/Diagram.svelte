@@ -58,8 +58,11 @@
   const bindOpenPanel = (element, unbind = false) => {
     const gfx = getElement(element.id);
 
-    gfx[unbind ? 'off' : 'on']('click', () => {
+    gfx[unbind ? 'off' : 'on']('click', (event) => {
       onOpenProperties(element.id);
+
+      event.stopPropagation();
+      event.preventDefault();
     });
   };
 
@@ -74,6 +77,12 @@
     });
   };
 
+  const handleProcessClick = () => {
+    onOpenProperties('Process_1');
+    currentSelection = null;
+    resetSelection();
+  };
+
 
   // exports  //////////
 
@@ -82,6 +91,6 @@
 
 </script>
 
-<div class="diagram">
+<div class="diagram" on:click={handleProcessClick}>
   {@html DiagramSVG}
 </div>
