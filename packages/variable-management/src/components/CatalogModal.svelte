@@ -5,7 +5,7 @@
 
     import './CatalogModal.scss';
 
-    import SearchSvg from '../svg/search.svg';
+    import SearchSvg from './svg/search.svg';
 
     const noop = () => {};
 

@@ -139,9 +139,6 @@
 
   export let elements = [];
   export let templates = [];
-  export let variableListComponent;
-  export let variableDetailsComponent;
-  export let selectTemplateComponent;
 
 </script>
 
@@ -153,8 +150,5 @@
   <PropertiesPanel 
     bind:element={currentElement} 
     {templates}
-    {variableListComponent}
-    {variableDetailsComponent}
-    {selectTemplateComponent}
     onPropertiesChanged={handleUpdateProperties} />
 </div>

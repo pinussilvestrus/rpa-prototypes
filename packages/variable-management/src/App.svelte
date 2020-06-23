@@ -4,18 +4,12 @@
   import { findIndex } from 'min-dash';
 
 
-  // variant A - Current Modeler
+  // variant A - Catalog Modal
   import Editor_A from './components/variant_A/Editor.svelte';
-
-  // variant B - Catalog Approach
-  import Editor_B from './components/variant_B/Editor.svelte';
-
-  // variant C - Catalog Approach - Modal
-  import Editor_C from './components/variant_C/Editor.svelte';
 
   import './App.scss';
 
-  const VARIANTS = ['A', 'B', 'C'];
+  const VARIANTS = ['A'];
 
   const DEFAULT_VARIANT = 'A';
 
@@ -80,17 +74,5 @@
 {#if active === 'A'}
   <div class="variant variant-a">
       <Editor_A />
-  </div>
-{/if}
-
-{#if active === 'B'}
-  <div class="variant variant-b">
-      <Editor_B />
-  </div>
-{/if}
-
-{#if active === 'C'}
-  <div class="variant variant-c">
-      <Editor_C />
   </div>
 {/if}

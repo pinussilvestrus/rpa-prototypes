@@ -5,6 +5,10 @@
 
     import Section from './Section';
 
+    import TemplateSelect from './element-template/TemplateSelect';
+
+    import VariableList from './element-template/VariableList';
+
     const noop = () => {};
 
     $: {
@@ -37,9 +41,6 @@
     export let element;
     export let templates;
     export let hidden = false;
-    export let variableListComponent;
-    export let selectTemplateComponent;
-
 
     // helpers //////////
 
@@ -62,13 +63,10 @@
     <input name="name" on:input="{debounce(handlePropertyChanged, 500)}" value="{element.name}" />
 
     {#if hasTemplates()}
-      <svelte:component
-        this="{selectTemplateComponent}"
+      <TemplateSelect
         {element}
-        {handleTemplateChanged}
-        {templates}>
-
-      </svelte:component>
+        {templates}
+        {handleTemplateChanged} /> 
     {/if}
   </Section>
 
@@ -82,15 +80,13 @@
       <label>Topic</label>
       <input disabled value="{element.template.topic}"/>
 
-      <svelte:component
-        this="{variableListComponent}"
+      <VariableList 
         id="input-select"
         title="Input Variables"
         ignoredSuggestions={element.template.outputs}
         bind:variables={element.template.inputs} />
 
-      <svelte:component
-        this="{variableListComponent}"
+      <VariableList
         id="output-select"
         title="Output Variables"
         bind:variables={element.template.outputs} />

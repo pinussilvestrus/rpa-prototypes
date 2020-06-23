@@ -5,7 +5,7 @@
 
   import { onMount } from 'svelte';
 
-  import CatalogModal from './CatalogModal';
+  import CatalogModal from '../../CatalogModal';
 
   const modalId = 'catalog-modal';
 

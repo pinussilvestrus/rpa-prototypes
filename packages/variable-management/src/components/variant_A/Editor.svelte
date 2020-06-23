@@ -1,7 +1,13 @@
 <script>
     import BasicEditor from '../BasicEditor';
 
-    import { ELEMENTS as elements } from '../../../resources/data';
+    import {
+      ELEMENTS as elements,
+      TEMPLATES as templates
+    } from '../../../resources/data';
+
 </script>
 
-<BasicEditor {elements} />
+<BasicEditor 
+  {elements} 
+  {templates} />

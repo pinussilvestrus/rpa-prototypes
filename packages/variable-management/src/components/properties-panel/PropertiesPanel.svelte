@@ -50,9 +50,6 @@
 
     export let element = null;
     export let onPropertiesChanged = noop;
-    export let variableListComponent;
-    export let variableDetailsComponent;
-    export let selectTemplateComponent;
     export let templates = [];
 
 </script>
@@ -91,10 +88,7 @@
           {handleTemplateChanged}
           bind:element={element}
           hidden="{activeTab !== 'general'}"
-          {templates}
-          {variableListComponent}
-          {selectTemplateComponent}
-          {variableDetailsComponent} />
+          {templates} />
         
         <InputOutputTab 
           bind:element={element}
