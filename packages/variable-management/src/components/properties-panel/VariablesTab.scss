@@ -1,0 +1,26 @@
+@import '../../colors';
+
+.variables-tab {
+  .variables-list {
+    background: white;
+    padding: 6px 10px;
+
+    border: solid 1px $color-silver-darken-80;
+
+    table {
+      border-collapse: collapse;
+      border-spacing: 0;
+      table-layout: fixed;
+      width: 100%;
+
+      th {
+        text-align: left;
+      }
+
+      th,
+      td {
+        padding-left: 3px;
+      }
+    }
+  }
+}

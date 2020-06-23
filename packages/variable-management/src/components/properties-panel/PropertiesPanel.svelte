@@ -3,6 +3,7 @@
 
     import GeneralTab from './GeneralTab';
     import InputOutputTab from './input-output/InputOutputTab';
+    import Variables from './VariablesTab';
 
     import ToggleAllTabs from './ToggleAllTabs';
 
@@ -73,7 +74,13 @@
             on:click={handleTabClick}><p>General</p></li>
           {#if showOtherTabs || !element.template}
             <li class="tab"><p>Listeners</p></li>
-            {#if !isProcess(element)}
+            {#if isProcess(element)}
+              <li 
+                class="tab" 
+                class:tab-active="{activeTab === 'variables'}"
+                data-tab="variables" 
+                on:click={handleTabClick}><p>Variables</p></li>
+            {:else}
               <li 
                 class="tab" 
                 class:tab-active="{activeTab === 'input-output'}"
@@ -100,6 +107,11 @@
         <InputOutputTab 
           bind:element={element}
           hidden="{activeTab !== 'input-output'}"
+        />
+
+        <Variables 
+          bind:element={element}
+          hidden="{activeTab !== 'variables'}"
         />
       </div>
   </div>
