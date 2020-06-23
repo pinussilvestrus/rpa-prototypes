@@ -1,0 +1,21 @@
+@import "../../colors";
+
+.toggle-all-tabs {
+  float: right;
+  font-size: 12px;
+  font-weight: bold;
+
+  border: 1px solid $color-silver-darken-80;
+  background: $color-grey-light;
+  border-radius: 3px;
+
+  color: $color-grey-darken-33;
+
+  margin: 0;
+  margin-top: 0.5em;
+  margin-right: 1em;
+  text-decoration: none;
+  padding: 4px 7px;
+
+  cursor: pointer;
+}
