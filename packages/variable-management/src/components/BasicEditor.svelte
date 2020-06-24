@@ -15,7 +15,7 @@
 
   import { variableStore } from '../stores';
 
-  import { PROCESS_INPUT_VARS } from '../../resources/data';
+  // import { PROCESS_INPUT_VARS as processInputVars } from '../../resources/data';
 
   import './BasicEditor.scss';
 
@@ -35,7 +35,9 @@
   // lifecycle //////////
 
   onMount(async () => {
-    variableStore.set(PROCESS_INPUT_VARS.slice(0, PROCESS_INPUT_VARS.length));
+
+    // disabled for now
+    // variableStore.set(processInputVars.slice(0, processInputVars.length));
   });
 
 
@@ -43,14 +45,18 @@
   
     // restore variable store
     variableStore.reset();
-    variableStore.set(PROCESS_INPUT_VARS.slice(0, PROCESS_INPUT_VARS.length));
+
+    // disabled for now
+    // variableStore.set(processInputVars.slice(0, processInputVars.length));
 
     // collect output variables from process data
     forEach(elements, (element) => {
       forEach([ ...element.outputs, ...element.outputMappings ], (output) => {
         variableStore.addVariable({
           id: output.id,
-          name: output.name
+          name: output.name,
+          description: output.description,
+          writtenFrom: element.id
         });
       });
     });

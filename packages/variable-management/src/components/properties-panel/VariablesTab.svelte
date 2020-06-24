@@ -10,8 +10,9 @@
     variables = list;
   });
 
+
   // exports //////////
-  export let element;
+
   export let hidden = true;
 </script>
 
@@ -30,8 +31,8 @@
           {#each variables as variable}
             <tr>
                 <td>{variable.name}</td>
-                <td></td>
-                <td></td>
+                <td>{variable.description}</td>
+                <td>{variable.writtenFrom}</td>
             </tr>
           {/each}
         </tbody>

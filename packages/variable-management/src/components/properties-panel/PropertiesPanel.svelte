@@ -24,7 +24,11 @@
         activeTab = 'general';
       }
 
-      if (activeTab === 'input-output' && isProcess(element)) {
+      if (activeTab === 'input-output' && !isTask(element)) {
+        activeTab = 'general';
+      }
+
+      if (activeTab === 'output' && !isStartEvent(element)) {
         activeTab = 'general';
       }
     }
@@ -75,6 +79,14 @@
       return element.type === 'bpmn:Process';
     };
 
+    const isTask = (element) => {
+      return element.type == 'bpmn:ServiceTask' || element.type == 'bpmn:ReceiveTask';
+    };
+
+    const isStartEvent = (element) => {
+      return element.type === 'bpmn:StartEvent';
+    };
+
 </script>
 
 <div class="properties-panel">
@@ -97,6 +109,13 @@
                   class:tab-active="{activeTab === 'variables'}"
                   data-tab="variables" 
                   on:click={handleTabClick}><p>Variables</p></li>
+              {:else if isStartEvent(element)}
+                <li class="tab"><p>Forms</p></li>
+                <li 
+                  class="tab" 
+                  class:tab-active="{activeTab === 'output'}"
+                  data-tab="output" 
+                  on:click={handleTabClick}><p>Output</p></li>
               {:else}
                 <li 
                   class="tab" 
@@ -124,6 +143,12 @@
           <InputOutputTab 
             bind:element={element}
             hidden="{activeTab !== 'input-output'}"
+          />
+
+          <InputOutputTab 
+            bind:element={element}
+            onlyOutputs="true"
+            hidden="{activeTab !== 'output'}"
           />
 
           <Variables 

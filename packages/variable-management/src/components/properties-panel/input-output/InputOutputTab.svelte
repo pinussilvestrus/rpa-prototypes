@@ -70,24 +70,28 @@
 
     export let element;
     export let hidden = true;
+    export let onlyOutputs = false;
 </script>
 
 <div class="input-output-tab" class:hidden={hidden}>
-    <Section 
-        id="data-inputs" 
-        title="Data Input Specification" 
-        collection={element.inputs}
-        onUpdateCollection={handleUpdateCollection}
-        addComponent={AddInput}>
-          {#each element.inputs as input}
-            <InputItem 
-              {input} 
-              onDeleteItem={handleDeleteItem} 
-              ignoredSuggestions={[...element.outputs, ...element.outputMappings ]} />
-          {:else}
-            <p class="empty">None</p>
-          {/each}
-    </Section>
+
+    {#if !onlyOutputs}
+      <Section 
+          id="data-inputs" 
+          title="Data Input Specification" 
+          collection={element.inputs}
+          onUpdateCollection={handleUpdateCollection}
+          addComponent={AddInput}>
+            {#each element.inputs as input}
+              <InputItem 
+                {input} 
+                onDeleteItem={handleDeleteItem} 
+                ignoredSuggestions={[...element.outputs, ...element.outputMappings ]} />
+            {:else}
+              <p class="empty">None</p>
+            {/each}
+      </Section>
+    {/if}
 
     <Section 
         id="data-outputs" 
@@ -102,16 +106,18 @@
           {/each}
     </Section>
 
-    <Section 
-        id="output-mappings" 
-        title="Output Transformation"
-        collection={element.outputMappings}
-        onUpdateCollection={handleUpdateCollection}
-        addComponent={AddOutputMapping}>
-          {#each element.outputMappings as outputMapping}
-            <OutputMappingItem {outputMapping} onDeleteItem={handleDeleteItem} />
-          {:else}
-            <p class="empty">None</p>
-          {/each}
-    </Section>
+    {#if !onlyOutputs}
+      <Section 
+          id="output-mappings" 
+          title="Output Transformation"
+          collection={element.outputMappings}
+          onUpdateCollection={handleUpdateCollection}
+          addComponent={AddOutputMapping}>
+            {#each element.outputMappings as outputMapping}
+              <OutputMappingItem {outputMapping} onDeleteItem={handleDeleteItem} />
+            {:else}
+              <p class="empty">None</p>
+            {/each}
+      </Section>
+    {/if}
 </div>

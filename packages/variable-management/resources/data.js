@@ -8,6 +8,30 @@ export const ELEMENTS = [
     outputMappings: []
   },
   {
+    id: 'StartEvent_1',
+    name: 'Quote request received',
+    type: 'bpmn:StartEvent',
+    inputs: [],
+    outputs: [
+      {
+        id: 'start-1',
+        name: 'product',
+        description: 'The product name as a String'
+      },
+      {
+        id: 'start-2',
+        name: 'count',
+        description: 'The amount of selected product as a Number'
+      },
+      {
+        id: 'start-3',
+        name: 'email',
+        description: 'The email address of the customer given be the request'
+      }
+    ],
+    outputMappings: []
+  },
+  {
     id: 'Activity_1rjzrcj',
     name: 'Calculate price',
     templateId: null,
@@ -36,6 +60,7 @@ export const ELEMENTS = [
   }
 ];
 
+// @deprecated
 export const PROCESS_INPUT_VARS = [
   { id: 'start_1', name: 'product' },
   { id: 'start_2', name: 'count' },
