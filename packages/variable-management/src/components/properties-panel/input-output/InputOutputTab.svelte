@@ -106,7 +106,8 @@
           {/each}
     </Section>
 
-    {#if !onlyOutputs}
+    <!-- todo(pinussilvestrus): remove if decision was made -->
+    {#if !onlyOutputs && false}
       <Section 
           id="output-mappings" 
           title="Output Transformation"

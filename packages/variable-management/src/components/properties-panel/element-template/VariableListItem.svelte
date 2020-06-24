@@ -40,15 +40,6 @@
       name: 'External Script Resource',
       descriptionProperty: 'externalScriptResource'
     }
-  
-  // {
-    //   id: 'list',
-    //   name: 'List'
-    // },
-    // {
-    //   id: 'map',
-    //   name: 'Map'
-    // }
   ];
 
   const OUTPUT_MAPPING_TYPES = [
