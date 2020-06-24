@@ -54,23 +54,13 @@
   const OUTPUT_MAPPING_TYPES = [
     {
       id: 'process-variable',
-      name: 'Process Variable',
+      name: 'Process Variable Name',
       descriptionProperty: 'mapping'
     },
     {
-      id: 'expression',
-      name: 'Expression',
-      descriptionProperty: 'expression'
-    },
-    {
-      id: 'inline-script',
-      name: 'Inline Script',
-      descriptionProperty: 'inlineScript'
-    },
-    {
-      id: 'external-script',
-      name: 'External Script Resource',
-      descriptionProperty: 'externalScriptResource'
+      id: 'constant-value',
+      name: 'Constant Value',
+      descriptionProperty: 'constant-value'
     }
   ];
 
@@ -226,35 +216,23 @@
             {/if}
           </div>
       {/if}
-    {:else if false}
-      <label>Output Transformation Type</label>
+    {:else}
+      <label>Output Mapping</label>
 
       <select name="type" bind:value={variable.mappingType}>
+          <option>none</option>
           {#each OUTPUT_MAPPING_TYPES as {id, name}}
             <option value={id} selected={variable.mappingType === id}>{name}</option>
           {/each}
       </select>
 
-      {#if variable.mappingType === 'expression'}
-        <textarea autocomplete="off" name="expression" bind:value={variable.expression} />
-      {:else if variable.mappingType === 'inline-script'}
-        <label>Format</label>
-        <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat}  />
-
-        <label>Script</label>
-        <textarea name="script-content" rows="5" bind:value={variable.inlineScript}></textarea>
-      {:else if variable.mappingType === 'external-script'}
-        <label>Format</label>
-        <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat} />
-
-        <label>Resource</label>
-        <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptResource} />
-      {:else}
+      {#if variable.mappingType === 'constant-value'}
+        <input autocomplete="off" name="constant-value" bind:value={variable.constantValue} />
+      {:else if variable.mappingType === 'process-variable'}
         <input 
           autocomplete="off" 
           name="process-variable" 
-          bind:value={variable.processVariable} 
-          placeholder={`auto-written to <${variable.name}> process variable`} />
+          bind:value={variable.processVariable} />
       {/if}
     {/if}
   </div>
