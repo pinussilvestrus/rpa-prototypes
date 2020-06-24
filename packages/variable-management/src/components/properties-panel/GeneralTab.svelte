@@ -52,6 +52,10 @@
       return element.type === 'bpmn:Process';
     };
 
+    const isTask = (element) => {
+      return element.type == 'bpmn:ServiceTask' || element.type == 'bpmn:ReceiveTask';
+    };
+
 </script>
 
 <div class="general-tab" class:hidden={hidden}>
@@ -70,7 +74,7 @@
       <label>Executable</label>
       <br/>
 
-    {:else}
+    {:else if isTask(element)}
       <TemplateSelect
         {element}
         {templates}
