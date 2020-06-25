@@ -71,6 +71,8 @@
     export let element = null;
     export let onPropertiesChanged = noop;
     export let templates = [];
+    export let processStartComponent;
+    export let startEventTabsComponent;
 
 
     // helpers //////////
@@ -110,12 +112,10 @@
                   data-tab="variables" 
                   on:click={handleTabClick}><p>Variables</p></li>
               {:else if isStartEvent(element)}
-                <li class="tab"><p>Forms</p></li>
-                <li 
-                  class="tab" 
-                  class:tab-active="{activeTab === 'output'}"
-                  data-tab="output" 
-                  on:click={handleTabClick}><p>Output</p></li>
+                <svelte:component
+                  this="{startEventTabsComponent}"
+                  {activeTab}
+                  onTabClick={handleTabClick} />
               {:else}
                 <li 
                   class="tab" 
@@ -145,11 +145,11 @@
             hidden="{activeTab !== 'input-output'}"
           />
 
-          <InputOutputTab 
+          <svelte:component
+            this="{processStartComponent}"
             bind:element={element}
-            onlyOutputs="true"
-            hidden="{activeTab !== 'output'}"
-          />
+            {activeTab}
+            hidden="{activeTab !== 'process-start'}" />
 
           <Variables 
             bind:element={element}

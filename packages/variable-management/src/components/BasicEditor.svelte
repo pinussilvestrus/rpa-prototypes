@@ -15,8 +15,6 @@
 
   import { variableStore } from '../stores';
 
-  // import { PROCESS_INPUT_VARS as processInputVars } from '../../resources/data';
-
   import './BasicEditor.scss';
 
   const LABEL_STYLE = {
@@ -45,9 +43,6 @@
   
     // restore variable store
     variableStore.reset();
-
-    // disabled for now
-    // variableStore.set(processInputVars.slice(0, processInputVars.length));
 
     // collect output variables from process data
     forEach(elements, (element) => {
@@ -145,6 +140,8 @@
 
   export let elements = [];
   export let templates = [];
+  export let processStartComponent;
+  export let startEventTabsComponent;
 
 </script>
 
@@ -156,5 +153,7 @@
   <PropertiesPanel 
     bind:element={currentElement} 
     {templates}
+    {processStartComponent}
+    {startEventTabsComponent}
     onPropertiesChanged={handleUpdateProperties} />
 </div>

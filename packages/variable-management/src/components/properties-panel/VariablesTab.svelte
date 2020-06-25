@@ -23,7 +23,7 @@
         <thead>
           <tr>
             <th>Name</th>
-            <th>Description</th>
+            <!-- <th>Description</th> -->
             <th>Written from</th>
           </tr>
         </thead>
@@ -31,7 +31,7 @@
           {#each variables as variable}
             <tr>
                 <td>{variable.name}</td>
-                <td>{variable.description}</td>
+                <!-- <td>{variable.description}</td> -->
                 <td>{variable.writtenFrom}</td>
             </tr>
           {/each}

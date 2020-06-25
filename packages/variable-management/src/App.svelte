@@ -4,12 +4,15 @@
   import { findIndex } from 'min-dash';
 
 
-  // variant A - Catalog Modal
+  // variant A - Process Start Tab
   import Editor_A from './components/variant_A/Editor.svelte';
+
+  // variant B - Start Forms
+  import Editor_B from './components/variant_B/Editor.svelte';
 
   import './App.scss';
 
-  const VARIANTS = ['A'];
+  const VARIANTS = ['A', 'B'];
 
   const DEFAULT_VARIANT = 'A';
 
@@ -74,5 +77,11 @@
 {#if active === 'A'}
   <div class="variant variant-a">
       <Editor_A />
+  </div>
+{/if}
+
+{#if active === 'B'}
+  <div class="variant variant-b">
+      <Editor_B />
   </div>
 {/if}

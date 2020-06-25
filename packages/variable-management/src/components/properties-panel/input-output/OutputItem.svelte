@@ -41,7 +41,7 @@
 
   const handleTitleClick = (event) => {
     const titleNode = dom(event.target),
-          containerGfx = titleNode.closest('.output-mapping');
+          containerGfx = titleNode.closest('.output');
 
     if (containerGfx.hasClass('active')) {
       containerGfx.removeClass('active');
@@ -88,8 +88,8 @@
 
 </script>
 
-<div class="item output-mapping" id={`${output.id}`}>
-    <div class="item-header output-mapping-header" on:click={handleTitleClick}>
+<div class="item output" id={`${output.id}`}>
+    <div class="item-header output-header" on:click={handleTitleClick}>
       <p class="item-name"><i class="chevron"></i>{output.name}</p>
       <p class="item-description">{getHeaderDescription(output)}</p>
     </div>
