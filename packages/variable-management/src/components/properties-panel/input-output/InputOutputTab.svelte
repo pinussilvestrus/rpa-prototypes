@@ -100,7 +100,7 @@
         onUpdateCollection={handleUpdateCollection}
         addComponent={AddOutput}>
           {#each element.outputs as output}
-            <OutputItem {output} onDeleteItem={handleDeleteItem} />
+            <OutputItem {output} onDeleteItem={handleDeleteItem} elementType={element.type} />
           {:else}
             <p class="empty">None</p>
           {/each}

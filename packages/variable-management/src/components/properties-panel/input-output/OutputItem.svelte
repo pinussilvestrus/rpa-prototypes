@@ -8,7 +8,7 @@
   const MAPPING_TYPES = [
     {
       id: 'process-variable',
-      name: 'Process Variable',
+      name: 'Local Variable',
       descriptionProperty: 'mapping'
     },
     {
@@ -59,6 +59,7 @@
 
   export let output;
   export let onDeleteItem = noop;
+  export let elementType;
 
 
   // helper //////////
@@ -81,6 +82,10 @@
       : variable.description;
   };
 
+  const isStartEvent = (type) => {
+    return type === 'bpmn:StartEvent';
+  };
+
 </script>
 
 <div class="item output-mapping" id={`${output.id}`}>
@@ -95,13 +100,16 @@
       <label>Description</label>
       <textarea name="description" bind:value={output.description} />
 
-      <label>Output Mapping</label>
-      <select name="type" bind:value={output.mappingType}>
-          <option>Auto-Map</option>
-          {#each MAPPING_TYPES as {id, name}}
-            <option value={id}>{name}</option>
-          {/each}
-      </select>
+      {#if !isStartEvent(elementType)}
+        <label>Output Mapping</label>
+        <select name="type" bind:value={output.mappingType}>
+            <option>None</option>
+            <option>Auto-Map</option>
+            {#each MAPPING_TYPES as {id, name}}
+              <option value={id}>{name}</option>
+            {/each}
+        </select>
+      {/if}
 
       {#if output.mappingType === 'constant-value'}
         <input autocomplete="off" name="constant-value" bind:value={output.constantValue} />
@@ -128,6 +136,6 @@
 
       {/if}
 
-      <div class="action delete" on:click={handleDelete}>Delete Transformation</div>
+      <div class="action delete" on:click={handleDelete}>Delete Paramater</div>
     </div>
 </div>
