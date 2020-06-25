@@ -103,8 +103,8 @@
       {#if !isStartEvent(elementType)}
         <label>Output Mapping</label>
         <select name="type" bind:value={output.mappingType}>
-            <option>None</option>
-            <option>Auto-Map</option>
+            <option value="auto-map">Auto-Map</option>
+            <option value="none">None</option>
             {#each MAPPING_TYPES as {id, name}}
               <option value={id}>{name}</option>
             {/each}

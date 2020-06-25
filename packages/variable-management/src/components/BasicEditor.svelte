@@ -47,6 +47,11 @@
     // collect output variables from process data
     forEach(elements, (element) => {
       forEach([ ...element.outputs, ...element.outputMappings ], (output) => {
+
+        if (output.mappingType === 'none') {
+          return;
+        }
+
         variableStore.addVariable({
           id: output.id,
           name: output.name,
