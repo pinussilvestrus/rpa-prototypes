@@ -31,6 +31,10 @@
       if (activeTab === 'output' && !isStartEvent(element)) {
         activeTab = 'general';
       }
+
+      if (activeTab === 'process-start' && !isStartEvent(element)) {
+        activeTab = 'general';
+      }
     }
 
     // methods //////////
