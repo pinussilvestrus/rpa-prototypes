@@ -12,7 +12,7 @@
 
   import './App.scss';
 
-  const VARIANTS = ['A', 'B'];
+  const VARIANTS = ['A'/* , 'B'*/];
 
   const DEFAULT_VARIANT = 'A';
 

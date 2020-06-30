@@ -1,8 +1,8 @@
 <script>
     import BasicEditor from '../BasicEditor';
 
-    import ProcessInputTab from './ProcessInputTab';
     import StartEventTabs from './StartEventTabs';
+    import ProcessInputTab from './ProcessInputTab';
 
     import {
       ELEMENTS as elements,
@@ -14,5 +14,5 @@
 <BasicEditor 
   {elements} 
   {templates}
-  startEventTabsComponent={StartEventTabs}
-  processStartComponent={ProcessInputTab} />
+  processStartComponent={ProcessInputTab}
+  startEventTabsComponent={StartEventTabs} />

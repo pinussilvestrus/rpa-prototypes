@@ -5,7 +5,6 @@
     export let onTabClick = noop;
 </script>
 
-<li class="tab"><p>Forms</p></li>
 <li 
   class="tab" 
   class:tab-active="{activeTab === 'process-start'}"
