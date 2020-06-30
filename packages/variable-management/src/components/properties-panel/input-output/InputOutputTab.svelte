@@ -86,7 +86,7 @@
               <InputItem 
                 {input} 
                 onDeleteItem={handleDeleteItem} 
-                ignoredSuggestions={[...element.outputs, ...element.outputMappings ]} />
+                elementId={element.id} />
             {:else}
               <p class="empty">None</p>
             {/each}

@@ -55,12 +55,13 @@
   let availableOptions;
   onMount(async () => {
     variableStore.subscribe(list => {
-      availableOptions = map(list, (item) => item.name);
-
-      // do not use variables which are in this scope (e.g. as output)
-      availableOptions = filter(availableOptions, (option) => {
-        return !find(ignoredSuggestions, (output) => option === output.name);
+  
+      // do not use variables which are in this local scope
+      const filtered = filter(list, (option) => {
+        return option.writtenFrom.id !== elementId;
       });
+
+      availableOptions = map(filtered, (item) => item.name);
     });
   });
 
@@ -86,7 +87,7 @@
   // exports //////////
 
   export let input;
-  export let ignoredSuggestions;
+  export let elementId;
   export let onDeleteItem = noop;
 
 

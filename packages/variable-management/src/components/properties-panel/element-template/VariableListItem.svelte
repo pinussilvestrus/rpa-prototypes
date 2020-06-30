@@ -95,7 +95,7 @@
   // exports //////////
   
   export let variable;
-  export let ignoredSuggestions = [];
+  export let elementId;
 
   
   // helpers //////////
@@ -105,12 +105,13 @@
   };
 
   const getAllAvailableOptions = (list) => {
-    const options = map(list, (item) => item.name);
-  
-    // do not use variables which are in this scope (e.g. as output)
-    return filter(options, (option) => {
-      return !find(ignoredSuggestions, (output) => option === output.name);
+
+    // do not use variables which are in this local scope
+    const filtered = filter(list, (option) => {
+      return option.writtenFrom.id !== elementId;
     });
+
+    return map(filtered, (item) => item.name);
   };
 
   const hasMapping = (variable) => {

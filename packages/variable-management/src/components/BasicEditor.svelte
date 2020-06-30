@@ -56,7 +56,7 @@
           id: output.id,
           name: output.name,
           description: output.description,
-          writtenFrom: element.id
+          writtenFrom: element
         });
       });
     });

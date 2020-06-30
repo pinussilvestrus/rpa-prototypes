@@ -32,7 +32,7 @@
             <tr>
                 <td>{variable.name}</td>
                 <!-- <td>{variable.description}</td> -->
-                <td>{variable.writtenFrom}</td>
+                <td>{variable.writtenFrom.name}</td>
             </tr>
           {/each}
         </tbody>

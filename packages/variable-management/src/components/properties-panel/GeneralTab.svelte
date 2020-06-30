@@ -114,7 +114,7 @@
       <VariableList 
         id="input-select"
         title="Input Variables"
-        ignoredSuggestions={element.template.outputs}
+        elementId={element.id}
         bind:variables={element.template.inputs} />
 
       <VariableList
