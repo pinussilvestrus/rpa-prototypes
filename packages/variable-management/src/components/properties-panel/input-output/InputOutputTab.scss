@@ -75,6 +75,12 @@ $details-padding: 1rem;
       label {
         font-weight: normal;
       }
+
+      .hint {
+        font-size: 80%;
+        font-weight: 400;
+      }
+
     }
 
     &.active {

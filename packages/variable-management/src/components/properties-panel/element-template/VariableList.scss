@@ -76,42 +76,9 @@ $details-padding: 1rem;
         }
       }
 
-      .add-list-value {
-        width: 75px;
-
-        font-size: 12px;
-        font-weight: bold;
-        text-align: center;
-        color: $color-grey-darken-33;
-
-        border: 1px solid $color-silver-darken-80;
-        background: $color-grey-light;
-        border-radius: 3px;
-
-        margin-bottom: 10px;
-        padding: 4px 7px;
-
-        cursor: pointer;
-      }
-
-      .map-entry-header {
-        display: flex;
-        justify-items: flex-start;
-
-        p {
-          flex: 1;
-          margin-bottom: 2px;
-          margin-top: 3px;
-        }
-      }
-
-      .map-entry {
-        display: flex;
-
-        input {
-          flex: 1;
-          margin-right: 2px;
-        }
+      .hint {
+        font-size: 80%;
+        font-weight: 400;
       }
 
       .mapping-missing {

@@ -44,14 +44,13 @@
 
   const OUTPUT_MAPPING_TYPES = [
     {
-      id: 'process-variable',
-      name: 'Process Variable Name',
-      descriptionProperty: 'mapping'
+      id: 'none',
+      name: 'None'
     },
     {
-      id: 'constant-value',
-      name: 'Constant Value',
-      descriptionProperty: 'constant-value'
+      id: 'process-variable',
+      name: 'Process Variable Name',
+      descriptionProperty: 'processVariable'
     }
   ];
 
@@ -78,6 +77,19 @@
     }
   }
 
+  // auto-fill process variable name with local variable name
+  $: {
+    if (!isInputVariable(variable)) {
+      if (!variable.processVariable) {
+        variable.processVariable = variable.name;
+      }
+
+      if (!variable.mappingType) {
+        variable.mappingType = 'none';
+      }
+    }
+  }
+
 
   // methods //////////
 
@@ -91,6 +103,7 @@
       containerGfx.addClass('active');
     }
   };
+
 
   // exports //////////
   
@@ -212,19 +225,18 @@
       <label>Output Mapping</label>
 
       <select name="type" bind:value={variable.mappingType}>
-          <option>none</option>
           {#each OUTPUT_MAPPING_TYPES as {id, name}}
             <option value={id} selected={variable.mappingType === id}>{name}</option>
           {/each}
       </select>
 
-      {#if variable.mappingType === 'constant-value'}
-        <input autocomplete="off" name="constant-value" bind:value={variable.constantValue} />
-      {:else if variable.mappingType === 'process-variable'}
+      {#if variable.mappingType === 'process-variable'}
         <input 
           autocomplete="off" 
           name="process-variable" 
           bind:value={variable.processVariable} />
+      {:else if variable.mappingType === 'none'}
+        <small class="hint">By enabling "None" this variable will not be available in the process context.</small>
       {/if}
     {/if}
   </div>

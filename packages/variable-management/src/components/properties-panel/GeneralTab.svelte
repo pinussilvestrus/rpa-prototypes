@@ -1,5 +1,5 @@
 <script>
-    import { debounce, find } from 'min-dash';
+    import { assign, debounce, find, forEach, map } from 'min-dash';
 
     import dom from 'domtastic';
 
@@ -26,9 +26,41 @@
     
         if (template) {
 
+          // (1) copy old inputs and outputs
+          const inputsCopy = assign({}, element.inputs),
+                outputsCopy = assign({}, element.outputs);
+
+          console.log(inputsCopy);
+          console.log(outputsCopy);
+
+          // (2) map template inputs and outputs
           element.template = template;
-          element.inputs = template.inputs;
-          element.outputs = template.outputs;
+          element.inputs = map(template.inputs, (input) => {
+            return input;
+          });
+
+          // todo(pinussilvestrus): filter none mappings here?
+          element.outputs = map(template.outputs, (output) => {
+            return {
+              ...output,
+              name: (output.mappingType === 'process-variable' && output.processVariable)
+                ? output.processVariable
+                : output.name
+            };
+          });
+
+          // (3) add previously available inputs and outputs
+          forEach(inputsCopy, input => {
+            if (!find(element.inputs, (i) => i.id === input.id)) {
+              element.inputs.push(input);
+            }
+          });
+
+          forEach(outputsCopy, output => {
+            if (!find(element.outputs, (o) => o.id === output.id)) {
+              element.outputs.push(output);
+            }
+          });
         }
       }
     }

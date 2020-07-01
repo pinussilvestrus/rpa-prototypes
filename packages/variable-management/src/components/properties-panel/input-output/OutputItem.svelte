@@ -7,9 +7,12 @@
 
   const MAPPING_TYPES = [
     {
-      id: 'process-variable',
-      name: 'Local Variable',
-      descriptionProperty: 'mapping'
+      id: 'auto-map',
+      name: 'Auto-Map'
+    },
+    {
+      id: 'none',
+      name: 'None'
     },
     {
       id: 'constant-value',
@@ -35,6 +38,14 @@
 
   const noop = () => {};
 
+
+  // lifecycle //////////
+
+  $: {
+    if (!output.mappingType) {
+      output.mappingType = 'auto-map';
+    }
+  }
 
 
   // methods //////////
@@ -103,8 +114,6 @@
       {#if !isStartEvent(elementType)}
         <label>Output Mapping</label>
         <select name="type" bind:value={output.mappingType}>
-            <option value="auto-map">Auto-Map</option>
-            <option value="none">None</option>
             {#each MAPPING_TYPES as {id, name}}
               <option value={id}>{name}</option>
             {/each}
@@ -113,12 +122,6 @@
 
       {#if output.mappingType === 'constant-value'}
         <input autocomplete="off" name="constant-value" bind:value={output.constantValue} />
-      {:else if output.mappingType === 'process-variable'}
-        <input 
-          autocomplete="off" 
-          name="process-variable" 
-          bind:value={output.processVariable} />
-
       {:else if output.mappingType === 'expression'}
         <textarea autocomplete="off" name="expression" bind:value={output.expression} />
       {:else if output.mappingType === 'inline-script'}
@@ -133,9 +136,12 @@
 
         <label>Resource</label>
         <input autocomplete="off" name="script-resource" bind:value={output.externalScriptResource} />
-
+      {:else if output.mappingType === 'auto-map'}
+        <small class="hint">By enabling "Auto-Map" this variable will directly be available in the process context.</small>
+      {:else if output.mappingType === 'none'}
+        <small class="hint">By enabling "None" this variable will not be available in the process context.</small>
       {/if}
 
-      <div class="action delete" on:click={handleDelete}>Delete Paramater</div>
+      <div class="action delete" on:click={handleDelete}>Delete Parameter</div>
     </div>
 </div>

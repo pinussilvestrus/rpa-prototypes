@@ -37,15 +37,6 @@
       name: 'External Script Resource',
       descriptionProperty: 'externalSriptResource'
     }
-  
-  // {
-    //   id: 'list',
-    //   name: 'List'
-    // },
-    // {
-    //   id: 'map',
-    //   name: 'Map'
-    // }
   ];
 
   const noop = () => {};
@@ -153,23 +144,6 @@
 
         <label>Resource</label>
         <input autocomplete="off" name="script-resource" bind:value={input.externalScriptResource} />
-
-      {:else if input.mappingType === 'list'}
-        <div class="action add-list-value">+ Add Value</div>
-    
-        <label>Value</label>
-        <input />
-  
-      {:else if input.mappingType === 'map'}
-        <div class="action add-list-value">+ Add Entry</div>
-    
-        <div class="map-entry-header">
-            <p>Key</p><p>Value</p>
-        </div>
-        <div class="map-entry">
-          <input />
-          <input />
-        </div>
       {/if}
 
       <div class="action delete" on:click={handleDelete}>Delete Parameter</div>
