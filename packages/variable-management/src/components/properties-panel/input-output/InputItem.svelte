@@ -126,6 +126,7 @@
           type="text"
           bind:value={input.mapping}
           items={availableOptions}
+          defaultValue={input.name}
           placeholder="{`auto-filled by <${input.name}> process variable`}"
         />
       {:else if input.mappingType === 'constant-value'}

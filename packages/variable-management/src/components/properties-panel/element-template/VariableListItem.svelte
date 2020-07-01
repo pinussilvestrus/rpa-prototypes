@@ -213,6 +213,7 @@
               type="text"
               bind:value={variable.mapping}
               items={availableOptions}
+              defaultValue={variable.name}
               placeholder="{`auto-filled by <${variable.name}> process variable`}"
             />
 
