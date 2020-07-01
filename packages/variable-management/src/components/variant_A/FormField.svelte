@@ -49,6 +49,8 @@
 
       <!-- todo(pinussilvestrus): default: invisible, add form field action -->
       <!-- todo(pinussilvestrus): add validation + properties -->
+      <b>Form Field Details</b><br><br>
+
       <label>Type</label>
       <select name="type" bind:value={formField.type}>
         <option></option>
