@@ -7,8 +7,8 @@
 
   const MAPPING_TYPES = [
     {
-      id: 'auto-map',
-      name: 'Auto-Map'
+      id: 'process-variable',
+      name: 'Process Variable'
     },
     {
       id: 'none',
@@ -43,7 +43,7 @@
 
   $: {
     if (!output.mappingType) {
-      output.mappingType = 'auto-map';
+      output.mappingType = 'process-variable';
     }
   }
 
@@ -136,8 +136,8 @@
 
         <label>Resource</label>
         <input autocomplete="off" name="script-resource" bind:value={output.externalScriptResource} />
-      {:else if output.mappingType === 'auto-map'}
-        <small class="hint">By enabling "Auto-Map" this variable will directly be available in the process context.</small>
+      {:else if output.mappingType === 'process-variable'}
+        <small class="hint">By enabling "Process Variable" this variable will directly be available in the process context.</small>
       {:else if output.mappingType === 'none'}
         <small class="hint">By enabling "None" this variable will not be available in the process context.</small>
       {/if}
