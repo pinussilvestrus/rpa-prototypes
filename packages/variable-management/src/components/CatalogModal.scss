@@ -108,7 +108,7 @@
       border: none;
       width: auto;
       flex: 1;
-      margin: 0;
+      margin: 0 !important;
 
       &:focus {
         outline: none;
