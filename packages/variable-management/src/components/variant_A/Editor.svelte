@@ -1,8 +1,6 @@
 <script>
     import BasicEditor from '../BasicEditor';
 
-    import TaskTabs from './TaskTabs';
-
     import {
       ELEMENTS as elements,
       TEMPLATES as templates
@@ -12,5 +10,4 @@
 
 <BasicEditor 
   {elements} 
-  {templates}
-  taskTabsComponent={TaskTabs} />
+  {templates} />

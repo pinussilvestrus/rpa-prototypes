@@ -1,6 +1,8 @@
 <script>
     import dom from 'domtastic';
 
+    import { assign, forEach, find, map } from 'min-dash';
+
     import GeneralTab from './GeneralTab';
     import InputOutputTab from './input-output/InputOutputTab';
     import Variables from './VariablesTab';
@@ -38,6 +40,51 @@
       }
     }
 
+    // populate, monkey-patching :(
+    $: {
+      if (element) {
+        element.template = null;
+
+        const template = getTemplate(element);
+    
+        if (template) {
+
+          // (1) copy old inputs and outputs
+          const inputsCopy = assign({}, element.inputs),
+                outputsCopy = assign({}, element.outputs);
+
+          // (2) map template inputs and outputs
+          element.template = template;
+          element.inputs = map(template.inputs, (input) => {
+            return input;
+          });
+
+          // todo(pinussilvestrus): filter none mappings here?
+          element.outputs = map(template.outputs, (output) => {
+            return {
+              ...output,
+              name: (output.mappingType === 'process-variable' && output.processVariable)
+                ? output.processVariable
+                : output.name
+            };
+          });
+
+          // (3) add previously available inputs and outputs
+          forEach(inputsCopy, input => {
+            if (!find(element.inputs, (i) => i.id === input.id)) {
+              element.inputs.push(input);
+            }
+          });
+
+          forEach(outputsCopy, output => {
+            if (!find(element.outputs, (o) => o.id === output.id)) {
+              element.outputs.push(output);
+            }
+          });
+        }
+      }
+    }
+
     // methods //////////
 
     const handlePropertyChanged = (event) => {
@@ -54,6 +101,12 @@
       onPropertiesChanged(element.id, {
         templateId: selectNode.val()
       });
+
+      // notify others that template has changed
+      const context = onTemplateChanged({ activeTab });
+      if (context) {
+        activeTab = context.activeTab;
+      }
 
       // reset to default state
       showOtherTabs = false;
@@ -76,7 +129,9 @@
     export let element = null;
     export let onPropertiesChanged = noop;
     export let templates = [];
-    export let taskTabsComponent;
+    export let templateTabsComponent;
+    export let templateTabComponent;
+    export let onTemplateChanged = noop;
 
 
     // helpers //////////
@@ -93,6 +148,10 @@
       return element.type === 'bpmn:StartEvent';
     };
 
+    const getTemplate = (element) => {
+      return element && find(templates, t => t.id === element.templateId);
+    };
+
 </script>
 
 <div class="properties-panel">
@@ -105,8 +164,15 @@
             <li 
               class="tab" 
               data-tab="general" 
+              class:tab-hidden="{!showOtherTabs && activeTab !== 'general'}"
               class:tab-active="{activeTab === 'general'}"
               on:click={handleTabClick}><p>General</p></li>
+            <svelte:component
+              this="{templateTabsComponent}" 
+              element={element}
+              {activeTab}
+              onTabClick={handleTabClick}
+            />
             {#if showOtherTabs || !element.template}
               <li class="tab"><p>Listeners</p></li>
               {#if isProcess(element)}
@@ -122,11 +188,15 @@
                   data-tab="process-start" 
                   on:click={handleTabClick}><p>Process Inputs</p></li>
               {:else}
-                <svelte:component
-                  this="{taskTabsComponent}" 
-                  {activeTab}
-                  onTabClick={handleTabClick}
-                  />
+                <li
+                  class="tab"
+                  class:tab-active="{activeTab === 'input-output'}"
+                  data-tab="input-output"
+                  on:click="{handleTabClick}">
+                  <p>Input/Output</p>
+                </li>
+                <li class="tab"><p>Field Injections</p></li>
+              
               {/if}
               <li class="tab"><p>Extensions</p></li>
             {:else}
@@ -143,6 +213,12 @@
             bind:element={element}
             hidden="{activeTab !== 'general'}"
             {templates} />
+
+          <svelte:component 
+            this="{templateTabComponent}"
+            bind:element={element}
+            hidden="{activeTab !== 'template'}"
+          />
           
           <InputOutputTab 
             bind:element={element}

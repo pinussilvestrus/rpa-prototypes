@@ -116,6 +116,10 @@
             }
           }
         }
+
+        &.tab-hidden {
+          display: none;
+        }
       }
     }
   }
