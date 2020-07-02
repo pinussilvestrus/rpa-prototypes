@@ -5,13 +5,13 @@
 
   import { afterUpdate } from 'svelte';
 
-  import Section from '../properties-panel/Section';
+  import Section from '../Section';
 
   import AddFormField from './AddFormField';
 
   import FormField from './FormField';
 
-  import './FormTab.scss';
+  import './ProcessInputTab.scss';
 
   let lastAddedItem = null;
   let formTabNode = null;
@@ -68,25 +68,28 @@
   export let hidden = true;
 </script>
 
-<div class="form-tab" class:hidden={hidden} bind:this="{formTabNode}">
-
-    <Section>
-        <label>Form Key</label>
-        <input name="form-key" bind:value={element.formKey} autocomplete="off" />
+<div class="process-input-tab" class:hidden={hidden} bind:this="{formTabNode}">
+  <Section 
+    id="form-fields" 
+    title="Input Variables" 
+    collection={element.outputs}
+    onUpdateCollection={handleUpdateCollection}
+    addComponent={AddFormField}>
+      {#each element.outputs as formField}
+        <FormField 
+          {formField} 
+          onDeleteItem={handleDeleteItem} />
+      {:else}
+        <p class="empty">None</p>
+      {/each}
     </Section>
 
-    <Section 
-          id="form-fields" 
-          title="Form Fields" 
-          collection={element.outputs}
-          onUpdateCollection={handleUpdateCollection}
-          addComponent={AddFormField}>
-            {#each element.outputs as formField}
-              <FormField 
-                {formField} 
-                onDeleteItem={handleDeleteItem} />
-            {:else}
-              <p class="empty">None</p>
-            {/each}
-      </Section>
+    <Section id="form-details" title="Form Details">
+      <label>Form Key</label>
+      <input name="form-key" bind:value={element.formKey} autocomplete="off" />
+
+      <!-- todo(pinussilvestrus): fill business key from variables -->
+      <label>Business Key</label>
+      <input name="business-key" bind:value={element.businessKey} autocomplete="off" />
+    </Section>
 </div>

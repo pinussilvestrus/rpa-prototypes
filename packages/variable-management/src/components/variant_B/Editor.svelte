@@ -1,9 +1,6 @@
 <script>
     import BasicEditor from '../BasicEditor';
 
-    import StartEventTabs from './StartEventTabs';
-    import FormTab from './FormTab';
-
     import {
       ELEMENTS as elements,
       TEMPLATES as templates
@@ -13,6 +10,4 @@
 
 <BasicEditor 
   {elements} 
-  {templates}
-  processStartComponent={FormTab}
-  startEventTabsComponent={StartEventTabs} />
+  {templates} />

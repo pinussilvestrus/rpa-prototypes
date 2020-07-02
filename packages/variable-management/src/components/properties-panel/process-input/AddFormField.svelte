@@ -1,7 +1,7 @@
 <script>
-    import generateId from '../../util/generateId';
+    import generateId from '../../../util/generateId';
 
-    import PlusSvg from '../svg/plus.svg';
+    import PlusSvg from '../../svg/plus.svg';
 
     const noop = () => {};
 

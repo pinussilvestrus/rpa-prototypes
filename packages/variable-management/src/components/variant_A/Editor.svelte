@@ -1,8 +1,7 @@
 <script>
     import BasicEditor from '../BasicEditor';
 
-    import StartEventTabs from './StartEventTabs';
-    import ProcessInputTab from './ProcessInputTab';
+    import TaskTabs from './TaskTabs';
 
     import {
       ELEMENTS as elements,
@@ -14,5 +13,4 @@
 <BasicEditor 
   {elements} 
   {templates}
-  processStartComponent={ProcessInputTab}
-  startEventTabsComponent={StartEventTabs} />
+  taskTabsComponent={TaskTabs} />

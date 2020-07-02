@@ -145,8 +145,7 @@
 
   export let elements = [];
   export let templates = [];
-  export let processStartComponent;
-  export let startEventTabsComponent;
+  export let taskTabsComponent;
 
 </script>
 
@@ -158,7 +157,6 @@
   <PropertiesPanel 
     bind:element={currentElement} 
     {templates}
-    {processStartComponent}
-    {startEventTabsComponent}
+    {taskTabsComponent}
     onPropertiesChanged={handleUpdateProperties} />
 </div>
