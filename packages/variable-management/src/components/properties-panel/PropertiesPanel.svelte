@@ -20,29 +20,12 @@
 
     // lifecycle //////////
 
-    // fix impossible active tabs / element combinations
-    // todo(pinussilvestrus): that's dirty. prevent in the first place?
-    $: {
-      if (activeTab === 'variables' && !isProcess(element)) {
-        activeTab = 'general';
-      }
-
-      if (activeTab === 'input-output' && !isTask(element)) {
-        activeTab = 'general';
-      }
-
-      if (activeTab === 'output' && !isStartEvent(element)) {
-        activeTab = 'general';
-      }
-
-      if (activeTab === 'process-start' && !isStartEvent(element)) {
-        activeTab = 'general';
-      }
-    }
-
     // populate, monkey-patching :(
     $: {
       if (element) {
+    
+        preventImpossibleActiveTab();
+    
         element.template = null;
 
         const template = getTemplate(element);
@@ -85,7 +68,30 @@
       }
     }
 
+
     // methods //////////
+
+    const preventImpossibleActiveTab = () => {
+      if (activeTab === 'variables' && !isProcess(element)) {
+        activeTab = 'general';
+      }
+
+      if (activeTab === 'input-output' && !isTask(element)) {
+        activeTab = 'general';
+      }
+
+      if (activeTab === 'output' && !isStartEvent(element)) {
+        activeTab = 'general';
+      }
+
+      if (activeTab === 'process-start' && !isStartEvent(element)) {
+        activeTab = 'general';
+      }
+
+      if (activeTab === 'template' && (!isTask(element) || !getTemplate(element))) {
+        activeTab = 'general';
+      }
+    };
 
     const handlePropertyChanged = (event) => {
       const inputNode = dom(event.target);
@@ -159,7 +165,7 @@
   {#if element}
     <div class="container">
         <div class="header">
-          <div class="title">{element.id}</div>
+          <div class="title">{element.name}</div>
 
           <ul class="tabs">
             <li 
