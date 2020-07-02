@@ -131,6 +131,7 @@
     export let templates = [];
     export let templateTabsComponent;
     export let templateTabComponent;
+    export let templateInGeneralComponent;
     export let onTemplateChanged = noop;
 
 
@@ -210,6 +211,7 @@
           <GeneralTab
             {handlePropertyChanged}
             {handleTemplateChanged}
+            {templateInGeneralComponent}
             bind:element={element}
             hidden="{activeTab !== 'general'}"
             {templates} />

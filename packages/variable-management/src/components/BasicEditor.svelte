@@ -145,6 +145,7 @@
 
   export let elements = [];
   export let templates = [];
+  export let templateInGeneralComponent;
   export let templateTabsComponent;
   export let templateTabComponent;
   export let onTemplateChanged;
@@ -159,6 +160,7 @@
   <PropertiesPanel 
     bind:element={currentElement} 
     {templates}
+    {templateInGeneralComponent}
     {templateTabsComponent}
     {templateTabComponent}
     {onTemplateChanged}

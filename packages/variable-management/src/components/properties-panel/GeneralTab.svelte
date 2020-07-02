@@ -7,8 +7,6 @@
 
     import TemplateSelect from './element-template/TemplateSelect';
 
-    import VariableList from './element-template/VariableList';
-
     const noop = () => {};
 
     $: {
@@ -24,6 +22,7 @@
     export let handleTemplateChanged = noop;
     export let element;
     export let templates;
+    export let templateInGeneralComponent;
     export let hidden = false;
 
     // helpers //////////
@@ -81,29 +80,11 @@
       {/if}
   </Section>
 
-  {#if element.template}
-
-    <Section id="template" title="{element.template.name}">
-
-      <label>Description</label>
-      <textarea disabled value="{element.template.description}"></textarea>
-
-      <label>Topic</label>
-      <input disabled value="{element.template.topic}"/>
-
-      <VariableList 
-        id="input-select"
-        title="Input Variables"
-        elementId={element.id}
-        bind:variables={element.template.inputs} />
-
-      <VariableList
-        id="output-select"
-        title="Output Variables"
-        bind:variables={element.template.outputs} />
-
-    </Section>
-
+  {#if element.template && templateInGeneralComponent}
+    <svelte:component 
+      this="{templateInGeneralComponent}"
+      {element}
+    />
   {:else}        
 
     {#if !isProcess(element)}

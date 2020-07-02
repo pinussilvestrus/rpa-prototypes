@@ -1,6 +1,8 @@
 <script>
     import BasicEditor from '../BasicEditor';
 
+    import TemplateInGeneral from './TemplateInGeneral';
+
     import {
       ELEMENTS as elements,
       TEMPLATES as templates
@@ -10,4 +12,5 @@
 
 <BasicEditor 
   {elements} 
-  {templates} />
+  {templates}
+  templateInGeneralComponent={TemplateInGeneral} />
