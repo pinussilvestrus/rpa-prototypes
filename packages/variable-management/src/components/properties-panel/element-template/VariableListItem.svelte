@@ -18,7 +18,7 @@
     {
       id: 'process-variable',
       name: 'Process Variable',
-      descriptionProperty: 'mapping'
+      descriptionProperty: 'processVariable'
     },
     {
       id: 'constant-value',
@@ -70,10 +70,18 @@
       const allVariables = get(variableStore);
 
       const allAvailableOptions = getAllAvailableOptions(allVariables);
+
+      if (!variable.processVariable) {
+        variable.processVariable = variable.name;
+      }
+
+      if (!variable.mappingType) {
+        variable.mappingType = 'process-variable';
+      }
   
       variable.isMissing =
-        !hasMapping(variable) &&
-        !find(allAvailableOptions, (v) => v === variable.name);
+        !hasExtendedMapping(variable) &&
+        !find(allAvailableOptions, (v) => v === variable.processVariable);
     }
   }
 
@@ -127,10 +135,11 @@
     return map(filtered, (item) => item.name);
   };
 
+  const hasExtendedMapping = (variable) => {
+    return (variable.mappingType && variable.mappingType !== 'process-variable');
+  };
   const hasMapping = (variable) => {
-    return !!variable.mapping ||
-      (variable.mappingType && variable.mappingType !== 'process-variable') ||
-      (variable.mappingType === 'process-variable' && variable.mapping !== '');
+    return !!variable.mappingType;
   };
 
   const getHeaderDescription = (variable) => {
@@ -211,7 +220,7 @@
               id="{`${variable.id}-template-value`}"
               name="mapping"
               type="text"
-              bind:value={variable.mapping}
+              bind:value={variable.processVariable}
               items={availableOptions}
               defaultValue={variable.name}
               placeholder="{`auto-filled by <${variable.name}> process variable`}"

@@ -15,7 +15,7 @@
     {
       id: 'process-variable',
       name: 'Process Variable',
-      descriptionProperty: 'mapping'
+      descriptionProperty: 'processVariable'
     },
     {
       id: 'constant-value',
@@ -124,7 +124,7 @@
           id="{`${input.id}-value`}"
           name="mapping"
           type="text"
-          bind:value={input.mapping}
+          bind:value={input.processVariable}
           items={availableOptions}
           defaultValue={input.name}
           placeholder="{`auto-filled by <${input.name}> process variable`}"

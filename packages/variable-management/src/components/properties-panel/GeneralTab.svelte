@@ -30,9 +30,6 @@
           const inputsCopy = assign({}, element.inputs),
                 outputsCopy = assign({}, element.outputs);
 
-          console.log(inputsCopy);
-          console.log(outputsCopy);
-
           // (2) map template inputs and outputs
           element.template = template;
           element.inputs = map(template.inputs, (input) => {
