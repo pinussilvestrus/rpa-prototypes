@@ -1,0 +1,17 @@
+.template-tab {
+  .section {
+    position: relative;
+  }
+
+  .unlink-template {
+    position: absolute;
+    width: 12px;
+    position: absolute;
+    top: -35px;
+    right: 20px;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+}

@@ -101,11 +101,14 @@
       });
     };
 
-    const handleTemplateChanged = (event) => {
-      const selectNode = dom(event.target);
+    const handleTemplateChanged = (eventOrVal) => {
+      if (typeof eventOrVal !== 'string') {
+        const selectNode = dom(eventOrVal.target);
+        eventOrVal = selectNode.val();
+      }
 
       onPropertiesChanged(element.id, {
-        templateId: selectNode.val()
+        templateId: eventOrVal
       });
 
       // notify others that template has changed
@@ -223,6 +226,7 @@
             {templates} />
 
           <svelte:component 
+            {handleTemplateChanged}
             this="{templateTabComponent}"
             bind:element={element}
             hidden="{activeTab !== 'template'}"
