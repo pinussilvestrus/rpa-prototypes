@@ -164,7 +164,7 @@
             <li 
               class="tab" 
               data-tab="general" 
-              class:tab-hidden="{!showOtherTabs && activeTab !== 'general'}"
+              class:tab-hidden="{!showOtherTabs && activeTab === 'template'}"
               class:tab-active="{activeTab === 'general'}"
               on:click={handleTabClick}><p>General</p></li>
             <svelte:component
