@@ -4,6 +4,7 @@
     import GeneralTab from './GeneralTab';
     import InputOutputTab from './input-output/InputOutputTab';
     import Variables from './VariablesTab';
+    import ProcessInputTab from './process-input/ProcessInputTab';
 
     import ToggleAllTabs from './ToggleAllTabs';
 
@@ -75,8 +76,6 @@
     export let element = null;
     export let onPropertiesChanged = noop;
     export let templates = [];
-    export let processStartComponent;
-    export let startEventTabsComponent;
 
 
     // helpers //////////
@@ -116,17 +115,18 @@
                   data-tab="variables" 
                   on:click={handleTabClick}><p>Variables</p></li>
               {:else if isStartEvent(element)}
-                <svelte:component
-                  this="{startEventTabsComponent}"
-                  {activeTab}
-                  onTabClick={handleTabClick} />
-              {:else}
                 <li 
                   class="tab" 
-                  class:tab-active="{activeTab === 'input-output'}"
-                  data-tab="input-output" 
-                  on:click={handleTabClick}><p>Input/Output</p></li>
-                <li class="tab"><p>Field Injections</p></li>
+                  class:tab-active="{activeTab === 'process-start'}"
+                  data-tab="process-start" 
+                  on:click={handleTabClick}><p>Process Inputs</p></li>
+              {:else}
+              <li
+                class="tab"
+                class:tab-active="{activeTab === 'input-output'}"
+                data-tab="input-output"
+                on:click="{handleTabClick}"><p>Input/Output</p></li>
+            <li class="tab"><p>Field Injections</p></li>
               {/if}
               <li class="tab"><p>Extensions</p></li>
             {:else}
@@ -149,10 +149,8 @@
             hidden="{activeTab !== 'input-output'}"
           />
 
-          <svelte:component
-            this="{processStartComponent}"
+          <ProcessInputTab
             bind:element={element}
-            {activeTab}
             hidden="{activeTab !== 'process-start'}" />
 
           <Variables 

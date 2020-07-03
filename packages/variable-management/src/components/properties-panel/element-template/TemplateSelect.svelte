@@ -72,27 +72,40 @@
 
   // exports //////////
 
-  export let templates;
+  export let templates = [];
   export let element;
   export let handleTemplateChanged = noop;
 </script>
 
+
 <label>Implementation</label>
-<!-- svelte-ignore a11y-no-onchange -->
-<select id="element-template" on:change="{handleSelect}">
-  <option></option>
-  {#each templates as template}
-    <option hidden value="{template.id}">{template.name}</option>
-  {/each}
-  <option value="bot-template">Select From Worker Catalog ...</option>
-  <optgroup label="Default Implementation Types">
+{#if templates.length}
+  <!-- svelte-ignore a11y-no-onchange -->
+  <select id="element-template" on:change="{handleSelect}">
+    <option></option>
+    {#each templates as template}
+      <option hidden value="{template.id}">{template.name}</option>
+    {/each}
+    <option value="bot-template">Select From Worker Catalog ...</option>
+    <optgroup label="Default Implementation Types">
+      <option>Java Class</option>
+      <option>Expression</option>
+      <option>Delegate Expression</option>
+      <option>External</option>
+      <option>Connector</option>
+    </optgroup>
+  </select>
+{:else}
+  <!-- svelte-ignore a11y-no-onchange -->
+  <select id="element-template" on:change="{handleSelect}">
+    <option></option>
     <option>Java Class</option>
     <option>Expression</option>
     <option>Delegate Expression</option>
     <option>External</option>
     <option>Connector</option>
-  </optgroup>
-</select>
+  </select>
+{/if}
 
 <CatalogModal 
   {templates} 

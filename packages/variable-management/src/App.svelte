@@ -4,15 +4,15 @@
   import { findIndex } from 'min-dash';
 
 
-  // variant A - Process Start Tab
+  // variant A - Without Catalog
   import Editor_A from './components/variant_A/Editor.svelte';
 
-  // variant B - Start Forms
+  // variant B - Catalog
   import Editor_B from './components/variant_B/Editor.svelte';
 
   import './App.scss';
 
-  const VARIANTS = ['A'/* , 'B'*/];
+  const VARIANTS = ['A', 'B'];
 
   const DEFAULT_VARIANT = 'A';
 
