@@ -98,7 +98,7 @@
   {#if element}
     <div class="container">
         <div class="header">
-          <div class="title">{element.id}</div>
+          <div class="title">{element.name}</div>
 
           <ul class="tabs">
             <li 
