@@ -82,7 +82,7 @@
     };
 
     const isTask = (element) => {
-      return element.type == 'bpmn:ServiceTask' || element.type == 'bpmn:ReceiveTask';
+      return element.type == 'bpmn:ServiceTask' || element.type == 'bpmn:SendTask';
     };
 
 </script>
