@@ -154,6 +154,18 @@
 
   {:else}        
 
+    {#if isStartEvent(element)}
+      <Section id="details" title="Details">
+        <label>Message</label>
+        <select name="message" bind:value={element.message}>
+          <option></option>
+        </select>
+
+        <label>Initiator</label>
+        <input bind:value={element.initiator} />
+      </Section>
+    {/if}
+
     {#if !isProcess(element)}
       <Section id="async" title="Asynchronous Continuations">
         <input type="checkbox"/>
