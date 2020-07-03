@@ -3,6 +3,10 @@
 
   import { find } from 'min-dash';
 
+  import {
+    isStartEvent
+  } from '../../../util/isElementType';
+
   import './OutputItem.scss';
 
   const MAPPING_TYPES = [
@@ -91,10 +95,6 @@
     return variable[mappingType.descriptionProperty]
       ? `Mapping: ${variable[mappingType.descriptionProperty]}`
       : variable.description;
-  };
-
-  const isStartEvent = (type) => {
-    return type === 'bpmn:StartEvent';
   };
 
 </script>

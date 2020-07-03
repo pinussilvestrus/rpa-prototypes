@@ -8,6 +8,12 @@
 
     import ToggleAllTabs from './ToggleAllTabs';
 
+    import {
+      isProcess,
+      isTask,
+      isStartEvent
+    } from '../../util/isElementType';
+
     import './PropertiesPanel.scss';
 
     const noop = () => {};
@@ -76,21 +82,6 @@
     export let element = null;
     export let onPropertiesChanged = noop;
     export let templates = [];
-
-
-    // helpers //////////
-
-    const isProcess = (element) => {
-      return element.type === 'bpmn:Process';
-    };
-
-    const isTask = (element) => {
-      return element.type === 'bpmn:ServiceTask' || element.type === 'bpmn:ReceiveTask';
-    };
-
-    const isStartEvent = (element) => {
-      return element.type === 'bpmn:StartEvent';
-    };
 
 </script>
 

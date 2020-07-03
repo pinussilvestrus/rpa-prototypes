@@ -9,6 +9,12 @@
 
     import VariableList from './element-template/VariableList';
 
+    import {
+      isProcess,
+      isTask,
+      isStartEvent
+    } from '../../util/isElementType';
+
     const noop = () => {};
 
     $: {
@@ -71,18 +77,11 @@
     export let templates;
     export let hidden = false;
 
+
     // helpers //////////
 
     const getTemplate = (element) => {
       return element && find(templates, t => t.id === element.templateId);
-    };
-
-    const isProcess = (element) => {
-      return element.type === 'bpmn:Process';
-    };
-
-    const isTask = (element) => {
-      return element.type == 'bpmn:ServiceTask' || element.type == 'bpmn:SendTask';
     };
 
 </script>
