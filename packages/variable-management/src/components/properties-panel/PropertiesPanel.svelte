@@ -98,26 +98,31 @@
               class:tab-active="{activeTab === 'general'}"
               on:click={handleTabClick}><p>General</p></li>
             {#if showOtherTabs || !element.template}
-              <li class="tab"><p>Listeners</p></li>
               {#if isProcess(element)}
                 <li 
                   class="tab" 
                   class:tab-active="{activeTab === 'variables'}"
                   data-tab="variables" 
                   on:click={handleTabClick}><p>Variables</p></li>
-              {:else if isStartEvent(element)}
+              {/if}
+
+              {#if isStartEvent(element)}
                 <li 
                   class="tab" 
                   class:tab-active="{activeTab === 'process-start'}"
                   data-tab="process-start" 
                   on:click={handleTabClick}><p>Process Inputs</p></li>
-              {:else}
-              <li
-                class="tab"
-                class:tab-active="{activeTab === 'input-output'}"
-                data-tab="input-output"
-                on:click="{handleTabClick}"><p>Input/Output</p></li>
-            <li class="tab"><p>Field Injections</p></li>
+              {/if}
+
+              <li class="tab"><p>Listeners</p></li>
+
+              {#if isTask(element)}
+                <li
+                  class="tab"
+                  class:tab-active="{activeTab === 'input-output'}"
+                  data-tab="input-output"
+                  on:click="{handleTabClick}"><p>Input/Output</p></li>
+                <li class="tab"><p>Field Injections</p></li>
               {/if}
               <li class="tab"><p>Extensions</p></li>
             {:else}
