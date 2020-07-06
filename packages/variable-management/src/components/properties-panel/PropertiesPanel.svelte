@@ -82,6 +82,7 @@
     export let onPropertiesChanged = noop;
     export let templates = [];
     export let inputOutputTabComponent;
+    export let variableListItemComponent;
 
 </script>
 
@@ -136,6 +137,7 @@
           <GeneralTab
             {handlePropertyChanged}
             {handleTemplateChanged}
+            {variableListItemComponent}
             bind:element={element}
             hidden="{activeTab !== 'general'}"
             {templates} />

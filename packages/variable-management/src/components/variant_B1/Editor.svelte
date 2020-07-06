@@ -2,6 +2,7 @@
     import BasicEditor from '../BasicEditor';
 
     import InputOutputTab from '../properties-panel/input-output/InputOutputTab';
+    import VariableListItem from '../properties-panel/element-template/VariableListItem';
 
     import {
       ELEMENTS as elements,
@@ -13,4 +14,5 @@
 <BasicEditor 
   {elements} 
   {templates}
+  variableListItemComponent={VariableListItem}
   inputOutputTabComponent={InputOutputTab} />

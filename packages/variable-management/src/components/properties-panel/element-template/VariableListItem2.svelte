@@ -11,14 +11,12 @@
 
   import { variableStore } from '../../../stores';
 
+  import Switch from '../../Switch';
+
   import WarningSvg from '../../svg/warning.svg';
 
   // todo(pinussilvestrus): that could be refactored to something easier
   const INPUT_MAPPING_TYPES = [
-    {
-      id: 'none',
-      name: 'None'
-    },
     {
       id: 'auto',
       name: 'Auto'
@@ -52,8 +50,8 @@
 
   const OUTPUT_MAPPING_TYPES = [
     {
-      id: 'none',
-      name: 'None'
+      id: 'auto',
+      name: 'Auto'
     },
     {
       id: 'process-variable',
@@ -64,6 +62,8 @@
 
 
   // lifecycle //////////
+
+  let lastSavedMappingType = 'auto';
 
   let availableOptions;
   onMount(async () => {
@@ -84,12 +84,12 @@
       }
 
       if (!variable.mappingType) {
-        variable.mappingType = 'none';
+        variable.mappingType = 'auto';
       }
   
       variable.isMissing =
         !hasExtendedMapping(variable) &&
-        !find(allAvailableOptions, (v) => v === variable.processVariable);
+        !find(allAvailableOptions, (v) => v === variable.processVariable || v === variable.name);
     }
   }
 
@@ -120,6 +120,15 @@
     }
   };
 
+  const handleCheckMapping = (checked) => {
+    if (checked) {
+      variable.mappingType = lastSavedMappingType === 'none' ? 'auto' : lastSavedMappingType;
+    } else {
+      lastSavedMappingType = variable.mappingType;
+      variable.mappingType = 'none';
+    }
+  };
+
 
   // exports //////////
   
@@ -144,8 +153,11 @@
   };
 
   const hasExtendedMapping = (variable) => {
-    return (variable.mappingType && variable.mappingType !== 'process-variable');
+    return variable.mappingType &&
+      variable.mappingType !== 'process-variable' &&
+      variable.mappingType !== 'auto';
   };
+
   const hasMapping = (variable) => {
     return !!variable.mappingType;
   };
@@ -185,48 +197,59 @@
 
       <label>Mapping</label>
 
-      <select name="type" bind:value={variable.mappingType}>
-          {#each INPUT_MAPPING_TYPES as {id, name}}
-            <option value={id} selected={variable.mappingType === id}>{name}</option>
-          {/each}
-      </select>
+      <Switch onCheck="{handleCheckMapping}" checked={hasMapping(variable) && variable.mappingType !== 'none'} />
 
-      {#if variable.mappingType === 'constant-value'}
-        <input autocomplete="off" name="constantValue" bind:value={variable.constantValue} />
-      {:else if variable.mappingType === 'expression'}
-        <textarea autocomplete="off" name="expression" bind:value={variable.expression} />
-      {:else if variable.mappingType === 'inline-script'}
-        <label>Format</label>
-        <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat}  />
-
-        <label>Script</label>
-        <textarea name="script-content" rows="5" bind:value={variable.inlineScript}></textarea>
-      {:else if variable.mappingType === 'external-script'}
-        <label>Format</label>
-        <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat} />
-
-        <label>Resource</label>
-        <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptResource} />
-      {:else if variable.mappingType === 'none'} 
-        <div class="hint">Without mapping, this variable is only documentation and no dedicated local input variable will be created.</div>
-      {:else if variable.mappingType === 'auto'}
-        <div class="hint">The variable is automatically mapped to a process variable of equal name.</div>
+      {#if !hasMapping(variable) || variable.mappingType === 'none'}
+        <div class="hint">
+          Without mapping, this variable is only documentation and no dedicated local input variable will be created.
+        </div>
       {:else}
-          <div class:mapping-missing="{variable.isMissing}">
-            <AutocompleteInput 
-              id="{`${variable.id}-template-value`}"
-              name="mapping"
-              type="text"
-              bind:value={variable.processVariable}
-              items={availableOptions}
-              defaultValue={variable.name}
-              placeholder="{`auto-filled by <${variable.name}> process variable`}"
-            />
 
-            {#if variable.isMissing}
-              <p class="mapping-missing-hint">The auto-filled variable is not available in the process context!</p>
-            {/if}
-          </div>
+        <select name="type" bind:value={variable.mappingType}>
+            {#each INPUT_MAPPING_TYPES as {id, name}}
+              <option value={id} selected={variable.mappingType === id}>{name}</option>
+            {/each}
+        </select>
+
+        {#if variable.mappingType === 'constant-value'}
+          <input autocomplete="off" name="constantValue" bind:value={variable.constantValue} />
+        {:else if variable.mappingType === 'expression'}
+          <textarea autocomplete="off" name="expression" bind:value={variable.expression} />
+        {:else if variable.mappingType === 'inline-script'}
+          <label>Format</label>
+          <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat}  />
+
+          <label>Script</label>
+          <textarea name="script-content" rows="5" bind:value={variable.inlineScript}></textarea>
+        {:else if variable.mappingType === 'external-script'}
+          <label>Format</label>
+          <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat} />
+
+          <label>Resource</label>
+          <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptResource} />
+        {:else if variable.mappingType === 'auto'}
+          <div class="hint">The variable is automatically mapped to a process variable of equal name.</div>
+
+          {#if variable.isMissing}
+            <p class="mapping-missing-hint">The mapped variable is not available in the process context!</p>
+          {/if}
+        {:else if variable.mappingType === 'process-variable'}
+            <div class:mapping-missing="{variable.isMissing}">
+              <AutocompleteInput 
+                id="{`${variable.id}-template-value`}"
+                name="mapping"
+                type="text"
+                bind:value={variable.processVariable}
+                items={availableOptions}
+                defaultValue={variable.name}
+                placeholder="{`auto-filled by <${variable.name}> process variable`}"
+              />
+
+              {#if variable.isMissing}
+                <p class="mapping-missing-hint">The mapped variable is not available in the process context!</p>
+              {/if}
+            </div>
+        {/if}
       {/if}
     {:else}   
       <label>Output Variable Name</label>
@@ -237,19 +260,29 @@
 
       <label>Mapping</label>
 
-      <select name="type" bind:value={variable.mappingType}>
-          {#each OUTPUT_MAPPING_TYPES as {id, name}}
-            <option value={id} selected={variable.mappingType === id}>{name}</option>
-          {/each}
-      </select>
 
-      {#if variable.mappingType === 'process-variable'}
-        <input 
-          autocomplete="off" 
-          name="process-variable" 
-          bind:value={variable.processVariable} />
-      {:else if variable.mappingType === 'none'}
-        <small class="hint">By enabling "None" this variable will not be available in the process context.</small>
+      <Switch onCheck="{handleCheckMapping}" checked={hasMapping(variable) && variable.mappingType !== 'none'} />
+
+      {#if !hasMapping(variable) || variable.mappingType === 'none'}
+        <div class="hint">
+          Without mapping, this variable will not be available in the process context.
+        </div>
+      {:else}
+
+        <select name="type" bind:value={variable.mappingType}>
+            {#each OUTPUT_MAPPING_TYPES as {id, name}}
+              <option value={id} selected={variable.mappingType === id}>{name}</option>
+            {/each}
+        </select>
+
+        {#if variable.mappingType === 'process-variable'}
+          <input 
+            autocomplete="off" 
+            name="process-variable" 
+            bind:value={variable.processVariable} />
+        {:else if variable.mappingType === 'auto'}
+          <div class="hint">The variable is automatically mapped to a process variable of equal name.</div>
+        {/if}
       {/if}
     {/if}
   </div>

@@ -146,6 +146,7 @@
   export let elements = [];
   export let templates = [];
   export let inputOutputTabComponent;
+  export let variableListItemComponent;
 
 </script>
 
@@ -158,5 +159,6 @@
     bind:element={currentElement} 
     {templates}
     {inputOutputTabComponent}
+    {variableListItemComponent}
     onPropertiesChanged={handleUpdateProperties} />
 </div>

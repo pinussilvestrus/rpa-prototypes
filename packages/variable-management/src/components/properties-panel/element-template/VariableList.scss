@@ -85,11 +85,11 @@ $details-padding: 1rem;
         input {
           border: 2px solid $color-yellow-dark;
         }
+      }
 
-        .mapping-missing-hint {
-          color: $color-yellow-dark;
-          margin-top: 8px;
-        }
+      .mapping-missing-hint {
+        color: $color-yellow-dark;
+        margin-top: 8px;
       }
     }
 

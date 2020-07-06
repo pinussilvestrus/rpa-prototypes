@@ -86,6 +86,7 @@
     export let element;
     export let templates;
     export let hidden = false;
+    export let variableListItemComponent;
 
 
     // helpers //////////
@@ -153,11 +154,13 @@
         id="input-select"
         title="Input Variables"
         elementId={element.id}
+        {variableListItemComponent}
         bind:variables={element.template.inputs} />
 
       <VariableList
         id="output-select"
         title="Output Variables"
+        {variableListItemComponent}
         bind:variables={element.template.outputs} />
 
     </Section>
