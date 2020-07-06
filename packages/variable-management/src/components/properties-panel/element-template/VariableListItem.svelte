@@ -167,12 +167,15 @@
   </div>
   <div class="variable-details">
 
-    <label>Description</label>
-    <textarea name="description" bind:value={variable.description} rows="3" disabled />
-
     {#if isInputVariable(variable)}
 
-      <label>Input Mapping</label>
+      <label>Input Variable Name</label>
+      <input name="name" bind:value={variable.name} disabled />
+
+      <label>Description</label>
+      <textarea name="description" bind:value={variable.description} rows="3" disabled />
+
+      <label>Mapping</label>
 
       <select name="type" bind:value={variable.mappingType}>
           {#each INPUT_MAPPING_TYPES as {id, name}}
@@ -231,8 +234,14 @@
             {/if}
           </div>
       {/if}
-    {:else}
-      <label>Output Mapping</label>
+    {:else}   
+      <label>Output Variable Name</label>
+      <input disabled name="name" bind:value={variable.name} />
+
+      <label>Description</label>
+      <textarea name="description" bind:value={variable.description} rows="3" disabled />
+
+      <label>Mapping</label>
 
       <select name="type" bind:value={variable.mappingType}>
           {#each OUTPUT_MAPPING_TYPES as {id, name}}

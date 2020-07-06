@@ -9,11 +9,9 @@
 
     import AddInput from './AddInput';
     import AddOutput from './AddOutput';
-    import AddOutputMapping from './AddOutputMapping';
 
     import InputItem from './InputItem';
     import OutputItem from './OutputItem';
-    import OutputMappingItem from './OutputMappingItem';
 
     import './InputOutputTab.scss';
 
@@ -105,20 +103,4 @@
             <p class="empty">None</p>
           {/each}
     </Section>
-
-    <!-- todo(pinussilvestrus): remove if decision was made -->
-    {#if !onlyOutputs && false}
-      <Section 
-          id="output-mappings" 
-          title="Output Transformation"
-          collection={element.outputMappings}
-          onUpdateCollection={handleUpdateCollection}
-          addComponent={AddOutputMapping}>
-            {#each element.outputMappings as outputMapping}
-              <OutputMappingItem {outputMapping} onDeleteItem={handleDeleteItem} />
-            {:else}
-              <p class="empty">None</p>
-            {/each}
-      </Section>
-    {/if}
 </div>

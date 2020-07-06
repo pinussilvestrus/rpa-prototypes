@@ -13,6 +13,11 @@
 
   const MAPPING_TYPES = [
     {
+      id: 'none',
+      name: 'None',
+      descriptionProperty: 'description'
+    },
+    {
       id: 'process-variable',
       name: 'Process Variable',
       descriptionProperty: 'processVariable'
@@ -40,6 +45,7 @@
   ];
 
   const noop = () => {};
+
 
   // lifecycle //////////
 
@@ -106,13 +112,13 @@
       <p class="item-description">{getHeaderDescription(input)}</p>
     </div>
     <div class="item-details input-details">
-      <label>Input Variable Name</label>
+      <label>Local Input Variable Name</label>
       <input autocomplete="off" name="name" bind:value={input.name} />
 
       <label>Description</label>
       <textarea name="description" bind:value={input.description} />
 
-      <label>Input Mapping</label>
+      <label>Mapping</label>
       <select name="type" bind:value={input.mappingType}>
           {#each MAPPING_TYPES as {id, name}}
             <option value={id}>{name}</option>

@@ -13,7 +13,7 @@
       collection.unshift({
         id,
         name: id,
-        mappingType: 'process-variable',
+        mappingType: 'none',
         description: ''
       });
 

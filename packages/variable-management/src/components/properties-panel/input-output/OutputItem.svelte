@@ -11,10 +11,6 @@
 
   const MAPPING_TYPES = [
     {
-      id: 'process-variable',
-      name: 'Process Variable'
-    },
-    {
       id: 'none',
       name: 'None'
     },
@@ -105,7 +101,7 @@
       <p class="item-description">{getHeaderDescription(output)}</p>
     </div>
     <div class="item-details output-details">
-      <label>Output Variable Name</label>
+      <label>Process Variable Name</label>
       <input autocomplete="off" name="name" bind:value={output.name} />
 
       <label>Description</label>
@@ -136,10 +132,6 @@
 
         <label>Resource</label>
         <input autocomplete="off" name="script-resource" bind:value={output.externalScriptResource} />
-      {:else if output.mappingType === 'process-variable'}
-        <small class="hint">By enabling "Process Variable" this variable will directly be available in the process context.</small>
-      {:else if output.mappingType === 'none'}
-        <small class="hint">By enabling "None" this variable will not be available in the process context.</small>
       {/if}
 
       <div class="action delete" on:click={handleDelete}>Delete Parameter</div>

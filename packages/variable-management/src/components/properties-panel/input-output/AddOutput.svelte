@@ -13,7 +13,8 @@
       collection.unshift({
         id,
         name: id,
-        description: ''
+        description: '',
+        mappingType: 'none'
       });
 
       onUpdateCollection('outputs', collection, {
