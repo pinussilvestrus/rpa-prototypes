@@ -1,5 +1,5 @@
 <script>
-    import { assign, debounce, find, forEach, map } from 'min-dash';
+    import { assign, debounce, find, filter, forEach, map } from 'min-dash';
 
     import dom from 'domtastic';
 
@@ -42,13 +42,24 @@
             return input;
           });
 
+          // (2.1) filter out none mapping
+          const withoutNone =
+            filter(
+              template.outputs,
+              (output) => output.mappingType && output.mappingType !== 'none'
+            );
+    
           // todo(pinussilvestrus): filter none mappings here?
-          element.outputs = map(template.outputs, (output) => {
+          element.outputs = map(withoutNone, (output) => {
             return {
               ...output,
               name: (output.mappingType === 'process-variable' && output.processVariable)
                 ? output.processVariable
-                : output.name
+                : output.name,
+              mappingType: (output.mappingType === 'process-variable' ? 'expression' : 'none'),
+              expression: (output.mappingType === 'process-variable' && output.processVariable)
+                ? '${' + output.name + '}'
+                : null
             };
           });
 
