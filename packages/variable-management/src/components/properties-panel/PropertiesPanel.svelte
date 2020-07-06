@@ -2,7 +2,6 @@
     import dom from 'domtastic';
 
     import GeneralTab from './GeneralTab';
-    import InputOutputTab from './input-output/InputOutputTab';
     import Variables from './VariablesTab';
     import ProcessInputTab from './process-input/ProcessInputTab';
 
@@ -82,6 +81,7 @@
     export let element = null;
     export let onPropertiesChanged = noop;
     export let templates = [];
+    export let inputOutputTabComponent;
 
 </script>
 
@@ -140,7 +140,8 @@
             hidden="{activeTab !== 'general'}"
             {templates} />
           
-          <InputOutputTab 
+          <svelte:component
+            this="{inputOutputTabComponent}"
             bind:element={element}
             hidden="{activeTab !== 'input-output'}"
           />
