@@ -20,10 +20,6 @@
       name: 'None'
     },
     {
-      id: 'auto',
-      name: 'Auto'
-    },
-    {
       id: 'process-variable',
       name: 'Process Variable',
       descriptionProperty: 'processVariable'
@@ -84,7 +80,7 @@
       }
 
       if (!variable.mappingType) {
-        variable.mappingType = 'auto';
+        variable.mappingType = 'process-variable';
       }
   
       variable.isMissing =
@@ -209,8 +205,6 @@
         <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptResource} />
       {:else if variable.mappingType === 'none'} 
         <div class="hint">Without mapping, this variable is only documentation and no dedicated local input variable will be created.</div>
-      {:else if variable.mappingType === 'auto'}
-        <div class="hint">The variable is automatically mapped to a process variable of equal name.</div>
       {:else}
           <div class:mapping-missing="{variable.isMissing}">
             <AutocompleteInput 

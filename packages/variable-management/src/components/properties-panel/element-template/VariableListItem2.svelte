@@ -18,10 +18,6 @@
   // todo(pinussilvestrus): that could be refactored to something easier
   const INPUT_MAPPING_TYPES = [
     {
-      id: 'auto',
-      name: 'Auto'
-    },
-    {
       id: 'process-variable',
       name: 'Process Variable',
       descriptionProperty: 'processVariable'
@@ -50,10 +46,6 @@
 
   const OUTPUT_MAPPING_TYPES = [
     {
-      id: 'auto',
-      name: 'Auto'
-    },
-    {
       id: 'process-variable',
       name: 'Process Variable Name',
       descriptionProperty: 'processVariable'
@@ -63,7 +55,7 @@
 
   // lifecycle //////////
 
-  let lastSavedMappingType = 'auto';
+  let lastSavedMappingType = 'process-variable';
 
   let availableOptions;
   onMount(async () => {
@@ -84,12 +76,14 @@
       }
 
       if (!variable.mappingType) {
-        variable.mappingType = 'auto';
+        variable.mappingType = 'process-variable';
       }
+
+      console.log(variable.mappingType);
   
       variable.isMissing =
         !hasExtendedMapping(variable) &&
-        !find(allAvailableOptions, (v) => v === variable.processVariable || v === variable.name);
+        !find(allAvailableOptions, (v) => v === variable.processVariable);
     }
   }
 
@@ -122,7 +116,7 @@
 
   const handleCheckMapping = (checked) => {
     if (checked) {
-      variable.mappingType = lastSavedMappingType === 'none' ? 'auto' : lastSavedMappingType;
+      variable.mappingType = lastSavedMappingType === 'none' ? 'process-variable' : lastSavedMappingType;
     } else {
       lastSavedMappingType = variable.mappingType;
       variable.mappingType = 'none';
@@ -154,8 +148,7 @@
 
   const hasExtendedMapping = (variable) => {
     return variable.mappingType &&
-      variable.mappingType !== 'process-variable' &&
-      variable.mappingType !== 'auto';
+      variable.mappingType !== 'process-variable';
   };
 
   const hasMapping = (variable) => {
@@ -227,12 +220,6 @@
 
           <label>Resource</label>
           <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptResource} />
-        {:else if variable.mappingType === 'auto'}
-          <div class="hint">The variable is automatically mapped to a process variable of equal name.</div>
-
-          {#if variable.isMissing}
-            <p class="mapping-missing-hint">The mapped variable is not available in the process context!</p>
-          {/if}
         {:else if variable.mappingType === 'process-variable'}
             <div class:mapping-missing="{variable.isMissing}">
               <AutocompleteInput 
@@ -280,8 +267,6 @@
             autocomplete="off" 
             name="process-variable" 
             bind:value={variable.processVariable} />
-        {:else if variable.mappingType === 'auto'}
-          <div class="hint">The variable is automatically mapped to a process variable of equal name.</div>
         {/if}
       {/if}
     {/if}

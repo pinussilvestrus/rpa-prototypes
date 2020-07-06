@@ -9,10 +9,6 @@
 
   const MAPPING_TYPES = [
     {
-      id: 'auto',
-      name: 'Auto'
-    },
-    {
       id: 'local-variable',
       name: 'Local Variable',
       descriptionProperty: 'localVariable'
@@ -44,7 +40,7 @@
 
   // lifecycle //////////
 
-  let lastSavedMappingType = 'auto';
+  let lastSavedMappingType = 'local-variable';
 
 
   // methods //////////
@@ -66,7 +62,7 @@
 
   const handleCheckMapping = (checked) => {
     if (checked) {
-      output.mappingType = lastSavedMappingType === 'none-mapping' ? 'auto' : lastSavedMappingType;
+      output.mappingType = lastSavedMappingType === 'none-mapping' ? 'local-variable' : lastSavedMappingType;
     } else {
       lastSavedMappingType = output.mappingType;
       output.mappingType = 'none-mapping';
@@ -151,8 +147,6 @@
           <input autocomplete="off" name="script-resource" bind:value={output.externalScriptResource} />
         {:else if output.mappingType === 'local-variable'}
           <input autocomplete="off" name="local-variable" bind:value={output.localVariable} />
-        {:else if output.mappingType === 'auto'}
-          <div class="hint">The variable is automatically mapped to a local variable of equal name.</div>
         {/if}
       {/if}
 

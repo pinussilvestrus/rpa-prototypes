@@ -14,10 +14,6 @@
 
   const MAPPING_TYPES = [
     {
-      id: 'auto',
-      name: 'Auto'
-    },
-    {
       id: 'process-variable',
       name: 'Process Variable',
       descriptionProperty: 'processVariable'
@@ -49,7 +45,7 @@
 
   // lifecycle //////////
 
-  let lastSavedMappingType = 'auto';
+  let lastSavedMappingType = 'process-variable';
 
   let availableOptions;
   onMount(async () => {
@@ -84,7 +80,7 @@
 
   const handleCheckMapping = (checked) => {
     if (checked) {
-      input.mappingType = lastSavedMappingType === 'none' ? 'auto' : lastSavedMappingType;
+      input.mappingType = lastSavedMappingType === 'none' ? 'process-variable' : lastSavedMappingType;
     } else {
       lastSavedMappingType = input.mappingType;
       input.mappingType = 'none';
@@ -179,8 +175,6 @@
 
           <label>Resource</label>
           <input autocomplete="off" name="script-resource" bind:value={input.externalScriptResource} />
-        {:else if input.mappingType === 'auto'}
-          <div class="hint">The variable is automatically mapped to a process variable of equal name.</div>
         {/if}
 
       {/if}

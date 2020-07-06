@@ -11,10 +11,6 @@
       name: 'None'
     },
     {
-      id: 'auto',
-      name: 'Auto'
-    },
-    {
       id: 'local-variable',
       name: 'Local Variable',
       descriptionProperty: 'localVariable'
@@ -49,7 +45,7 @@
 
   $: {
     if (!output.mappingType) {
-      output.mappingType = 'process-variable';
+      output.mappingType = 'local-variable';
     }
   }
 
@@ -139,8 +135,6 @@
         <div class="hint">
           Without mapping, the variable has to be declared within this task to use it.
         </div>
-      {:else if output.mappingType === 'auto'}
-        <div class="hint">The variable is automatically mapped to a local variable of equal name.</div>
       {:else if output.mappingType === 'local-variable'}
         <input autocomplete="off" name="local-variable" bind:value={output.localVariable} />
       {/if}
