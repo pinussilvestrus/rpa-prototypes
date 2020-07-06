@@ -83,8 +83,8 @@
 
         <label>Default Value</label>
         <input autocomplete="off" name="defaultValue" bind:value={formField.defaultValue} />
-
-        <div class="action delete" on:click={handleDelete}>Delete Variable</div>
       {/if}
+
+      <div class="action delete" on:click={handleDelete}>Delete</div>
     </div>
 </div>
