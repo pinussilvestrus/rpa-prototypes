@@ -1,0 +1,61 @@
+@import "../_colors.scss";
+
+.switch {
+  display: block;
+
+  .label {
+    margin: 0;
+    margin-left: 3px;
+    display: inline-block;
+  }
+
+  .switcher {
+    position: relative;
+    display: inline-block;
+    width: 48px;
+    height: 20px;
+
+    input {
+      opacity: 0;
+      width: 0;
+      height: 0;
+    }
+
+    .slider {
+      position: absolute;
+      cursor: pointer;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background-color: $color-silver-darken-80;
+      -webkit-transition: 0.4s;
+      transition: 0.4s;
+      border-radius: 34px;
+
+      &:before {
+        position: absolute;
+        content: "";
+        height: 16px;
+        width: 16px;
+        left: 2px;
+        bottom: 2px;
+        background-color: white;
+        -webkit-transition: 0.4s;
+        transition: 0.4s;
+        border-radius: 50%;
+      }
+    }
+
+    input:checked + .slider {
+      background-color: $color-blue-base-65;
+      box-shadow: 0 0 1px $color-blue-base-65;
+
+      &:before {
+        -webkit-transform: translateX(28px);
+        -ms-transform: translateX(28px);
+        transform: translateX(28px);
+      }
+    }
+  }
+}
