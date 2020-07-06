@@ -49,16 +49,15 @@
               (output) => output.mappingType && output.mappingType !== 'none'
             );
     
-          // todo(pinussilvestrus): filter none mappings here?
           element.outputs = map(withoutNone, (output) => {
             return {
               ...output,
               name: (output.mappingType === 'process-variable' && output.processVariable)
                 ? output.processVariable
                 : output.name,
-              mappingType: (output.mappingType === 'process-variable' ? 'expression' : 'none'),
-              expression: (output.mappingType === 'process-variable' && output.processVariable)
-                ? '${' + output.name + '}'
+              mappingType: (output.mappingType === 'process-variable' ? 'local-variable' : 'none-mapping'),
+              localVariable: (output.mappingType === 'process-variable' && output.processVariable)
+                ? output.name
                 : null
             };
           });

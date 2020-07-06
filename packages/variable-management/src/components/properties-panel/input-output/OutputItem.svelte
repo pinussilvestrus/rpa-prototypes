@@ -3,26 +3,32 @@
 
   import { find } from 'min-dash';
 
-  import {
-    isStartEvent
-  } from '../../../util/isElementType';
-
   import './OutputItem.scss';
 
   const MAPPING_TYPES = [
     {
-      id: 'none',
+      id: 'none-mapping',
       name: 'None'
     },
     {
-      id: 'expression',
-      name: 'Expression',
-      descriptionProperty: 'expression'
+      id: 'auto',
+      name: 'Auto'
+    },
+    {
+      id: 'local-variable',
+      name: 'Local Variable',
+      descriptionProperty: 'localVariable'
+
     },
     {
       id: 'constant-value',
       name: 'Constant Value',
       descriptionProperty: 'constantValue'
+    },
+    {
+      id: 'expression',
+      name: 'Expression',
+      descriptionProperty: 'expression'
     },
     {
       id: 'inline-script',
@@ -70,7 +76,6 @@
 
   export let output;
   export let onDeleteItem = noop;
-  export let elementType;
 
 
   // helper //////////
@@ -107,14 +112,12 @@
       <label>Description</label>
       <textarea name="description" bind:value={output.description} />
 
-      {#if !isStartEvent(elementType)}
-        <label>Output Mapping</label>
-        <select name="type" bind:value={output.mappingType}>
-            {#each MAPPING_TYPES as {id, name}}
-              <option value={id}>{name}</option>
-            {/each}
-        </select>
-      {/if}
+      <label>Mapping</label>
+      <select name="type" bind:value={output.mappingType}>
+          {#each MAPPING_TYPES as {id, name}}
+            <option value={id}>{name}</option>
+          {/each}
+      </select>
 
       {#if output.mappingType === 'constant-value'}
         <input autocomplete="off" name="constant-value" bind:value={output.constantValue} />
@@ -132,8 +135,16 @@
 
         <label>Resource</label>
         <input autocomplete="off" name="script-resource" bind:value={output.externalScriptResource} />
+      {:else if output.mappingType === 'none-mapping'}
+        <div class="hint">
+          Without mapping, the variable has to be declared within this task to use it.
+        </div>
+      {:else if output.mappingType === 'auto'}
+        <div class="hint">The variable is automatically mapped to a local variable of equal name.</div>
+      {:else if output.mappingType === 'local-variable'}
+        <input autocomplete="off" name="local-variable" bind:value={output.localVariable} />
       {/if}
 
-      <div class="action delete" on:click={handleDelete}>Delete Parameter</div>
+      <div class="action delete" on:click={handleDelete}>Delete</div>
     </div>
 </div>

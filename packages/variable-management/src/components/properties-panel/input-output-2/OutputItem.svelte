@@ -9,14 +9,23 @@
 
   const MAPPING_TYPES = [
     {
-      id: 'expression',
-      name: 'Expression',
-      descriptionProperty: 'expression'
+      id: 'auto',
+      name: 'Auto'
+    },
+    {
+      id: 'local-variable',
+      name: 'Local Variable',
+      descriptionProperty: 'localVariable'
     },
     {
       id: 'constant-value',
       name: 'Constant Value',
       descriptionProperty: 'constantValue'
+    },
+    {
+      id: 'expression',
+      name: 'Expression',
+      descriptionProperty: 'expression'
     },
     {
       id: 'inline-script',
@@ -35,13 +44,7 @@
 
   // lifecycle //////////
 
-  let lastSavedMappingType = 'process-variable';
-
-  $: {
-    if (!output.mappingType) {
-      output.mappingType = 'process-variable';
-    }
-  }
+  let lastSavedMappingType = 'auto';
 
 
   // methods //////////
@@ -63,10 +66,10 @@
 
   const handleCheckMapping = (checked) => {
     if (checked) {
-      output.mappingType = lastSavedMappingType === 'none' ? 'expression' : lastSavedMappingType;
+      output.mappingType = lastSavedMappingType === 'none-mapping' ? 'auto' : lastSavedMappingType;
     } else {
       lastSavedMappingType = output.mappingType;
-      output.mappingType = 'none';
+      output.mappingType = 'none-mapping';
     }
   };
 
@@ -98,7 +101,7 @@
   };
 
   const hasMapping = (variable) => {
-    return variable.mappingType && variable.mappingType !== 'none';
+    return variable.mappingType && variable.mappingType !== 'none-mapping';
   };
 
 </script>
@@ -121,7 +124,7 @@
 
       {#if !hasMapping(output)}
         <div class="hint">
-          Without mapping, this variable needs to be defined within this task.
+          Without mapping, the variable has to be declared within this task to use it.
         </div>
       {:else}
         <select name="type" bind:value={output.mappingType}>
@@ -146,9 +149,13 @@
 
           <label>Resource</label>
           <input autocomplete="off" name="script-resource" bind:value={output.externalScriptResource} />
+        {:else if output.mappingType === 'local-variable'}
+          <input autocomplete="off" name="local-variable" bind:value={output.localVariable} />
+        {:else if output.mappingType === 'auto'}
+          <div class="hint">The variable is automatically mapped to a local variable of equal name.</div>
         {/if}
       {/if}
 
-      <div class="action delete" on:click={handleDelete}>Delete Parameter</div>
+      <div class="action delete" on:click={handleDelete}>Delete</div>
     </div>
 </div>

@@ -14,7 +14,7 @@
         id,
         name: id,
         description: '',
-        mappingType: 'none'
+        mappingType: 'none-mapping'
       });
 
       onUpdateCollection('outputs', collection, {

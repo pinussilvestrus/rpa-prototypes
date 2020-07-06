@@ -14,8 +14,11 @@
   const MAPPING_TYPES = [
     {
       id: 'none',
-      name: 'None',
-      descriptionProperty: 'description'
+      name: 'None'
+    },
+    {
+      id: 'auto',
+      name: 'Auto'
     },
     {
       id: 'process-variable',
@@ -112,7 +115,7 @@
       <p class="item-description">{getHeaderDescription(input)}</p>
     </div>
     <div class="item-details input-details">
-      <label>Local Input Variable Name</label>
+      <label>Local Variable Name</label>
       <input autocomplete="off" name="name" bind:value={input.name} />
 
       <label>Description</label>
@@ -151,8 +154,12 @@
 
         <label>Resource</label>
         <input autocomplete="off" name="script-resource" bind:value={input.externalScriptResource} />
+      {:else if input.mappingType === 'none'} 
+        <div class="hint">Without mapping, this variable is only documentation and no dedicated local input variable will be created.</div>
+      {:else if input.mappingType === 'auto'}
+        <div class="hint">The variable is automatically mapped to a process variable of equal name.</div>
       {/if}
 
-      <div class="action delete" on:click={handleDelete}>Delete Parameter</div>
+      <div class="action delete" on:click={handleDelete}>Delete</div>
     </div>
 </div>
