@@ -84,7 +84,7 @@
       }
 
       if (!variable.mappingType) {
-        variable.mappingType = 'none';
+        variable.mappingType = 'auto';
       }
   
       variable.isMissing =
