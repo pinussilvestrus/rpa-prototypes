@@ -7,8 +7,8 @@
     
     import Section from '../Section';
 
-    import AddInput from './AddInput';
-    import AddOutput from './AddOutput';
+    import AddInput from '../input-output/AddInput';
+    import AddOutput from '../input-output/AddOutput';
 
     import InputItem from './InputItem';
     import OutputItem from './OutputItem';
