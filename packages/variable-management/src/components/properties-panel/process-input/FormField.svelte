@@ -1,6 +1,8 @@
 <script>
   import dom from 'domtastic';
 
+  import Switch from '../../Switch';
+
   const noop = () => {};
 
   // methods //////////
@@ -20,6 +22,10 @@
     onDeleteItem('outputs', formField.id);
   };
 
+  const handleCheck = (checked) => {
+    formField.isFormField = checked;
+  };
+
 
   // exports //////////
 
@@ -31,6 +37,10 @@
 
   const getHeaderDescription = (formField) => {
     return formField.description;
+  };
+
+  const isFormField = (formField) => {
+    return formField.isFormField;
   };
 
 </script>
@@ -47,31 +57,34 @@
       <label>Description</label>
       <textarea name="description" bind:value={formField.description} />
 
-      <!-- todo(pinussilvestrus): default: invisible, add form field action -->
       <!-- todo(pinussilvestrus): add validation + properties -->
-      <b>Form Field Details</b><br><br>
+      <label>Form Field Details</label>
 
-      <label>Type</label>
-      <select name="type" bind:value={formField.type}>
-        <option></option>
-        <option>string</option>
-        <option>long</option>
-        <option>boolean</option>
-        <option>date</option>
-        <option>enum</option>
-        <option value="custom-type">custom type</option>
-      </select>
+      <Switch onCheck="{handleCheck}" checked={isFormField(formField)} />
 
-      {#if formField.type === 'custom-type'}
-        <input name="custom-type" bind:value={formField.customType} />
+      {#if isFormField(formField)}
+        <label>Type</label>
+        <select name="type" bind:value={formField.type}>
+          <option></option>
+          <option>string</option>
+          <option>long</option>
+          <option>boolean</option>
+          <option>date</option>
+          <option>enum</option>
+          <option value="custom-type">custom type</option>
+        </select>
+
+        {#if formField.type === 'custom-type'}
+          <input name="custom-type" bind:value={formField.customType} />
+        {/if}
+
+        <label>Label</label>
+        <input autocomplete="off" name="label" bind:value={formField.label} />
+
+        <label>Default Value</label>
+        <input autocomplete="off" name="defaultValue" bind:value={formField.defaultValue} />
+
+        <div class="action delete" on:click={handleDelete}>Delete Variable</div>
       {/if}
-
-      <label>Label</label>
-      <input autocomplete="off" name="label" bind:value={formField.label} />
-
-      <label>Default Value</label>
-      <input autocomplete="off" name="defaultValue" bind:value={formField.defaultValue} />
-
-      <div class="action delete" on:click={handleDelete}>Delete Variable</div>
     </div>
 </div>
