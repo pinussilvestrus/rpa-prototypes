@@ -15,14 +15,14 @@
       name: 'None'
     },
     {
-      id: 'constant-value',
-      name: 'Constant Value',
-      descriptionProperty: 'constantValue'
-    },
-    {
       id: 'expression',
       name: 'Expression',
       descriptionProperty: 'expression'
+    },
+    {
+      id: 'constant-value',
+      name: 'Constant Value',
+      descriptionProperty: 'constantValue'
     },
     {
       id: 'inline-script',

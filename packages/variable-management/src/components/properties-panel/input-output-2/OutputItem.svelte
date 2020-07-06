@@ -3,26 +3,20 @@
 
   import { find } from 'min-dash';
 
-  import {
-    isStartEvent
-  } from '../../../util/isElementType';
+  import Switch from '../../Switch';
 
   import './OutputItem.scss';
 
   const MAPPING_TYPES = [
     {
-      id: 'none',
-      name: 'None'
+      id: 'expression',
+      name: 'Expression',
+      descriptionProperty: 'expression'
     },
     {
       id: 'constant-value',
       name: 'Constant Value',
       descriptionProperty: 'constantValue'
-    },
-    {
-      id: 'expression',
-      name: 'Expression',
-      descriptionProperty: 'expression'
     },
     {
       id: 'inline-script',
@@ -40,6 +34,8 @@
 
 
   // lifecycle //////////
+
+  let lastSavedMappingType = 'process-variable';
 
   $: {
     if (!output.mappingType) {
@@ -65,12 +61,20 @@
     onDeleteItem('outputs', output.id);
   };
 
+  const handleCheckMapping = (checked) => {
+    if (checked) {
+      output.mappingType = lastSavedMappingType === 'none' ? 'expression' : lastSavedMappingType;
+    } else {
+      lastSavedMappingType = output.mappingType;
+      output.mappingType = 'none';
+    }
+  };
+
 
   // exports //////////
 
   export let output;
   export let onDeleteItem = noop;
-  export let elementType;
 
 
   // helper //////////
@@ -93,6 +97,10 @@
       : variable.description;
   };
 
+  const hasMapping = (variable) => {
+    return variable.mappingType && variable.mappingType !== 'none';
+  };
+
 </script>
 
 <div class="item output" id={`${output.id}`}>
@@ -107,31 +115,38 @@
       <label>Description</label>
       <textarea name="description" bind:value={output.description} />
 
-      {#if !isStartEvent(elementType)}
-        <label>Output Mapping</label>
+      <label>Mapping</label>
+
+      <Switch onCheck="{handleCheckMapping}" checked={hasMapping(output)} />
+
+      {#if !hasMapping(output)}
+        <div class="hint">
+          Without mapping, this variable needs to be defined within this task.
+        </div>
+      {:else}
         <select name="type" bind:value={output.mappingType}>
             {#each MAPPING_TYPES as {id, name}}
               <option value={id}>{name}</option>
             {/each}
         </select>
-      {/if}
 
-      {#if output.mappingType === 'constant-value'}
-        <input autocomplete="off" name="constant-value" bind:value={output.constantValue} />
-      {:else if output.mappingType === 'expression'}
-        <textarea autocomplete="off" name="expression" bind:value={output.expression} />
-      {:else if output.mappingType === 'inline-script'}
-        <label>Format</label>
-        <input autocomplete="off" name="script-format" bind:value={output.scriptFormat}  />
+        {#if output.mappingType === 'constant-value'}
+          <input autocomplete="off" name="constant-value" bind:value={output.constantValue} />
+        {:else if output.mappingType === 'expression'}
+          <textarea autocomplete="off" name="expression" bind:value={output.expression} />
+        {:else if output.mappingType === 'inline-script'}
+          <label>Format</label>
+          <input autocomplete="off" name="script-format" bind:value={output.scriptFormat}  />
 
-        <label>Script</label>
-        <textarea name="script-content" rows="5" bind:value={output.inlineScript}></textarea>
-      {:else if output.mappingType === 'external-script'}
-        <label>Format</label>
-        <input autocomplete="off" name="script-format" bind:value={output.scriptFormat} />
+          <label>Script</label>
+          <textarea name="script-content" rows="5" bind:value={output.inlineScript}></textarea>
+        {:else if output.mappingType === 'external-script'}
+          <label>Format</label>
+          <input autocomplete="off" name="script-format" bind:value={output.scriptFormat} />
 
-        <label>Resource</label>
-        <input autocomplete="off" name="script-resource" bind:value={output.externalScriptResource} />
+          <label>Resource</label>
+          <input autocomplete="off" name="script-resource" bind:value={output.externalScriptResource} />
+        {/if}
       {/if}
 
       <div class="action delete" on:click={handleDelete}>Delete Parameter</div>

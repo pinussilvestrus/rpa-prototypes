@@ -139,7 +139,7 @@
 
       {#if !hasMapping(input)}
         <div class="hint">
-          Without mapping, this variable is only documentation and no dedicated local input variable will be created (DataInput).
+          Without mapping, this variable is only documentation and no dedicated local input variable will be created.
         </div>
       {:else}
 
