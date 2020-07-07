@@ -104,6 +104,7 @@
     <div class="item-header output-header" on:click={handleTitleClick}>
       <p class="item-name"><i class="chevron"></i>{output.name}</p>
       <p class="item-description">{getHeaderDescription(output)}</p>
+      <div class="action delete" on:click={handleDelete}>Delete</div>
     </div>
     <div class="item-details output-details">
       <label>Process Variable Name</label>
@@ -143,7 +144,5 @@
         <label>Local Variable Name</label>
         <input autocomplete="off" name="local-variable" bind:value={output.localVariable} />
       {/if}
-
-      <div class="action delete" on:click={handleDelete}>Delete</div>
     </div>
 </div>

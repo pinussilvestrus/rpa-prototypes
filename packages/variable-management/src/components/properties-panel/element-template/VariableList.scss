@@ -1,6 +1,6 @@
 @import "../../../colors";
 
-$details-padding: 1rem;
+$details-padding: 1.5rem;
 
 .variable-list {
   margin-top: 8px;
@@ -12,12 +12,10 @@ $details-padding: 1rem;
   }
 
   .variable {
-    margin-top: 10px;
-    padding: 10px;
-    padding-left: 5px;
-    border: solid 1px $color-silver-darken-80;
-    background-color: $color-silver-darken-94;
-    border-radius: 2px;
+    padding: 7px 5px;
+    // border: solid 1px $color-silver-darken-80;
+    // background-color: $color-silver-darken-94;
+    // border-radius: 2px;
 
     .variable-header {
       &:hover {
@@ -51,8 +49,9 @@ $details-padding: 1rem;
 
       .variable-description {
         margin: 0;
+        margin-left: 7px;
         color: $color-grey-darken-50;
-        float: right;
+        display: inline;
 
         max-width: 150px;
         text-overflow: ellipsis;
@@ -64,7 +63,9 @@ $details-padding: 1rem;
     .variable-details {
       display: none;
       padding-left: $details-padding;
-      padding-top: 20px;
+      margin-left: 5px;
+      padding-top: 10px;
+      border-left: 1px solid $color-silver-darken-80;
 
       label {
         font-weight: normal;

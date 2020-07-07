@@ -30,5 +30,5 @@
 </script>
 
 <div class="action add add-output" on:click={handleAddOutput}>
-  {@html PlusSvg}
+  {@html PlusSvg} Create
 </div>

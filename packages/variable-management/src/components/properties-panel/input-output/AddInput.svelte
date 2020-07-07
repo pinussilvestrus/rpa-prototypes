@@ -30,5 +30,5 @@
 </script>
 
 <div class="action add add-input" on:click={handleAddInput}>
-  {@html PlusSvg}
+  {@html PlusSvg} Create
 </div>

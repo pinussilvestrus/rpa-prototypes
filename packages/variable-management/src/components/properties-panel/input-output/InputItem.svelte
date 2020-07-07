@@ -109,6 +109,7 @@
     <div class="item-header input-header" on:click={handleTitleClick}>
       <p class="item-name"><i class="chevron"></i>{input.name}</p>
       <p class="item-description">{getHeaderDescription(input)}</p>
+      <div class="action delete" on:click={handleDelete}>Delete</div>
     </div>
     <div class="item-details input-details">
       <label>Local Variable Name</label>
@@ -154,7 +155,5 @@
       {:else if input.mappingType === 'none'} 
         <div class="hint">Without mapping, this variable is only documentation and no dedicated local input variable will be created.</div>
       {/if}
-
-      <div class="action delete" on:click={handleDelete}>Delete</div>
     </div>
 </div>
