@@ -218,7 +218,7 @@
             />
 
             {#if variable.isMissing}
-              <p class="mapping-missing-hint">The auto-filled variable is not available in the process context!</p>
+              <p class="mapping-missing-hint">The specified variable is not available in the process context!</p>
             {/if}
           </div>
       {/if}
