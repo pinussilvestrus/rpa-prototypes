@@ -47,6 +47,10 @@
     if (!output.mappingType) {
       output.mappingType = 'local-variable';
     }
+
+    if (output.mappingType === 'local-variable' && !output.localVariable) {
+      output.localVariable = output.name;
+    }
   }
 
 
