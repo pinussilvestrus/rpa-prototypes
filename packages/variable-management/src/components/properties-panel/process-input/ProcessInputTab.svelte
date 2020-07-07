@@ -71,7 +71,7 @@
 <div class="process-input-tab" class:hidden={hidden} bind:this="{formTabNode}">
   <Section 
     id="form-fields" 
-    title="Input Variables" 
+    title="Process Input Variables" 
     collection={element.outputs}
     onUpdateCollection={handleUpdateCollection}
     addComponent={AddFormField}>

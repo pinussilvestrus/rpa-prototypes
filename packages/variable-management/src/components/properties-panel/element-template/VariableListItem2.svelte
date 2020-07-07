@@ -79,8 +79,6 @@
         variable.mappingType = 'process-variable';
       }
 
-      console.log(variable.mappingType);
-  
       variable.isMissing =
         !hasExtendedMapping(variable) &&
         !find(allAvailableOptions, (v) => v === variable.processVariable);
