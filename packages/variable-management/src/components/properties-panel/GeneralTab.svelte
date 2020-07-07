@@ -56,6 +56,7 @@
                 ? output.processVariable
                 : output.name,
               mappingType: (output.mappingType === 'process-variable' ? 'local-variable' : 'none-mapping'),
+              description: '',
               localVariable: (output.mappingType === 'process-variable' && output.processVariable)
                 ? output.name
                 : null
