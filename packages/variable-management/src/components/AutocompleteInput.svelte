@@ -83,7 +83,7 @@
 <div class="autocomplete">
   <input 
     id="{id}" 
-    on:click|preventDefault={handleClick}
+    on:mouseup|preventDefault={handleClick}
     on:input|preventDefault={handleInputChange}
     on:focusout|preventDefault={debounce(handleFocusOut, 200)}
     autocomplete="off"
