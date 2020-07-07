@@ -13,7 +13,7 @@
     import InputItem from './InputItem';
     import OutputItem from './OutputItem';
 
-    import './InputOutputTab.scss';
+    import '../input-output/InputOutputTab.scss';
 
     let lastAddedItem = null;
 
