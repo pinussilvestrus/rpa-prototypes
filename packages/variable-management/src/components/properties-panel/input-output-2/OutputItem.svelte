@@ -146,6 +146,7 @@
           <label>Resource</label>
           <input autocomplete="off" name="script-resource" bind:value={output.externalScriptResource} />
         {:else if output.mappingType === 'local-variable'}
+          <label>Local Variable Name</label>
           <input autocomplete="off" name="local-variable" bind:value={output.localVariable} />
         {/if}
       {/if}

@@ -136,6 +136,7 @@
           Without mapping, the variable has to be declared within this task to use it.
         </div>
       {:else if output.mappingType === 'local-variable'}
+        <label>Local Variable Name</label>
         <input autocomplete="off" name="local-variable" bind:value={output.localVariable} />
       {/if}
 

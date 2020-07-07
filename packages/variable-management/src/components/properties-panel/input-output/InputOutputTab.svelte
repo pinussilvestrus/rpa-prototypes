@@ -74,7 +74,7 @@
 
     <Section 
         id="data-inputs" 
-        title="Data Input Specification" 
+        title="Input Variables" 
         collection={element.inputs}
         onUpdateCollection={handleUpdateCollection}
         addComponent={AddInput}>
@@ -90,7 +90,7 @@
 
     <Section 
         id="data-outputs" 
-        title="Data Output Specification"
+        title="Output Variables"
         collection={element.outputs}
         onUpdateCollection={handleUpdateCollection}
         addComponent={AddOutput}>

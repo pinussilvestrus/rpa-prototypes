@@ -150,6 +150,7 @@
         </select>
 
         {#if input.mappingType === 'process-variable'}
+          <label>Process Variable Name</label>
           <AutocompleteInput 
             id="{`${input.id}-value`}"
             name="mapping"

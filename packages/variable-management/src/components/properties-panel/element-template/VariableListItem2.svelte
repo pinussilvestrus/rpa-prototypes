@@ -47,7 +47,7 @@
   const OUTPUT_MAPPING_TYPES = [
     {
       id: 'process-variable',
-      name: 'Process Variable Name',
+      name: 'Process Variable',
       descriptionProperty: 'processVariable'
     }
   ];
@@ -182,7 +182,7 @@
 
     {#if isInputVariable(variable)}
 
-      <label>Input Variable Name</label>
+      <label>Task Variable Name</label>
       <input name="name" bind:value={variable.name} disabled />
 
       <label>Description</label>
@@ -222,6 +222,7 @@
           <input autocomplete="off" name="script-resource" bind:value={variable.externalScriptResource} />
         {:else if variable.mappingType === 'process-variable'}
             <div class:mapping-missing="{variable.isMissing}">
+              <label>Process Variable Name</label>
               <AutocompleteInput 
                 id="{`${variable.id}-template-value`}"
                 name="mapping"
@@ -239,7 +240,7 @@
         {/if}
       {/if}
     {:else}   
-      <label>Output Variable Name</label>
+      <label>Task Variable Name</label>
       <input disabled name="name" bind:value={variable.name} />
 
       <label>Description</label>
@@ -263,6 +264,7 @@
         </select>
 
         {#if variable.mappingType === 'process-variable'}
+          <label>Process Variable Name</label>
           <input 
             autocomplete="off" 
             name="process-variable" 
