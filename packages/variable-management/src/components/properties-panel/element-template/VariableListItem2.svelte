@@ -244,8 +244,7 @@
       <label>Description</label>
       <textarea name="description" bind:value={variable.description} rows="3" disabled />
 
-      <label>Mapping</label>
-
+      <label>Map to Process Variable</label>
 
       <Switch onCheck="{handleCheckMapping}" checked={hasMapping(variable) && variable.mappingType !== 'none'} />
 
@@ -255,11 +254,11 @@
         </div>
       {:else}
 
-        <select name="type" bind:value={variable.mappingType}>
+        <!-- <select name="type" bind:value={variable.mappingType}>
             {#each OUTPUT_MAPPING_TYPES as {id, name}}
               <option value={id} selected={variable.mappingType === id}>{name}</option>
             {/each}
-        </select>
+        </select> -->
 
         {#if variable.mappingType === 'process-variable'}
           <label>Process Variable Name</label>

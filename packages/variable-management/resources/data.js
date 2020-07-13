@@ -22,12 +22,13 @@ export const ELEMENTS = [
         id: 'start-2',
         name: 'count',
         description: 'The amount of selected product as a Number'
-      },
-      {
-        id: 'start-3',
-        name: 'email',
-        description: 'The email address of the customer given be the request'
       }
+
+      // {
+      //   id: 'start-3',
+      //   name: 'email',
+      //   description: 'The email address of the customer given be the request'
+      // }
     ],
     outputMappings: []
   },

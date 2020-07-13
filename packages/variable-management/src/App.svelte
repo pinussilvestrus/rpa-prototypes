@@ -6,23 +6,23 @@
 
   // variant A - Without Catalog
   // variant A1 - IO Simple UI
-  import Editor_A1 from './components/variant_A1/Editor.svelte';
+  // import Editor_A1 from './components/variant_A1/Editor.svelte';
 
   // variant A2 - IO Two Step
   import Editor_A2 from './components/variant_A2/Editor.svelte';
 
   // variant B - With Catalog
   // variant B1 - IO Simple UI
-  import Editor_B1 from './components/variant_B1/Editor.svelte';
+  // import Editor_B1 from './components/variant_B1/Editor.svelte';
 
   // variant B2 - IO Two Step
   import Editor_B2 from './components/variant_B2/Editor.svelte';
 
   import './App.scss';
 
-  const VARIANTS = ['A1', 'A2', 'B1', 'B2'];
+  const VARIANTS = ['A', 'B'];
 
-  const DEFAULT_VARIANT = 'A1';
+  const DEFAULT_VARIANT = 'A';
 
   const toggleVariant = (variant) => {
     const found = findIndex(VARIANTS, v => v === variant);
@@ -82,26 +82,26 @@
   <span>{active}</span>
 </div>
 
-{#if active === 'A1'}
+{#if active === 'A'}
   <div class="variant variant-a1">
-      <Editor_A1 />
-  </div>
-{/if}
-
-{#if active === 'A2'}
-  <div class="variant variant-a2">
       <Editor_A2 />
   </div>
 {/if}
 
-{#if active === 'B1'}
-  <div class="variant variant-b1">
-      <Editor_B1 />
+<!-- {#if active === 'A2'}
+  <div class="variant variant-a2">
+      <Editor_A2 />
   </div>
-{/if}
+{/if} -->
 
-{#if active === 'B2'}
-  <div class="variant variant-b2">
+{#if active === 'B'}
+  <div class="variant variant-b1">
       <Editor_B2 />
   </div>
 {/if}
+
+<!-- {#if active === 'B2'}
+  <div class="variant variant-b2">
+      <Editor_B2 />
+  </div>
+{/if} -->
