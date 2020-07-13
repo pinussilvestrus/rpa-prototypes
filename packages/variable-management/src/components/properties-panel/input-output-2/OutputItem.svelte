@@ -115,10 +115,10 @@
     </div>
     <div class="item-details output-details">
       <label>Process Variable Name</label>
-      <input autocomplete="off" name="name" bind:value={output.name} />
+      <input autocomplete="off" bind:value={output.name} />
 
       <label>Description</label>
-      <textarea name="description" bind:value={output.description} />
+      <textarea name="description" bind:value={output.description} spellcheck="false" />
 
       <label>Mapping</label>
 
@@ -138,13 +138,13 @@
         {#if output.mappingType === 'constant-value'}
           <input autocomplete="off" name="constant-value" bind:value={output.constantValue} />
         {:else if output.mappingType === 'expression'}
-          <textarea autocomplete="off" name="expression" bind:value={output.expression} />
+          <textarea autocomplete="off" name="expression" bind:value={output.expression} spellcheck="false" />
         {:else if output.mappingType === 'inline-script'}
           <label>Format</label>
           <input autocomplete="off" name="script-format" bind:value={output.scriptFormat}  />
 
           <label>Script</label>
-          <textarea name="script-content" rows="5" bind:value={output.inlineScript}></textarea>
+          <textarea name="script-content" rows="5" bind:value={output.inlineScript} spellcheck="false"></textarea>
         {:else if output.mappingType === 'external-script'}
           <label>Format</label>
           <input autocomplete="off" name="script-format" bind:value={output.scriptFormat} />

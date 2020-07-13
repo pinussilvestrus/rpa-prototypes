@@ -52,10 +52,10 @@
     </div>
     <div class="item-details form-field-details">
       <label>ID</label>
-      <input autocomplete="off" name="name" bind:value={formField.name} />
+      <input autocomplete="off" bind:value={formField.name} />
 
       <label>Description</label>
-      <textarea name="description" bind:value={formField.description} />
+      <textarea name="description" bind:value={formField.description} spellcheck="false" />
 
       <!-- todo(pinussilvestrus): add validation + properties -->
       <label>Form Field Details</label>

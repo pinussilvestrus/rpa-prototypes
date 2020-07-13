@@ -211,7 +211,7 @@
           <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat}  />
 
           <label>Script</label>
-          <textarea name="script-content" rows="5" bind:value={variable.inlineScript}></textarea>
+          <textarea name="script-content" rows="5" bind:value={variable.inlineScript} spellcheck="false"></textarea>
         {:else if variable.mappingType === 'external-script'}
           <label>Format</label>
           <input autocomplete="off" name="script-format" bind:value={variable.scriptFormat} />

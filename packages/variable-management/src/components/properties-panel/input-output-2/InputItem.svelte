@@ -128,10 +128,10 @@
     </div>
     <div class="item-details input-details">
       <label>Local Variable Name</label>
-      <input autocomplete="off" name="name" bind:value={input.name} />
+      <input autocomplete="off" bind:value={input.name} />
 
       <label>Description</label>
-      <textarea name="description" bind:value={input.description} />
+      <textarea name="description" bind:value={input.description} spellcheck="false" />
 
       <label>Mapping</label>
 
@@ -163,13 +163,13 @@
         {:else if input.mappingType === 'constant-value'}
           <input autocomplete="off" name="constantValue" bind:value={input.constantValue} />
         {:else if input.mappingType === 'expression'}
-          <textarea autocomplete="off" name="expression" bind:value={input.expression} />
+          <textarea autocomplete="off" name="expression" bind:value={input.expression} spellcheck="false" />
         {:else if input.mappingType === 'inline-script'}
           <label>Format</label>
           <input autocomplete="off" name="script-format" bind:value={input.scriptFormat}  />
 
           <label>Script</label>
-          <textarea name="script-content" rows="5" bind:value={input.inlineScript}></textarea>
+          <textarea name="script-content" rows="5" bind:value={input.inlineScript} spellcheck="false"></textarea>
         {:else if input.mappingType === 'external-script'}
           <label>Format</label>
           <input autocomplete="off" name="script-format" bind:value={input.scriptFormat} />
