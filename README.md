@@ -11,6 +11,7 @@ Prototypes built via our RPA Prototyping phase, Q2 2020
     * [`templates-external`](./packages/templates-external)
 * Topic 2: Variable Management
     * [`variable-management`](./packages/variable-management) 
+    * [`variable-management-new`](./packages/variable-management-new) 
 
 ## Setup
 

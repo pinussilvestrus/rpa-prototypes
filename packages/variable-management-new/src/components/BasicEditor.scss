@@ -1,0 +1,11 @@
+@import '../_colors.scss';
+
+.editor-container {
+  position: relative;
+  height: 91%;
+  overflow: hidden;
+
+  .diagram {
+    padding: 2rem;
+  }
+}

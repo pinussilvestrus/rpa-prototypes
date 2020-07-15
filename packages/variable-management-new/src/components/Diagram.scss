@@ -1,0 +1,28 @@
+@import '../_colors.scss';
+
+.diagram {
+
+  width: 800px;
+  height: 100%;
+  user-select: none;
+
+  .element {
+    .djs-hit {
+      pointer-events: all;
+    }
+
+    &.selected .djs-outline {
+      shape-rendering: crispEdges;
+      stroke: $color-select;
+      stroke-width: 0.2rem;
+      stroke-dasharray: 0.625rem;
+    }
+
+    &.hover:not(.selected) .djs-outline {
+      stroke: $color-hover;
+      stroke-width: 0.2rem;
+      stroke-dasharray: 0.625rem;
+    }
+  }
+
+}
