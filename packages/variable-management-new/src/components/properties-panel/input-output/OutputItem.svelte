@@ -155,6 +155,10 @@
         {:else if output.mappingType === 'local-variable'}
           <label>Task Variable Name</label>
           <input autocomplete="off" name="local-variable" bind:value={output.localVariable} />
+
+          <div class="hint">
+            {`Task Variable <${output.localVariable}> must be written inside this task, e.g. by setVariableLocal().`}
+          </div>
         {/if}
       {/if}
 
