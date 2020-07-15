@@ -47,6 +47,12 @@
 
   let lastSavedMappingType = 'process-variable';
 
+  $: {
+    if (input.mappingType === 'process-variable' && !input.processVariable) {
+      input.processVariable = input.name;
+    }
+  }
+
   let availableOptions;
   onMount(async () => {
     variableStore.subscribe(list => {
