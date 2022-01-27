@@ -33,6 +33,6 @@
     "diagram-js": "^7.3.0",
     "domtastic": "^0.15.12",
     "micromodal": "^0.4.6",
-    "min-dash": "^3.7.0"
+    "min-dash": "^3.8.1"
   }
 }
